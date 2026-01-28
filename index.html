@@ -736,10 +736,10 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Sistema Recolección</strong><br><span style="font-size:0.8rem; opacity:0.7">(Core de Negocio)</span></td>
-                            <td>Logística, Clientes, Rutas, Cobranza</td>
-                            <td>Laravel 10 + MySQL <br><span style="font-size:0.8rem; opacity:0.7">AWS EC2 (Monolito)</span></td>
-                            <td><span class="status-dot status-risk"></span>Crítico / Manual</td>
+                            <td><strong>Sistema Recolección (Laravel)</strong><br><span style="font-size:0.8rem; opacity:0.7">(Activo Dormido)</span></td>
+                            <td>Diseñado para Logística, Clientes, Rutas</td>
+                            <td>Laravel 10 + MySQL <br><span style="font-size:0.8rem; opacity:0.7">AWS EC2 - Sin Uso Activo</span></td>
+                            <td><span class="status-dot status-warn"></span>Abandonado / Sin Documentar</td>
                         </tr>
                         <tr>
                             <td><strong>Operaciones en Campo</strong></td>
@@ -858,8 +858,8 @@
                         <p>La arquitectura se refiere a la estructura técnica. La brecha es la falta de <strong>escalabilidad y resiliencia</strong>: si falla la instancia única, todo cae. Explica la necesidad de migrar a servicios gestionados (RDS, Auto Scaling) para reducir el riesgo de interrupciones.</p>
                     </div>
                     <div class="conclusion-simple">
-                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
-                        <p>El sistema principal (desarrollo laravel) está construido con herramientas buenas y modernas, pero todo vive en una sola máquina en la nube (como si todo el negocio estuviera en una sola computadora grande). No hay lugar separado para probar cambios, así que cualquier error se ve inmediatamente en el día a día.</p>
+                        <div class="conclusion-header"><i class="fas fa-info-circle"></i> Situación Actual</div>
+                        <p><strong>El contexto real:</strong> Existe un sistema Laravel moderno en la nube, pero actualmente <strong>no está en uso activo</strong>. No hay documentación disponible de cómo funciona, no se están extrayendo datos de él, y las operaciones del día a día se siguen realizando en Excel y papel. Esto representa tanto un <strong>activo tecnológico existente</strong> como un <strong>reto de adopción y documentación</strong> si se decide reactivarlo.</p>
                     </div>
                 </div>
             </article>
@@ -1107,7 +1107,7 @@
                         Mapa de Riesgos
                     </h2>
                 </div>
-                <div class="card-body" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <div class="card-body" style="display: flex; align-items: center; justify-content: flex-start; flex-direction: column; padding-top: 1rem;">
                     <div style="height: 200px; width: 200px; position: relative;">
                          <canvas id="riesgosChart"></canvas>
                     </div>
@@ -1316,14 +1316,14 @@
                                 <tr>
                                     <td><strong>Sistema Propio (Laravel)</strong></td>
                                     <td>Operaciones Core</td>
-                                    <td><span class="status-dot status-active"></span>En uso</td>
-                                    <td>Control operativo (rutas/servicios/bitácoras). Base para integración.</td>
-                                    <td><strong>APIs a medida.</strong> Alta integración potencial con GPS/ERP.</td>
+                                    <td><span class="status-dot status-warn"></span>Dormido</td>
+                                    <td><strong>Diseñado</strong> para control operativo, pero <strong>sin uso activo</strong>. No hay extracción de datos ni documentación.</td>
+                                    <td><strong>APIs potenciales</strong> pero sin implementar. Código sin documentar dificulta integración.</td>
                                     <td>Integrable (GPS/IoT)</td>
                                     <td>Propietaria</td>
-                                    <td>CAPEX/OPEX Interno</td>
-                                    <td style="color:var(--success)">Máxima flexibilidad, evita lock-in, adapta procesos reales.</td>
-                                    <td style="color:var(--primary)">Dependencia de equipo; riesgo de obsolescencia sin plan de upgrades.</td>
+                                    <td>CAPEX Hundido</td>
+                                    <td style="color:var(--success)">Tecnología moderna (Laravel 10); base técnica sólida si se reactiva.</td>
+                                    <td style="color:#dc2626"><strong>CRÍTICO:</strong> Activo abandonado. Sin documentación, sin usuarios activos, sin datos. Requiere auditoría completa antes de cualquier inversión adicional.</td>
                                 </tr>
                                 <tr>
                                     <td><strong>TESK</strong></td>
@@ -1583,53 +1583,143 @@
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem;">
                         <!-- Opción A: Desarrollo a Medida -->
                         <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
-                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-hammer"></i> Opción A: Tu Desarrollo a Medida (Laravel)</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Es como mandar a hacer un traje con un sastre: te queda perfecto a tu medida, pero es caro y tarda.</p>
+                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-hammer"></i> Opción A: Reactivar el Desarrollo a Medida (Laravel)</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Aprovechar la inversión ya realizada en el sistema Laravel existente, completándolo y poniéndolo en operación.</p>
                             
-                            <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 10px;">
-                                <li><strong>Lo Bueno:</strong> El programa hace exactamente lo que tú quieres. No tienes que adaptarte a él.</li>
-                                <li><strong>El Costo:</strong> Necesitas siempre un equipo de programadores contratados para arreglar errores y crear funciones nuevas.</li>
-                                <li><strong>El Riesgo:</strong> Si los programadores se van, el conocimiento se va con ellos. Es más lento ver resultados grandes.</li>
-                            </ul>
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
+                                <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;"><i class="fas fa-clipboard-list"></i> Estado Actual del Sistema Laravel:</strong>
+                                <ul style="font-size: 0.85rem; color: #78350f; margin: 0; padding-left: 1.2rem;">
+                                    <li>Sistema construido con Laravel 10 (tecnología moderna)</li>
+                                    <li>Hospedado en AWS EC2</li>
+                                    <li>Sin uso operativo actual</li>
+                                    <li>Sin documentación técnica ni de usuario</li>
+                                    <li>Sin extracción de datos o reportes activos</li>
+                                    <li>Inversión de desarrollo ya realizada (CAPEX hundido)</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">✅ Ventajas de esta opción:</strong>
+                                <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
+                                    <li>Ya existe una base de código desarrollada (no se parte de cero)</li>
+                                    <li>Puede adaptarse 100% a procesos específicos del negocio</li>
+                                    <li>Control total sobre funcionalidades y roadmap de desarrollo</li>
+                                    <li>No hay dependencia de proveedores externos (vendor lock-in)</li>
+                                    <li>Tecnología moderna con buena comunidad de soporte (Laravel)</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">⚠️ Desafíos y costos de esta opción:</strong>
+                                <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
+                                    <li><strong>Auditoría inicial obligatoria:</strong> Necesaria para conocer el estado real del código (2-3 semanas, costo de consultoría)</li>
+                                    <li><strong>Documentación completa:</strong> Crear manuales técnicos y de usuario desde cero</li>
+                                    <li><strong>Equipo dedicado:</strong> Contratar/mantener desarrolladores Laravel (2-3 personas mínimo)</li>
+                                    <li><strong>Infraestructura:</strong> Implementar ambientes de prueba, backups, seguridad, monitoreo</li>
+                                    <li><strong>Tiempo de implementación:</strong> 6-9 meses estimados hasta operación completa</li>
+                                    <li><strong>Riesgo de conocimiento:</strong> Dependencia de que el equipo técnico documente y transfiera conocimiento</li>
+                                </ul>
+                            </div>
                             
                             <div style="margin-top: 1.5rem; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
-                                <strong style="display:block; margin-bottom:5px; color:#0f172a;">Pasos si eliges esta ruta:</strong>
-                                <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b;">
-                                    <li>Contratar una célula de desarrollo dedicada (mínimo 2-3 personas).</li>
-                                    <li>Documentar cada proceso para no depender de la memoria de nadie.</li>
-                                    <li>Invertir en servidores de prueba (QA) y seguridad robusta.</li>
+                                <strong style="display:block; margin-bottom:8px; color:#0f172a;">📋 Lo que implicaría elegir esta ruta:</strong>
+                                <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b; margin: 0;">
+                                    <li><strong>Fase 1 - Auditoría (2-3 semanas):</strong> Contratar expertos Laravel para revisar código, evaluar completitud y estimar esfuerzo restante.</li>
+                                    <li><strong>Fase 2 - Documentación (1-2 meses):</strong> Crear documentación técnica completa del sistema existente.</li>
+                                    <li><strong>Fase 3 - Completar desarrollo (3-5 meses):</strong> Implementar funcionalidades faltantes según hallazgos de auditoría.</li>
+                                    <li><strong>Fase 4 - Infraestructura (1-2 meses):</strong> Implementar QA, backups automáticos, monitoreo, seguridad.</li>
+                                    <li><strong>Fase 5 - Capacitación y adopción (1 mes):</strong> Entrenar usuarios y migrar operaciones desde Excel.</li>
                                 </ol>
+                                <p style="font-size: 0.85rem; color: #475569; margin-top: 0.8rem; margin-bottom: 0;"><strong>Inversión estimada:</strong> Depende de resultados de auditoría. <strong>Tiempo total:</strong> 6-9 meses aproximadamente.</p>
                             </div>
                         </div>
 
                         <!-- Opción B: Software ya Creado -->
                         <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
-                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-shopping-cart"></i> Opción B: Software ya Listo (como los de la tabla)</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Es como comprar ropa de marca en una tienda: la tienes hoy mismo y es de alta calidad, pero te tiene que quedar la talla.</p>
+                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-shopping-cart"></i> Opción B: Implementar Software Comercial Especializado</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Adoptar soluciones ya probadas en el mercado (como Samsara, MUTA, SimpliRoute) que están diseñadas específicamente para la industria.</p>
                             
-                            <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 10px;">
-                                <li><strong>Lo Bueno:</strong> Implementas muy rápido. Ya está probado por miles de empresas. No necesitas programadores propios.</li>
-                                <li><strong>El Costo:</strong> Pagas una renta mensual. Si quieres algo especial que el software no hace, probablemente no lo tendrás.</li>
-                                <li><strong>El Riesgo:</strong> El negocio se tiene que adaptar a cómo funciona el software. Solo tienes lo que el proveedor te ofrece.</li>
-                            </ul>
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">✅ Ventajas de esta opción:</strong>
+                                <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
+                                    <li><strong>Implementación rápida:</strong> 1-3 meses hasta operación completa (vs 6-9 meses desarrollo propio)</li>
+                                    <li><strong>Probado y maduro:</strong> Software usado por cientos/miles de empresas similares</li>
+                                    <li><strong>Sin equipo técnico propio:</strong> El proveedor mantiene, actualiza y da soporte</li>
+                                    <li><strong>Actualizaciones automáticas:</strong> Nuevas funcionalidades sin costo adicional de desarrollo</li>
+                                    <li><strong>Integraciones nativas:</strong> APIs ya construidas con GPS, contabilidad, etc.</li>
+                                    <li><strong>Capacitación incluida:</strong> Manuales, videos, soporte técnico del proveedor</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="margin-bottom: 1rem;">
+                                <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">⚠️ Desafíos y costos de esta opción:</strong>
+                                <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
+                                    <li><strong>Costo recurrente (OPEX):</strong> Renta mensual por usuario/vehículo (vs CAPEX único en desarrollo propio)</li>
+                                    <li><strong>Adaptación de procesos:</strong> El negocio debe ajustarse a cómo funciona el software</li>
+                                    <li><strong>Personalización limitada:</strong> Solo puedes usar las funcionalidades que el proveedor ofrece</li>
+                                    <li><strong>Dependencia del proveedor:</strong> Si cambian precios o descontinúan servicio, afecta operaciones</li>
+                                    <li><strong>Datos en plataforma externa:</strong> Información del negocio reside en servidores del proveedor</li>
+                                    <li><strong>Contratos de largo plazo:</strong> Algunos proveedores requieren compromisos anuales</li>
+                                </ul>
+                            </div>
  
                             <div style="margin-top: 1.5rem; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
-                                <strong style="display:block; margin-bottom:5px; color:#0f172a;">Pasos si eliges esta ruta:</strong>
-                                <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b;">
-                                    <li>Elegir el software (ej. Samsara, Muta o SimpliRoute) según prioridad.</li>
-                                    <li>Entrenar a todo el equipo en las nuevas reglas del programa.</li>
-                                    <li>Conectar el software con tus datos actuales vía API para no perder historia.</li>
+                                <strong style="display:block; margin-bottom:8px; color:#0f172a;">📋 Lo que implicaría elegir esta ruta:</strong>
+                                <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b; margin: 0;">
+                                    <li><strong>Fase 1 - Selección (2-4 semanas):</strong> Evaluar proveedores (Samsara, MUTA, SimpliRoute), solicitar demos y cotizaciones.</li>
+                                    <li><strong>Fase 2 - Contratación (1-2 semanas):</strong> Negociar contrato, definir número de licencias y alcance.</li>
+                                    <li><strong>Fase 3 - Configuración (2-4 semanas):</strong> Parametrizar el sistema según procesos actuales, cargar datos maestros.</li>
+                                    <li><strong>Fase 4 - Capacitación (2-3 semanas):</strong> Entrenar usuarios en el uso del nuevo sistema.</li>
+                                    <li><strong>Fase 5 - Go-Live (1-2 semanas):</strong> Migración de operaciones y acompañamiento inicial.</li>
                                 </ol>
+                                <p style="font-size: 0.85rem; color: #475569; margin-top: 0.8rem; margin-bottom: 0;"><strong>Inversión estimada:</strong> Renta mensual según proveedor. <strong>Tiempo total:</strong> 2-3 meses aproximadamente.</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="insight" style="border-top: 1px solid #e2e8f0; border-left: none; padding-top: 2rem; margin-top: 2rem;">
-                        <div class="insight-header" style="color: #0f172a;"><i class="fas fa-lightbulb"></i> Recomendación General</div>
-                        <p style="color: #334155; font-size: 1rem;">
-                            <strong>No es "uno o el otro". Es saber cuándo usar cada uno.</strong> <br><br>
-                            Mi recomendación es mantener el <strong>Sistema a Medida</strong> solo para el "corazón" de tu receta secreta (la lógica de tus recolecciones únicas), pero usar <strong>Software ya Creado</strong> para lo que ya existe y es mejor afuera (monitoreo GPS, rutas automáticas, administración de recibos). <br><br>
-                            Así, tienes lo mejor de los dos mundos: control total donde importa y velocidad donde ya hay soluciones listas.
+                        <div class="insight-header" style="color: #0f172a;"><i class="fas fa-lightbulb"></i> Marco para Tomar la Decisión</div>
+                        <p style="color: #334155; font-size: 1rem; margin-bottom: 1.5rem;">
+                            No existe una respuesta "correcta" universal. La mejor opción depende de tu situación específica. Aquí hay un marco para ayudarte a decidir:
+                        </p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                            <div style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 1rem; border-radius: 6px;">
+                                <strong style="color: #065f46; display: block; margin-bottom: 0.5rem;">✅ Considera la Opción A (Laravel) si:</strong>
+                                <ul style="font-size: 0.85rem; color: #047857; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                    <li>Tus procesos son muy únicos y ningún software comercial los cubre</li>
+                                    <li>Tienes presupuesto para 6-9 meses de desarrollo y equipo técnico</li>
+                                    <li>La auditoría revela que el sistema está 70%+ completo</li>
+                                    <li>Prefieres control total sobre el roadmap de funcionalidades</li>
+                                    <li>Quieres evitar costos recurrentes de renta mensual</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 6px;">
+                                <strong style="color: #1e40af; display: block; margin-bottom: 0.5rem;">✅ Considera la Opción B (Comercial) si:</strong>
+                                <ul style="font-size: 0.85rem; color: #1e40af; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                    <li>Necesitas resultados rápidos (1-3 meses vs 6-9 meses)</li>
+                                    <li>Tus procesos pueden adaptarse a mejores prácticas de la industria</li>
+                                    <li>Prefieres no mantener un equipo técnico interno</li>
+                                    <li>Valoras tener soporte profesional 24/7 del proveedor</li>
+                                    <li>Quieres aprovechar integraciones ya construidas (GPS, contabilidad, etc.)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;">
+                            <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> Paso Crítico Antes de Decidir:</strong>
+                            <p style="font-size: 0.9rem; color: #78350f; margin: 0; line-height: 1.6;">
+                                <strong>Si estás considerando la Opción A (Laravel):</strong> Es obligatorio hacer una auditoría técnica primero (2-3 semanas). Sin saber el estado real del código, cualquier decisión sería a ciegas. La auditoría te dirá:<br>
+                                • ¿Qué porcentaje está completo?<br>
+                                • ¿Cuánto costaría terminarlo?<br>
+                                • ¿Está bien construido o necesita refactorización?<br>
+                                • ¿Cuánto tiempo tomaría ponerlo en producción?
+                            </p>
+                        </div>
+                        
+                        <p style="color: #334155; font-size: 0.95rem; margin: 0;">
+                            <strong>Opción Híbrida:</strong> También puedes usar ambas estrategias en paralelo: implementar software comercial para necesidades urgentes (GPS, rutas) mientras auditas y decides el futuro del Laravel. Esto te da valor inmediato sin cerrar puertas.
                         </p>
                     </div>
                 </div>
@@ -1740,16 +1830,35 @@
                     <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start;">
                         <div>
                             <p style="font-size: 1.2rem; line-height: 1.8; color: #1e293b; font-weight: 600;">
-                                Grupo Sonne tiene un activo valioso en su tecnología actual, pero está operando "sin red de seguridad". 
+                                Grupo Sonne se encuentra en un punto de decisión estratégica sobre su infraestructura tecnológica.
                             </p>
                             <p style="font-size: 1rem; line-height: 1.7; color: #475569; margin-top: 1rem;">
-                                El programa de recolecciones es tu motor principal. Si no blindamos hoy la seguridad, los respaldos y la forma en que guardamos los datos, cualquier inversión futura (como un nuevo CRM o más camiones) estará construida sobre arena. El objetivo de los próximos 90 días no es cambiar todo, sino asegurar que lo que hoy funciona, no se rompa nunca.
+                                <strong>La situación actual:</strong> Existe un sistema Laravel moderno que representa una inversión ya realizada, pero actualmente no está en uso operativo y carece de documentación. Mientras tanto, las operaciones diarias se ejecutan principalmente en Excel y procesos manuales.<br><br>
+                                
+                                <strong>Las opciones disponibles:</strong> Tienes dos caminos principales: (1) Reactivar y completar el sistema Laravel existente, o (2) Implementar software comercial especializado. Cada opción tiene ventajas y desafíos específicos que se detallan en este documento.<br><br>
+                                
+                                <strong>El factor crítico:</strong> Independientemente de la opción que elijas, es fundamental tomar una decisión informada basada en datos reales (auditoría técnica si consideras Laravel) y con una visión clara de los recursos (tiempo, presupuesto, equipo) que estás dispuesto a comprometer.
                             </p>
                         </div>
                         <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
-                            <div class="insight-header" style="color: #0f172a; margin-bottom: 1rem;"><i class="fas fa-rocket"></i> El Siguiente Paso</div>
+                            <div class="insight-header" style="color: #0f172a; margin-bottom: 1rem;"><i class="fas fa-route"></i> Ruta Sugerida para Decidir</div>
                             <p style="color: #475569; font-size: 0.95rem; line-height: 1.6;">
-                                Es vital dejar de usar Excel como base de datos y pasar a un sistema visual como <strong>Power BI</strong>. Esto te permitirá ver cuánto dinero y tiempo estás ganando o perdiendo en tiempo real, sin depender de que alguien arme un reporte manual. Estabilidad primero, crecimiento después.
+                                <strong style="color: #0f172a;">1. Corto Plazo (Próximas 4-6 semanas):</strong><br>
+                                • Definir prioridades críticas del negocio<br>
+                                • Si consideras Laravel: contratar auditoría técnica<br>
+                                • Si consideras comercial: solicitar demos de 2-3 proveedores<br><br>
+                                
+                                <strong style="color: #0f172a;">2. Mediano Plazo (2-3 meses):</strong><br>
+                                • Evaluar resultados de auditoría/demos<br>
+                                • Calcular TCO (Total Cost of Ownership) de cada opción<br>
+                                • Tomar decisión basada en datos reales<br><br>
+                                
+                                <strong style="color: #0f172a;">3. Largo Plazo (6-12 meses):</strong><br>
+                                • Implementar la solución elegida<br>
+                                • Establecer SSOT y dashboards (Power BI)<br>
+                                • Migrar operaciones de Excel a sistema digital<br><br>
+                                
+                                <em style="font-size: 0.85rem; color: #64748b;">Este documento te proporciona la información necesaria para tomar una decisión informada que se alinee con tus objetivos de negocio.</em>
                             </p>
                         </div>
                     </div>
