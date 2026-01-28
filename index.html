@@ -1085,8 +1085,40 @@
                     </div>
                     
                     <div class="insight">
-                        <div class="insight-header">Solución Propuesta</div>
-                        <p>Implementar <strong>Power BI</strong> conectado directamente a una base de datos centralizada (SSOT). Mantener exportación a Excel, pero eliminando la lógica de negocio en hojas de cálculo.</p>
+                        <div class="insight-header">Caminos Posibles para Solucionar el Problema de Datos</div>
+                        <p style="margin-bottom: 1rem;">Para implementar un SSOT (fuente única de verdad) y centralizar los datos, tienes dos caminos:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 6px;">
+                                <strong style="color: #92400e; display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">🔨 Camino A: Reactivar Laravel</strong>
+                                <ul style="font-size: 0.85rem; color: #78350f; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
+                                    <li><strong>Tiempo:</strong> 6-9 meses hasta tener datos fluyendo</li>
+                                    <li><strong>Requiere:</strong> Auditoría, documentación, equipo técnico dedicado</li>
+                                    <li><strong>Riesgo:</strong> Alto (código sin documentar, sin validación en producción)</li>
+                                    <li><strong>Costo:</strong> CAPEX significativo + OPEX de equipo técnico permanente</li>
+                                </ul>
+                                <p style="font-size: 0.8rem; color: #78350f; margin: 0.5rem 0 0 0; line-height: 1.5;">
+                                    <strong>Resultado:</strong> Sistema a medida, pero con 6-9 meses de espera antes de tener datos centralizados.
+                                </p>
+                            </div>
+                            
+                            <div style="background: #dbeafe; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 6px;">
+                                <strong style="color: #1e40af; display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">🚀 Camino B: Software Comercial</strong>
+                                <ul style="font-size: 0.85rem; color: #1e3a8a; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
+                                    <li><strong>Tiempo:</strong> 2-3 meses hasta tener datos fluyendo</li>
+                                    <li><strong>Requiere:</strong> Selección de proveedor, configuración, capacitación</li>
+                                    <li><strong>Riesgo:</strong> Bajo (software probado por cientos de empresas)</li>
+                                    <li><strong>Costo:</strong> OPEX mensual predecible, sin sorpresas</li>
+                                </ul>
+                                <p style="font-size: 0.8rem; color: #1e3a8a; margin: 0.5rem 0 0 0; line-height: 1.5;">
+                                    <strong>Resultado:</strong> Datos centralizados en 2-3 meses, listos para analítica y reportes inmediatamente.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: #475569; line-height: 1.6;">
+                            <strong>Independientemente del camino elegido,</strong> el objetivo final es el mismo: tener un <strong>SSOT</strong> (base de datos centralizada) con información confiable y actualizada para toma de decisiones. La diferencia está en <strong>cuánto tiempo tardas en llegar ahí</strong> y <strong>cuánto riesgo asumes en el camino</strong>.
+                        </p>
                     </div>
                     <div class="conclusion-simple" style="margin-top: 2rem;">
                         <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple: Datos y SSOT</div>
@@ -1184,7 +1216,7 @@
                             </tr>
                             <tr>
                                 <td><strong>2. Gestionado</strong></td>
-                                <td>Procesos planificados por proyecto. Reactivo ordenado.</td>
+                                <td>Procesos planificados y estandarizadosReactivo ordenado.</td>
                                 <td>Inicio de documentación y ambientes (QA).</td>
                                 <td><span class="status-dot status-warn"></span>Corto Plazo</td>
                             </tr>
@@ -1510,7 +1542,7 @@
                     </div>
                     <div class="conclusion-simple" style="margin-top: 2rem;">
                         <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
-                        <p>Hoy tenemos muchas herramientas diferentes para cada tarea (logística, administración, taller), pero cada una funciona por su cuenta. Algunas son muy modernas y otras ya se están quedando viejas. La meta no es comprar más programas, sino conectar los que ya sirven para que la información fluya sin tener que estar copiando y pegando todo el día.</p>
+                        <p>Hoy tenemos muchas herramientas diferentes para cada tarea (logística, administración, taller), pero cada una funciona por su cuenta. Algunas son muy modernas y otras ya se están quedando viejas.</p>
                     </div>
                 </div>
             </article>
@@ -1598,6 +1630,23 @@
                                 </ul>
                             </div>
                             
+                            <div style="background: #fee2e2; border-left: 4px solid #dc2626; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
+                                <strong style="color: #991b1b; display: block; margin-bottom: 0.5rem;"><i class="fas fa-ban"></i> ¿Por qué NO es viable continuar "como está"?</strong>
+                                <p style="font-size: 0.85rem; color: #7f1d1d; margin: 0 0 0.5rem 0; line-height: 1.6;">
+                                    Aunque el sistema existe, <strong>no puede usarse en su estado actual</strong> por las siguientes barreras críticas:
+                                </p>
+                                <ul style="font-size: 0.85rem; color: #7f1d1d; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
+                                    <li><strong>Barrera de Conocimiento:</strong> Sin documentación, nadie sabe qué funcionalidades están implementadas, cómo usarlas, o qué falta por completar. Es como tener un manual en blanco.</li>
+                                    <li><strong>Barrera de Adopción:</strong> Los usuarios no pueden empezar a usar algo que no tiene guías, capacitación ni soporte. El sistema quedaría abandonado nuevamente.</li>
+                                    <li><strong>Barrera de Mantenimiento:</strong> Sin equipo técnico que conozca el código, cualquier error o cambio requerido se convierte en un proyecto de "arqueología de código".</li>
+                                    <li><strong>Barrera de Confianza:</strong> Un sistema sin datos históricos, sin validación en producción y sin usuarios activos no genera confianza para operaciones críticas del negocio.</li>
+                                    <li><strong>Barrera de Integración:</strong> Sin APIs documentadas ni conectores probados, no puede integrarse con GPS, contabilidad u otros sistemas necesarios.</li>
+                                </ul>
+                                <p style="font-size: 0.85rem; color: #7f1d1d; margin: 0.5rem 0 0 0; line-height: 1.6;">
+                                    <strong>Conclusión:</strong> El sistema no puede "continuar" porque nunca comenzó a operar. Reactivarlo requiere el mismo esfuerzo (o más) que implementar una solución comercial, pero con mayor riesgo e incertidumbre.
+                                </p>
+                            </div>
+                            
                             <div style="margin-bottom: 1rem;">
                                 <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">✅ Ventajas de esta opción:</strong>
                                 <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
@@ -1673,6 +1722,62 @@
                                     <li><strong>Fase 5 - Go-Live (1-2 semanas):</strong> Migración de operaciones y acompañamiento inicial.</li>
                                 </ol>
                                 <p style="font-size: 0.85rem; color: #475569; margin-top: 0.8rem; margin-bottom: 0;"><strong>Inversión estimada:</strong> Renta mensual según proveedor. <strong>Tiempo total:</strong> 2-3 meses aproximadamente.</p>
+                            </div>
+                            
+                            <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; margin-top: 1.5rem; border-radius: 6px;">
+                                <strong style="color: #1e40af; display: block; margin-bottom: 0.5rem;"><i class="fas fa-lightbulb"></i> Ejemplo Ilustrativo de la Opción B: Caso MUTA</strong>
+                                <p style="font-size: 0.85rem; color: #1e3a8a; margin: 0 0 0.5rem 0; line-height: 1.6;">
+                                    <em>Este es solo un ejemplo para ilustrar cómo funcionaría la Opción B. Existen otras alternativas comerciales (Samsara, SimpliRoute, etc.) con funcionalidades similares.</em>
+                                </p>
+                                <p style="font-size: 0.85rem; color: #1e3a8a; margin: 0 0 0.5rem 0; line-height: 1.6;">
+                                    <strong>Si eligieran MUTA</strong> (plataforma especializada en gestión de residuos y reciclaje), obtendrían:
+                                </p>
+                                
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.5rem;">
+                                    <div>
+                                        <strong style="font-size: 0.8rem; color: #1e40af; display: block; margin-bottom: 4px;">🚛 Operaciones en Campo:</strong>
+                                        <ul style="font-size: 0.8rem; color: #1e3a8a; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                            <li>App móvil para choferes con rutas optimizadas automáticamente</li>
+                                            <li>Captura digital de tickets con foto y geolocalización</li>
+                                            <li>Registro de peso/volumen de material recolectado</li>
+                                            <li>Alertas de desvíos de ruta o retrasos</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <strong style="font-size: 0.8rem; color: #1e40af; display: block; margin-bottom: 4px;">📊 Gestión y Reportes:</strong>
+                                        <ul style="font-size: 0.8rem; color: #1e3a8a; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                            <li>Dashboard en tiempo real de operaciones activas</li>
+                                            <li>Reportes automáticos de impacto ambiental para clientes</li>
+                                            <li>Trazabilidad completa del material (desde recolección hasta disposición)</li>
+                                            <li>KPIs de eficiencia de rutas y productividad</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <strong style="font-size: 0.8rem; color: #1e40af; display: block; margin-bottom: 4px;">👥 Gestión de Clientes:</strong>
+                                        <ul style="font-size: 0.8rem; color: #1e3a8a; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                            <li>Portal web para que clientes vean su historial de recolecciones</li>
+                                            <li>Generación automática de certificados de disposición</li>
+                                            <li>Facturación integrada con datos de recolección</li>
+                                            <li>Notificaciones automáticas de próximas visitas</li>
+                                        </ul>
+                                    </div>
+                                    
+                                    <div>
+                                        <strong style="font-size: 0.8rem; color: #1e40af; display: block; margin-bottom: 4px;">🔗 Integraciones:</strong>
+                                        <ul style="font-size: 0.8rem; color: #1e3a8a; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                            <li>Conexión nativa con GPS de vehículos (Samsara, Geotab)</li>
+                                            <li>Integración con sistemas contables (QuickBooks, SAP)</li>
+                                            <li>API para conectar con otros sistemas internos</li>
+                                            <li>Exportación de datos a Power BI para análisis avanzado</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <p style="font-size: 0.8rem; color: #1e3a8a; margin: 0.8rem 0 0 0; line-height: 1.6;">
+                                    <strong>Resultado:</strong> En 2-3 meses tendrías un sistema completo funcionando, con usuarios capacitados, datos fluyendo automáticamente, y reportes listos para clientes. Sin necesidad de contratar desarrolladores ni preocuparte por mantenimiento técnico.
+                                </p>
                             </div>
                         </div>
                     </div>
