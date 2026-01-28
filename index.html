@@ -1,0 +1,1841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnóstico Técnico - Grupo Sonne | Dashboard Estratégico</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <style>
+        :root {
+            /* Light Theme Base */
+            --bg-body: #f8fafc;
+            --bg-nav: #ffffff;
+            --bg-card: #ffffff;
+            --bg-card-hover: #ffffff;
+            
+            /* Professional Corporate Colors (Replacing Red) */
+            --primary: #2563eb; /* Corporate Blue */
+            --primary-dim: rgba(37, 99, 235, 0.1);
+            --accent: #0f172a; /* Deep Navy */
+            --accent-dim: rgba(15, 23, 42, 0.05);
+            --success: #059669;
+            --warning: #d97706;
+            
+            /* Typography */
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --text-highlight: #0f172a;
+            
+            /* Structural */
+            --border: #e2e8f0;
+            --glass-border: 1px solid #e2e8f0;
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --shadow-glow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--bg-body);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            background-image: none; /* Removed dark mode gradients */
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: #ffffff;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--border);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .logo-container {
+            margin-bottom: 2.5rem;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: #0f172a; /* Dark background only for the white logo */
+            border-radius: var(--radius-md);
+        }
+
+        .logo {
+            width: 160px;
+            height: auto;
+            /* Enhance visibility against dark bg if logo is dark, though user said it has white letters. 
+               Adding a subtle glow just in case. */
+            
+        }
+
+        .nav-category {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin: 1.5rem 0 0.5rem 1rem;
+            opacity: 0.8;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            text-decoration: none;
+            color: var(--text-muted);
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: #f1f5f9;
+            color: var(--primary);
+            border-left-color: var(--primary);
+            padding-left: 20px;
+        }
+
+        .nav-link i {
+            width: 20px;
+            text-align: center;
+            color: var(--primary); /* Keep icons highlighted */
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 3rem 4rem;
+            max-width: 1800px;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 2rem;
+        }
+
+        .header-text h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .header-text .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+
+        .header-meta {
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .header-meta .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem; /* Increased spacing between cards */
+            margin-bottom: 5rem; /* Increased spacing between grid sections */
+        }
+
+        .span-2 { grid-column: span 2; }
+        .span-full { grid-column: 1 / -1; }
+
+        /* Modern Glass Cards */
+        .card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Card Header */
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-highlight);
+        }
+
+        .card-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-dim);
+            color: var(--primary);
+            border-radius: 12px;
+            font-size: 1.1rem;
+        }
+
+        .card-badge {
+            font-size: 0.75rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #f1f5f9;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        /* Content Styling */
+        .card-body {
+            flex: 1;
+            color: var(--text-muted);
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        strong { color: var(--text-highlight); font-weight: 600; }
+        
+        .stat-highlight {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin: 1rem 0;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0f172a;
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Insight Box - The "Smart" Section */
+        .insight {
+            margin-top: 1.5rem;
+            padding: 1.25rem;
+            background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, rgba(59, 130, 246, 0.02) 100%);
+            border-left: 3px solid var(--accent);
+            border-radius: 4px var(--radius-md) var(--radius-md) 4px;
+        }
+
+        .insight-header {
+            color: var(--primary);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .insight p { margin: 0; font-size: 0.95rem; color: #475569; }
+
+        /* Responsive Table */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 1rem;
+            border-radius: 12px;
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 4px; /* Tighter spacing */
+            /* min-width: 600px;  Removed to allow better responsiveness */
+        }
+
+        .tech-table th {
+            text-align: left;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 1rem 1rem 1rem;
+        }
+
+        .tech-table td {
+            background: #ffffff;
+            padding: 1.1rem 1rem;
+            vertical-align: middle;
+            transition: var(--transition);
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .tech-table tr:hover td {
+            background: #f8fafc; /* Highlight on hover */
+        }
+
+        .tech-table tr td:first-child { border-radius: 8px 0 0 8px; font-weight: 600; color: #0f172a; }
+        .tech-table tr td:last-child { border-radius: 0 8px 8px 0; }
+        
+        .status-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+        }
+        /* Pulse Animation for Status */
+        .status-risk::after, .status-active::after {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px;
+            right: -2px; bottom: -2px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            opacity: 0.5;
+        }
+        .status-risk::after { box-shadow: 0 0 10px var(--primary); }
+        .status-active::after { box-shadow: 0 0 10px var(--success); }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 0; }
+        }
+
+        .status-active { background-color: var(--success); box-shadow: 0 0 10px var(--success); }
+        .status-risk { background-color: var(--primary); box-shadow: 0 0 10px var(--primary); }
+        .status-warn { background-color: var(--warning); box-shadow: 0 0 10px var(--warning); }
+
+        /* Chart Containers */
+        .chart-wrapper {
+            position: relative;
+            height: 250px;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        /* Refined Insight / Concept Box */
+        .insight {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--primary);
+            border-radius: var(--radius-md);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Premium decorative element for insights */
+        .insight::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -10%;
+            width: 50%; height: 200%;
+            background: linear-gradient(to right, transparent, rgba(59, 130, 246, 0.05), transparent);
+            transform: rotate(25deg);
+            pointer-events: none;
+        }
+
+        .insight-header {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .insight-header i { font-size: 1.1em; }
+
+        .insight p { 
+            margin: 0; 
+            font-size: 0.95rem; 
+            color: #475569; 
+            line-height: 1.7; 
+            font-weight: 400;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .sidebar { width: 80px; padding: 2rem 0.5rem; }
+            .logo, .nav-category, .nav-link span, .header-meta { display: none; }
+            .nav-link { justify-content: center; padding: 15px; }
+            .nav-link:hover { padding-left: 15px; border-left: none; background: var(--primary-dim); }
+            .main-content { margin-left: 80px; padding: 2rem; }
+            .header-text h1 { font-size: 2.2rem; }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 1rem; }
+            .dashboard-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .card { padding: 1.5rem; }
+            header { flex-direction: column; align-items: flex-start; gap: 1rem; padding-bottom: 1.5rem; } 
+            h1 { font-size: 2rem; }
+        }
+
+        /* Conclusion Simple Styling - Neutralized */
+        .conclusion-simple {
+            margin-top: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid #e2e8f0;
+        }
+        .conclusion-header {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1px;
+        }
+        .conclusion-simple p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        /* PDF / Print Styles - Preserving Dark Theme Premium Look */
+        @media print {
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+            }
+
+            .sidebar, .btn-print, .no-print { display: none !important; }
+            
+            body { 
+                background: white !important; 
+                color: #1e293b !important;
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            .main-content { 
+                margin-left: 0 !important; 
+                padding: 2cm !important;
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .dashboard-grid { 
+                display: block !important;
+                width: 100% !important;
+            }
+
+            .card {
+                background: white !important;
+                border: 1px solid #e2e8f0 !important;
+                box-shadow: none !important;
+                color: #1e293b !important;
+                margin-bottom: 30px !important;
+                page-break-inside: avoid;
+                break-inside: avoid;
+                backdrop-filter: none !important;
+                padding: 1.5rem !important;
+            }
+
+            .card-title, strong, h1, h2, h3 { color: #0f172a !important; }
+            .stat-value { color: #0f172a !important; }
+            .text-muted, .subtitle { color: #64748b !important; }
+
+            .span-2, .span-full { width: 100% !important; }
+
+            header { 
+                border-bottom: 2px solid #1e293b !important; 
+                margin-bottom: 40px !important;
+                padding-bottom: 20px !important;
+            }
+            
+            .header-text h1 {
+                background: none !important;
+                color: #0f172a !important;
+                font-size: 2.5rem !important;
+            }
+
+            .insight {
+                background: #f1f5f9 !important;
+                border: 1px solid #e2e8f0 !important;
+                border-left: 4px solid #2563eb !important;
+            }
+
+            .tech-table td, .tech-table th { 
+                border-bottom: 1px solid #e2e8f0 !important; 
+                color: #1e293b !important; 
+            }
+            .tech-table td { background: white !important; }
+
+            .table-responsive { overflow: visible !important; }
+            .tech-table { 
+                min-width: 0 !important; 
+                width: 100% !important;
+                font-size: 8pt !important;
+            }
+        }
+
+        .btn-print {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .btn-print:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <nav class="sidebar">
+        <div class="logo-container">
+            <!-- Updated Logo Container for white text contrast -->
+            <img src="https://cantera.digital/wp-content/uploads/2024/11/cantera-logo-slide.svg" alt="Cantera Logo" class="logo">
+        </div>
+        
+        <div class="nav-links">
+            <div class="nav-category">Estrategia</div>
+            <a href="#contexto" class="nav-link"><i class="fas fa-globe"></i> <span>Contexto 2026</span></a>
+            <a href="#objetivo" class="nav-link"><i class="fas fa-bullseye"></i> <span>Objetivo</span></a>
+            <a href="#alcance" class="nav-link"><i class="fas fa-expand-arrows-alt"></i> <span>Alcance</span></a>
+            
+            <div class="nav-category">Técnico</div>
+            <a href="#inventario" class="nav-link"><i class="fas fa-server"></i> <span>Inventario</span></a>
+            <a href="#arquitectura" class="nav-link"><i class="fas fa-sitemap"></i> <span>Arquitectura</span></a>
+            <a href="#ambientes" class="nav-link"><i class="fas fa-cogs"></i> <span>Ambientes</span></a>
+            <a href="#datos" class="nav-link"><i class="fas fa-database"></i> <span>Datos & SSOT</span></a>
+            <a href="#segurity" class="nav-link"><i class="fas fa-shield-halved"></i> <span>Seguridad</span></a>
+            <a href="#respaldos" class="nav-link"><i class="fas fa-server"></i> <span>Continuidad</span></a>
+            
+            <div class="nav-category">Análisis</div>
+            <a href="#madurez" class="nav-link"><i class="fas fa-chart-radar"></i> <span>Madurez</span></a>
+            <a href="#riesgos" class="nav-link"><i class="fas fa-triangle-exclamation"></i> <span>Riesgos</span></a>
+            <a href="#erpcrm" class="nav-link"><i class="fas fa-boxes-stacked"></i> <span>ERP vs CRM</span></a>
+            <a href="#herramientas" class="nav-link"><i class="fas fa-toolbox"></i> <span>Herramientas</span></a>
+            <a href="#estrategia-software" class="nav-link"><i class="fas fa-balance-scale"></i> <span>Estrategia Software</span></a>
+            <a href="#ecosistema" class="nav-link"><i class="fas fa-project-diagram"></i> <span>Ecosistema Digital</span></a>
+        
+            <div class="nav-category">Acción</div>
+            <a href="#roadmap" class="nav-link"><i class="fas fa-route"></i> <span>Roadmap 90 días</span></a>
+            <a href="#conclusion-final" class="nav-link"><i class="fas fa-flag-checkered"></i> <span>Resumen Estratégico</span></a>
+        </div>
+    </nav>
+
+    <!-- Main Board -->
+    <main class="main-content">
+        <header>
+            <div class="header-text">
+                <h1 class="animate-fade-in">Diagnóstico Técnico</h1>
+                <div class="subtitle">Infraestructura, Procesos y Estrategia Digital | <strong>Grupo Sonne</strong></div>
+            </div>
+            <div class="header-meta">
+                <div>Fecha: <strong>Enero 2026</strong></div>
+                <div>Alcance: <span class="highlight">Sistema Recolección (Core)</span></div>
+                <!-- <button onclick="window.print()" class="btn-print no-print">
+                    <i class="fas fa-file-pdf"></i> Generar Reporte PDF
+                </button> -->
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+
+            <!-- Contexto 2026 (New Section based on Historical Data) -->
+            <article class="card span-2" id="contexto">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-globe"></i></span>
+                        Contexto & Tendencias 2026
+                    </h2>
+                    <span class="card-badge">Estratégico</span>
+                </div>
+                <div class="card-body" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div>
+                        <p>Grupo Sonne opera en un modelo de <strong>Economía Circular</strong> crítico. Para este año, las regulaciones (ej. SEMARNAT) exigirán <strong>trazabilidad digital obligatoria</strong> en residuos orgánicos.</p>
+                        <div style="background: rgba(255,255,255,0.03); padding: 1.2rem; border-radius: 12px; margin-top: 1rem; border: 1px solid rgba(255,255,255,0.05);">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 0.8rem;">
+                                <div>
+                                    <span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Tendencia del Mercado 2026</span>
+                                    <strong style="color: var(--accent); font-size: 1.8rem; line-height: 1;">41.7%</strong>
+                                </div>
+                                <div style="text-align: right;">
+                                    <span style="display: block; color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px;">Punto de Partida (Sonne)</span>
+                                    <strong style="color: var(--primary); font-size: 1.2rem; line-height: 1;">Fase Inicial</strong>
+                                </div>
+                            </div>
+                            <!-- Simple Bar Chart -->
+                            <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.1); border-radius: 6px; position: relative;">
+                                <!-- National Benchmark -->
+                                <div style="width: 41.7%; height: 100%; background: var(--accent); border-radius: 6px 0 0 6px; position: absolute; top: 0; left: 0;"></div>
+                                <!-- Sonne Reality -->
+                                <div style="width: 10%; height: 100%; background: var(--primary); border-radius: 6px 0 0 6px; position: absolute; top: 0; left: 0; z-index: 2; box-shadow: 2px 0 5px rgba(0,0,0,0.5);"></div>
+                            </div>
+                            <div style="margin-top: 0.8rem; font-size: 0.8rem; color: var(--text-muted); line-height: 1.4;">
+                                Esta diferencia no es un déficit, sino el <strong>Inmenso Potencial de Optimización</strong> disponible. Al no tener sistemas heredados complejos, Sonne tiene la ventaja de poder adoptar tecnologías modernas más rápido que sus competidores.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="insight">
+                        <div class="insight-header"><i class="fas fa-lightbulb"></i> La Brecha</div>
+                        <p>Mientras el sector avanza hacia la optimización de rutas con IA y trazabilidad certificada, Sonne opera procesos manuales (Excel) que ponen en riesgo el cumplimiento normativo <strong>(SEMARNAT)</strong> y la eficiencia operativa.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 2. Alcance (Restored) -->
+            <article class="card" id="alcance">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-expand-arrows-alt"></i></span>
+                        Alcance
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <p>El diagnóstico se centra en el <strong>Sistema de Recolección</strong> por ser el núcleo operativo. Los sistemas periféricos (GPS, Administrativo) se analizan como contexto.</p>
+                    <div class="insight">
+                         <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                         <p>El alcance delimita el análisis al sistema crítico. Hace referencia a la importancia de <strong>no dispersar esfuerzos</strong>. La brecha actual es la falta de enfoque. Explica que estabilizar el Sistema Recolección es el primer paso lógico antes de integrar otros módulos.</p>
+                    </div>
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>Nos estamos enfocando en lo más importante: el sistema que controla las recolecciones (el programa principal). Los otros programas o procesos los vemos solo para entender cómo afectan al principal. De esta forma no perdemos tiempo y atacamos el corazón del negocio.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Objetivo -->
+            <article class="card" id="objetivo">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-bullseye"></i></span>
+                        Objetivo
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <p>Documentar el estado real de la tecnología para habilitar la toma de decisiones. Pasar de la "intuición" a una <strong>Fuente Única de la Verdad (SSOT)</strong>.</p>
+                    <div class="insight">
+                        <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                        <p>Este punto define el propósito central. Hace referencia a la necesidad de una visión <strong>objetiva</strong>. La brecha principal es que sin este análisis, las decisiones son reactivas. Ayuda a priorizar inversiones en áreas de impacto real (recolección) vs soluciones cosméticas.</p>
+                    </div>
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>Queremos hacer un chequeo honesto y completo de cómo está la tecnología de la empresa para descubrir qué funciona mal, qué puede romperse y qué hay que arreglar primero. Así tomamos decisiones con información real, no solo con suposiciones.</p>
+                    </div>
+                </div>
+            </article>
+
+        </div> <!-- End Grid for Top Section -->
+
+        <!-- Inventario - Full Width Force -->
+        <article class="card" id="inventario" style="margin-bottom: 5rem;">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="card-icon"><i class="fas fa-server"></i></span>
+                    Inventario de Sistemas
+                </h2>
+                <span class="card-badge">Estado Actual</span>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Sistema / Módulo</th>
+                            <th style="width: 25%;">Uso Principal</th>
+                            <th style="width: 25%;">Tecnología</th>
+                            <th style="width: 30%;">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Sistema Recolección</strong><br><span style="font-size:0.8rem; opacity:0.7">(Core de Negocio)</span></td>
+                            <td>Logística, Clientes, Rutas, Cobranza</td>
+                            <td>Laravel 10 + MySQL <br><span style="font-size:0.8rem; opacity:0.7">AWS EC2 (Monolito)</span></td>
+                            <td><span class="status-dot status-risk"></span>Crítico / Manual</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operaciones en Campo</strong></td>
+                            <td>Básculas, Bitácoras de Residuos</td>
+                            <td>Manual / Papel / Excel</td>
+                            <td><span class="status-dot status-risk"></span>Sin Trazabilidad</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Gestión Administrativa</strong></td>
+                            <td>Pagos, Facturación, Nómina</td>
+                            <td>Excel + Carpetas Compartidas</td>
+                            <td><span class="status-dot status-warn"></span>Silos / Riesgo</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GPS & Telemetría</strong></td>
+                            <td>Rastreo Flotilla (Skyguardian)</td>
+                            <td>Plataforma Externa</td>
+                            <td><span class="status-dot status-active"></span>En Implementación</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Infraestructura Legacy</strong></td>
+                            <td>ERP Antiguo (TESK), Softflot</td>
+                            <td>SQL Server Local</td>
+                            <td><span class="status-dot status-warn"></span>Por Migrar</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="conclusion-simple" style="margin-top: 1.5rem;">
+                    <div class="conclusion-header"><i class="fas fa-link-slash"></i> Conclusión simple: Integración</div>
+                    <p>Cada área o programa tiene su propia información y no se hablan automáticamente entre sí. Todo se une copiando y pegando en Excel. Eso causa errores, duplicados y mucho tiempo perdido. Es como tener varias oficinas que no se comunican por teléfono, solo por mensajero.</p>
+                </div>
+            </div>
+        </article>
+
+        <div class="dashboard-grid"> <!-- Resume Grid -->
+
+            <!-- Arquitectura -->
+            <article class="card span-2" id="arquitectura">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-sitemap"></i></span>
+                        Arquitectura Actual
+                    </h2>
+                </div>
+                <div class="card-body" style="display: flex; gap: 2rem;">
+                    <div style="flex: 1;">
+                        <p>Infraestructura híbrida y fragmentada. El sistema core vive en una sola instancia <strong>AWS EC2</strong>, lo que representa un punto único de fallo.</p>
+                        <div style="margin-top: 1.5rem;">
+                            <div class="stat-highlight">
+                                <span class="status-dot status-risk"></span>
+                                <span style="color:var(--text-highlight);">Monolito (Sin Microservicios)</span>
+                            </div>
+                            <div class="stat-highlight">
+                                <span class="status-dot status-warn"></span>
+                                <span style="color:var(--text-highlight);">Base de Datos Local (No RDS)</span>
+                            </div>
+                            <div class="stat-highlight">
+                                <span class="status-dot status-risk"></span>
+                                <span style="color:var(--text-highlight);">Sin Ambientes de QA/Dev</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Technical Deep Dive -->
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: #f8fafc; border-radius: 12px; border-left: 4px solid var(--primary);">
+                            <h4 style="margin: 0 0 1rem 0; color: var(--accent); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fas fa-exclamation-triangle"></i> Riesgos Técnicos Identificados</h4>
+                            
+                            <div style="display: grid; gap: 1.2rem; font-size: 0.9rem;">
+                                <div>
+                                    <strong style="color: #dc2626; display: block; margin-bottom: 5px;">1. Single Point of Failure (SPOF)</strong>
+                                    <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                        La aplicación monolítica en una sola instancia EC2 significa que <strong>cualquier fallo en el servidor detiene toda la operación</strong>. 
+                                        Sin redundancia geográfica (Multi-AZ), un problema de hardware, red o incluso mantenimiento programado de AWS puede causar downtime total.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <strong style="color: #ea580c; display: block; margin-bottom: 5px;">2. Base de Datos No Gestionada</strong>
+                                    <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                        MySQL corriendo localmente en la misma EC2 carece de: <br>
+                                        • <strong>Backups automáticos</strong> con retención configurable<br>
+                                        • <strong>Failover automático</strong> a réplica standby (Multi-AZ)<br>
+                                        • <strong>Parches de seguridad</strong> gestionados por AWS<br>
+                                        • <strong>Escalado vertical</strong> sin downtime significativo
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <strong style="color: #0891b2; display: block; margin-bottom: 5px;">3. Arquitectura Monolítica</strong>
+                                    <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                        Todo el código (UI, lógica de negocio, acceso a datos) vive en un solo codebase. 
+                                        Esto facilita el desarrollo inicial, pero <strong>escalar solo una función crítica (ej. procesamiento de rutas) requiere escalar toda la aplicación</strong>, 
+                                        desperdiciando recursos y aumentando costos.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1;">
+                        <canvas id="archChart"></canvas>
+                        
+                        <!-- Migration Path Recommendation -->
+                        <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%); border-radius: 12px; border: 1px solid rgba(16, 185, 129, 0.2);">
+                            <h4 style="margin: 0 0 1rem 0; color: var(--success); font-size: 0.9rem; font-weight: 700;"><i class="fas fa-route"></i> Ruta de Migración Recomendada</h4>
+                            <ol style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.8;">
+                                <li><strong>Fase 1 (Corto Plazo):</strong> Migrar MySQL a <strong>AWS RDS Multi-AZ</strong> para eliminar SPOF de datos y habilitar backups automáticos.</li>
+                                <li><strong>Fase 2 (Mediano Plazo):</strong> Implementar <strong>Auto Scaling Group</strong> con Load Balancer para distribuir tráfico entre múltiples instancias EC2.</li>
+                                <li><strong>Fase 3 (Largo Plazo):</strong> Evaluar extracción de módulos críticos (ej. motor de rutas) como <strong>microservicios independientes</strong> con escalado granular.</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <!-- Added Explanation Block -->
+                <div style="padding: 0 2rem 2rem 2rem;">
+                    <div class="insight">
+                        <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                        <p>La arquitectura se refiere a la estructura técnica. La brecha es la falta de <strong>escalabilidad y resiliencia</strong>: si falla la instancia única, todo cae. Explica la necesidad de migrar a servicios gestionados (RDS, Auto Scaling) para reducir el riesgo de interrupciones.</p>
+                    </div>
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>El sistema principal está construido con herramientas buenas y modernas, pero todo vive en una sola máquina en la nube (como si todo el negocio estuviera en una sola computadora grande). No hay lugar separado para probar cambios, así que cualquier error se ve inmediatamente en el día a día.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 4. Gestión de Ambientes (Restored) -->
+            <article class="card" id="ambientes">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="card-icon"><i class="fas fa-cogs"></i></span>Ambientes</h2>
+                </div>
+                <div class="card-body">
+                    <p><strong style="color:var(--primary)">Solo Producción.</strong> No existen entornos de Desarrollo o QA.</p>
+                    <div class="insight" style="margin-top:1rem;">
+                        <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                        <p>Hace referencia a la ausencia de entornos separados. La brecha es el <strong>alto riesgo de errores visibles a clientes</strong>. Es paso básico para madurez Nivel 2: validar cambios en QA sin afectar operaciones.</p>
+                    </div>
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>Hoy cualquier prueba o cambio se hace directamente en el sistema que todos usan todos los días. Es como reparar un camión mientras va cargado en carretera: si sale mal, todo se detiene. Hay que crear un “lugar de pruebas” separado para evitar problemas grandes.</p>
+                    </div>
+                </div>
+            </article>
+
+             <!-- 6. Seguridad (Restored) -->
+             <article class="card" id="segurity">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="card-icon"><i class="fas fa-shield-halved"></i></span>Seguridad</h2>
+                </div>
+                <div class="card-body">
+                    <ul style="padding-left: 1.2rem; color: var(--text-muted); margin-bottom: 1rem;">
+                        <li><strong>Usuarios:</strong> Individuales, pero gestión reactiva.</li>
+                        <li><strong>MFA:</strong> No confirmado/Inactivo.</li>
+                        <li><strong>Auditoría:</strong> Inexistente (No hay logs).</li>
+                    </ul>
+                    
+                    <!-- Technical Security Analysis -->
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(220, 38, 38, 0.05) 0%, rgba(220, 38, 38, 0.02) 100%); border-radius: 12px; border-left: 4px solid #dc2626;">
+                        <h4 style="margin: 0 0 1rem 0; color: #dc2626; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fas fa-shield-virus"></i> Análisis de Vulnerabilidades</h4>
+                        
+                        <div style="display: grid; gap: 1.5rem; font-size: 0.9rem;">
+                            <div>
+                                <strong style="color: #dc2626; display: block; margin-bottom: 8px;">1. Ausencia de MFA (Multi-Factor Authentication)</strong>
+                                <p style="margin: 0 0 8px 0; color: #64748b; line-height: 1.6;">
+                                    Sin MFA, una contraseña comprometida (phishing, keylogger, base de datos filtrada) otorga acceso total al sistema. 
+                                    <strong>Estudios demuestran que MFA reduce en 99% los ataques automatizados</strong>.
+                                </p>
+                                <div style="background: white; padding: 12px; border-radius: 8px; margin-top: 8px;">
+                                    <strong style="font-size: 0.85rem; color: #0f172a; display: block; margin-bottom: 6px;">Factores de Autenticación Recomendados:</strong>
+                                    <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.7;">
+                                        <li><strong>Algo que sabes:</strong> Contraseña (actual)</li>
+                                        <li><strong>Algo que tienes:</strong> App móvil (Google Authenticator, Authy) o token físico (YubiKey)</li>
+                                        <li><strong>Algo que eres:</strong> Biometría (huella, reconocimiento facial) - opcional</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <strong style="color: #ea580c; display: block; margin-bottom: 8px;">2. Falta de Audit Logs (Registros de Auditoría)</strong>
+                                <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                    Sin logs, es imposible responder preguntas críticas: <em>¿Quién modificó este registro? ¿Cuándo se eliminó esta información? ¿Desde qué IP se accedió?</em>
+                                    Los audit logs son <strong>obligatorios para cumplimiento normativo</strong> (ISO 27001, SOC2, HIPAA).
+                                </p>
+                                <div style="background: white; padding: 12px; border-radius: 8px; margin-top: 8px;">
+                                    <strong style="font-size: 0.85rem; color: #0f172a; display: block; margin-bottom: 6px;">Eventos Críticos a Registrar:</strong>
+                                    <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.7;">
+                                        <li>Intentos de login (exitosos y fallidos) con timestamp, IP y ubicación</li>
+                                        <li>Cambios en datos sensibles (trazabilidad, clientes, rutas)</li>
+                                        <li>Creación/eliminación de usuarios y cambios de permisos</li>
+                                        <li>Acceso a módulos administrativos o reportes financieros</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <strong style="color: #0891b2; display: block; margin-bottom: 8px;">3. Gestión Reactiva de Usuarios</strong>
+                                <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                    La desactivación manual de usuarios al salir de la empresa crea una <strong>ventana de riesgo</strong>. 
+                                    Un ex-empleado puede mantener acceso días o semanas si no se comunica el cambio. 
+                                    Solución: <strong>Integración con directorio activo (LDAP/Azure AD)</strong> para desactivación automática.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Compliance & Standards -->
+                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: #f1f5f9; border-radius: 10px; border: 1px solid #cbd5e1;">
+                        <h4 style="margin: 0 0 0.8rem 0; color: var(--accent); font-size: 0.9rem;"><i class="fas fa-balance-scale"></i> Cumplimiento Normativo</h4>
+                        <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.6;">
+                            Para certificaciones como <strong>ISO 27001</strong> o auditorías SOC2, se requiere evidencia de:
+                            <br>• MFA habilitado para usuarios con acceso a datos sensibles
+                            <br>• Logs de auditoría con retención mínima de 90 días (recomendado: 1 año)
+                            <br>• Revisión periódica de accesos y permisos (trimestral)
+                        </p>
+                    </div>
+                    
+                     <div class="insight">
+                        <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                        <p>Se refiere a controles débiles y reactivos. La brecha es la <strong>exposición a accesos no autorizados</strong>. Explica la necesidad de MFA (Autenticación Multifactor) y auditoría para proteger datos sensibles como la trazabilidad.</p>
+                    </div>
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>Cualquiera que entra al sistema tiene usuario y contraseña normal. Cuando alguien deja la empresa, le quitan el acceso solo si alguien avisa. No hay doble verificación (como código en el celular) ni registro de quién hizo qué. Es una puerta sin cerradura fuerte.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- 7 & 8. Respaldos y Monitoreo (Restored) -->
+            <article class="card span-2" id="respaldos">
+                <div class="card-header">
+                    <h2 class="card-title"><span class="card-icon"><i class="fas fa-server"></i></span>Continuidad & Monitoreo</h2>
+                </div>
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <div>
+                            <strong style="display:block; margin-bottom:0.5rem; color:var(--text-highlight);"><i class="fas fa-save" style="color:var(--accent)"></i> Respaldos</strong>
+                            <p style="margin:0; font-size: 0.95rem;">Manuales, sin calendario y <strong>sin pruebas de restauración</strong>. Riesgo de pérdida total por Ransomware.</p>
+                        </div>
+                        <div>
+                            <strong style="display:block; margin-bottom:0.5rem; color:var(--text-highlight);"><i class="fas fa-eye" style="color:var(--accent)"></i> Monitoreo</strong>
+                            <p style="margin:0; font-size: 0.95rem;">Sin alertas automáticas. La detección de errores es manual (Excel). Reacción tardía ante fallos.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="insight">
+                        <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                        <p><strong>Respaldos:</strong> Su ausencia implica riesgo de pérdida total (ej. ransomware). Se requieren snapshots automáticos.<br>
+                        <strong>Monitoreo:</strong> Su ausencia implica detección tardía. Se requieren alertas automáticas para reaccionar antes de afectar al cliente.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 1rem;">
+                        <div class="conclusion-simple">
+                            <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión: Respaldos</div>
+                            <p>Sí hay copias de seguridad, pero se hacen a mano y no hay certeza de que funcionen si pasa algo grave. Es como tener un seguro, pero nunca haber comprobado si realmente pagan cuando hay un accidente.</p>
+                        </div>
+                        <div class="conclusion-simple">
+                            <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión: Monitoreo</div>
+                            <p>No hay ninguna alarma que avise si algo falla. Solo se enteran cuando alguien revisa los números en Excel y ve que algo no cuadra. Es como manejar un camión sin luces de advertencia en el tablero.</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Datos & SSOT -->
+            <article class="card" id="datos">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-database"></i></span>
+                        Gobernanza de Datos
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <!-- Technical SSOT Analysis -->
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.02) 100%); border-radius: 12px; border-left: 4px solid var(--primary);">
+                        <h4 style="margin: 0 0 1rem 0; color: var(--primary); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px;"><i class="fas fa-database"></i> El Problema de los Silos de Datos</h4>
+                        
+                        <div style="display: grid; gap: 1.5rem; font-size: 0.9rem;">
+                            <div>
+                                <strong style="color: #dc2626; display: block; margin-bottom: 8px;">Estado Actual: Fragmentación de la Verdad</strong>
+                                <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                    Hoy, la misma información (ej. "¿Cuántos kg de aceite recolectamos en enero?") puede tener <strong>3 respuestas diferentes</strong> dependiendo de quién la calcule:
+                                </p>
+                                <ul style="margin: 8px 0 0 0; padding-left: 1.2rem; color: #64748b; line-height: 1.7;">
+                                    <li><strong>Logística:</strong> Suma manual de tickets en Excel</li>
+                                    <li><strong>Finanzas:</strong> Registros de facturación en otro Excel</li>
+                                    <li><strong>Sistema Core:</strong> Base de datos con registros parciales</li>
+                                </ul>
+                                <p style="margin: 8px 0 0 0; color: #64748b; line-height: 1.6;">
+                                    Esto crea <strong>conflictos en reuniones</strong>, decisiones basadas en datos incorrectos, y pérdida de confianza en los reportes.
+                                </p>
+                            </div>
+                            
+                            <div>
+                                <strong style="color: var(--primary); display: block; margin-bottom: 8px;">¿Qué es un SSOT (Single Source of Truth)?</strong>
+                                <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                    Un <strong>SSOT</strong> es una base de datos centralizada que actúa como la <strong>única fuente de verdad</strong> para toda la organización. 
+                                    Todos los sistemas (logística, finanzas, operaciones) consultan y actualizan esta misma base de datos, eliminando discrepancias.
+                                </p>
+                                <div style="background: white; padding: 12px; border-radius: 8px; margin-top: 8px;">
+                                    <strong style="font-size: 0.85rem; color: #0f172a; display: block; margin-bottom: 6px;">Características de un SSOT:</strong>
+                                    <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #475569; line-height: 1.7;">
+                                        <li><strong>Integración:</strong> Todos los datos estructurados viven en un solo lugar</li>
+                                        <li><strong>Consistencia:</strong> La misma consulta siempre devuelve el mismo resultado</li>
+                                        <li><strong>Accesibilidad:</strong> Todos los departamentos acceden a la misma información</li>
+                                        <li><strong>Trazabilidad:</strong> Cada cambio queda registrado con timestamp y usuario</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <strong style="color: #ea580c; display: block; margin-bottom: 8px;">Impacto en Business Intelligence (BI)</strong>
+                                <p style="margin: 0; color: #64748b; line-height: 1.6;">
+                                    Sin un SSOT, herramientas como <strong>Power BI</strong> o <strong>Tableau</strong> no pueden funcionar correctamente. 
+                                    Si cada departamento alimenta el BI con sus propios Excels, los dashboards mostrarán <strong>datos contradictorios</strong>.
+                                </p>
+                                <p style="margin: 8px 0 0 0; color: #64748b; line-height: 1.6;">
+                                    <strong>Con SSOT:</strong> Power BI se conecta directamente a la base de datos central, y todos ven los mismos KPIs actualizados en tiempo real.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Excel vs Database -->
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: #fff7ed; border-radius: 12px; border: 1px solid #fed7aa;">
+                        <h4 style="margin: 0 0 1rem 0; color: #ea580c; font-size: 0.9rem;"><i class="fas fa-file-excel"></i> El Problema de Excel como Sistema de Registro</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.85rem;">
+                            <div>
+                                <strong style="color: #dc2626; display: block; margin-bottom: 6px;">❌ Riesgos de Excel:</strong>
+                                <ul style="margin: 0; padding-left: 1.2rem; color: #64748b; line-height: 1.7;">
+                                    <li>Fórmulas rotas al copiar/pegar</li>
+                                    <li>Versiones desactualizadas circulando</li>
+                                    <li>Sin control de acceso (cualquiera edita)</li>
+                                    <li>No escala con volumen de datos</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong style="color: var(--success); display: block; margin-bottom: 6px;">✅ Ventajas de Base de Datos:</strong>
+                                <ul style="margin: 0; padding-left: 1.2rem; color: #64748b; line-height: 1.7;">
+                                    <li>Integridad referencial (no datos huérfanos)</li>
+                                    <li>Transacciones atómicas (todo o nada)</li>
+                                    <li>Permisos granulares por usuario/rol</li>
+                                    <li>Consultas optimizadas para millones de registros</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="insight">
+                        <div class="insight-header">Solución Propuesta</div>
+                        <p>Implementar <strong>Power BI</strong> conectado directamente a una base de datos centralizada (SSOT). Mantener exportación a Excel, pero eliminando la lógica de negocio en hojas de cálculo.</p>
+                    </div>
+                    <div class="conclusion-simple" style="margin-top: 2rem;">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple: Datos y SSOT</div>
+                        <p>La forma en que se guarda y calcula la información importante (cómo se registran recolecciones, pagos, rutas) no está escrita en ningún lado. Solo la saben unas pocas personas. Si esa persona se va, nadie sabe cómo funciona realmente. Es como tener una receta secreta que solo una persona conoce.</p>
+                    </div>
+                    <div class="conclusion-simple" style="margin-top: 1rem;">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple: Analítica</div>
+                        <p>Todas las decisiones importantes (cuánto pagar, cuántas rutas hacer, cuánto se recolectó) se toman mirando hojas de Excel que cada persona arma a su modo. No hay un lugar central con la información correcta y actualizada al momento. Eso hace que las decisiones sean lentas y con riesgo de equivocarse.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Riesgos -->
+            <article class="card" id="riesgos">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-triangle-exclamation"></i></span>
+                        Mapa de Riesgos
+                    </h2>
+                </div>
+                <div class="card-body" style="display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <div style="height: 200px; width: 200px; position: relative;">
+                         <canvas id="riesgosChart"></canvas>
+                    </div>
+                    <div style="margin-top: 1rem; font-size: 0.9rem; text-align: center;">
+                        <span style="color: var(--primary);">● Crítico: Dependencia Dev & Respaldos</span>
+                    </div>
+                     <div class="insight" style="margin-top: 1rem;">
+                        <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                        <p>Los riesgos son vulnerabilidades de impacto. La brecha es la <strong>alta probabilidad de falla</strong> (ej. si el desarrollador no está, el sistema muere). Priorizar mitigación evita pérdidas operativas críticas.</p>
+                    </div>
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-triangle-exclamation"></i> Riesgos Principales</div>
+                        <p>Los peligros más grandes son la dependencia del desarrollador, el error humano por procesos manuales, y copias de seguridad dudosas. Si uno falla fuerte, puede parar el negocio varios días. </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Madurez -->
+            <article class="card span-2" id="madurez">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-chart-radar"></i></span>
+                        Nivel de Madurez (IMD 2026)
+                    </h2>
+                </div>
+                <div class="card-body" style="display: flex; align-items: center; gap: 2rem;">
+                    <div style="flex: 1;">
+                        <p>Sonne se encuentra en <strong>Nivel 1 (Inicial/Reactivo)</strong>. La operación depende de héroes individuales y esfuerzo manual.</p>
+                        <ul style="color: var(--text-muted); padding-left: 1.2rem;">
+                            <li>Procesos: Ad-hoc (No estandarizados).</li>
+                            <li>Tecnología: Silos Aislados.</li>
+                            <li>Datos: Dispersos y estáticos.</li>
+                        </ul>
+                        <div class="insight">
+                             <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                             <p>La madurez es el nivel de evolución. La brecha actual es la distancia entre <strong>Nivel 1 (Reactivo)</strong> y niveles superiores. Necesitamos estandarizar (Nivel 3) antes de optimizar con IA (Nivel 5).</p>
+                        </div>
+                        <div class="conclusion-simple">
+                            <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                            <p>La empresa está en el nivel más básico: casi todo se hace a mano, depende de personas y Excel, sin procesos claros ni orden. Es como una empresa que recién empieza a usar computadora, pero ya tiene mucho trabajo. Hay muchísimo espacio para mejorar y volverse mucho más eficiente y segura.</p>
+                        </div>
+                    </div>
+                    <div style="flex: 1; height: 300px;">
+                        <canvas id="madurezChart"></canvas>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Tabla Detallada Madurez -->
+            <article class="card span-2" id="madurez-tabla">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-list-ol"></i></span>
+                        Escala de Madurez Digital
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                    <table class="tech-table">
+                        <thead>
+                            <tr>
+                                <th style="width: 15%">Nivel</th>
+                                <th style="width: 30%">Características</th>
+                                <th style="width: 35%">Situación Sonne</th>
+                                <th style="width: 20%">Meta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-left: 3px solid var(--primary);">
+                                <td><strong style="color:var(--primary)">1. Inicial</strong></td>
+                                <td>Procesos ad-hoc, manuales. Dependencia de héroes.</td>
+                                <td>Dependencia total de Excel y desarrollador único.</td>
+                                <td><span class="status-dot status-active"></span>Actual</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Gestionado</strong></td>
+                                <td>Procesos planificados por proyecto. Reactivo ordenado.</td>
+                                <td>Inicio de documentación y ambientes (QA).</td>
+                                <td><span class="status-dot status-warn"></span>Corto Plazo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Definido</strong></td>
+                                <td>Procesos estandarizados. Proactivo documentado.</td>
+                                <td>SSOT implementada, sin silos. Operación estándar.</td>
+                                <td><span class="status-dot status-active" style="background:var(--accent); box-shadow:0 0 8px var(--accent)"></span>Meta 90 Días</td>
+                            </tr>
+                            <tr style="opacity: 0.6;">
+                                <td>4. Cuantitativo</td>
+                                <td>Medido con datos precisos en tiempo real.</td>
+                                <td>Dashboards predictivos, control total de KPIs.</td>
+                                <td>Futuro</td>
+                            </tr>
+                            <tr style="opacity: 0.4;">
+                                <td>5. Optimizado</td>
+                                <td>Mejora continua, innovación (IA).</td>
+                                <td>Optimización automática de rutas.</td>
+                                <td>Visión 2027</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </article>
+
+             <!-- ERP vs CRM Section -->
+            <article class="card span-2" id="erpcrm">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-microchip"></i></span>
+                        Estrategia de Crecimiento: ERP vs CRM
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 2rem;">Para escalar, Grupo Sonne debe diferenciar entre el control de la <strong>operación interna</strong> y la gestión de la <strong>relación con clientes</strong>.</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                        <!-- Columna ERP -->
+                        <div style="background: rgba(59, 130, 246, 0.05); padding: 1.5rem; border-radius: 12px; border-top: 3px solid var(--accent);">
+                            <h3 style="color:var(--text-highlight); margin:0 0 1rem 0;"><i class="fas fa-network-wired" style="color:var(--accent); margin-right:10px;"></i>ERP</h3>
+                            <p style="font-size: 0.9rem; color:var(--text-muted);"><em>"Gestión de lo que sucede adentro"</em></p>
+                            <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-muted); margin-top: 1rem;">
+                                <li>Control de inventarios y activos.</li>
+                                <li>Trazabilidad de recolecciones.</li>
+                                <li>Integración contable y nómina.</li>
+                                <li>Optimización de costos operativos.</li>
+                            </ul>
+                            <div class="insight" style="margin-top: 1rem; padding: 1rem;">
+                                <div class="insight-header" style="font-size: 0.7rem;">Impacto Sonne</div>
+                                <p style="font-size: 0.85rem;">Elimina silos de Excel, conectando básculas con facturación automáticamente.</p>
+                            </div>
+                        </div>
+
+                        <!-- Columna CRM -->
+                        <div style="background: rgba(16, 185, 129, 0.05); padding: 1.5rem; border-radius: 12px; border-top: 3px solid var(--success);">
+                            <h3 style="color:var(--text-highlight); margin:0 0 1rem 0;"><i class="fas fa-users-gear" style="color:var(--success); margin-right:10px;"></i>CRM</h3>
+                            <p style="font-size: 0.9rem; color:var(--text-muted);"><em>"Gestión de lo que sucede afuera"</em></p>
+                            <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: var(--text-muted); margin-top: 1rem;">
+                                <li>Seguimiento de prospectos y ventas.</li>
+                                <li>Fidelización y quejas de clientes.</li>
+                                <li>Automatización de contratos.</li>
+                                <li>Análisis de rentabilidad por cliente.</li>
+                            </ul>
+                            <div class="insight" style="margin-top: 1rem; padding: 1rem; border-left-color: var(--success);">
+                                <div class="insight-header" style="color: var(--success); font-size: 0.7rem;">Impacto Sonne</div>
+                                <p style="font-size: 0.85rem;">Asegura que ninguna ruta se pierda y permite ofrecer reportes de impacto ambiental a los clientes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insight" style="margin-top: 2rem;">
+                         <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                         <p>Mientras que el <strong>ERP</strong> es el cerebro que organiza los recursos y asegura el cumplimiento (SEMARNAT, básculas), el <strong>CRM</strong> es el motor de ventas que ayuda a crecer la cartera. Sonne necesita primero un robusto control operativo (ERP) para poder soportar el crecimiento que traería un CRM.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Tools Analysis Section -->
+            <article class="card span-2" id="herramientas">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-toolbox"></i></span>
+                        Análisis Exhaustivo de Herramientas
+                    </h2>
+                    <span class="card-badge">Ecosistema Digital 2026</span>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1.5rem;">Inventario detallado de herramientas actuales, en prueba y opciones sugeridas para la evolución tecnológica de Grupo Sonne.</p>
+                    
+                    <!-- Status Legend -->
+                    <div style="display: flex; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; background: #f8fafc; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="status-dot status-active"></span>
+                            <span style="font-size: 0.85rem; font-weight: 500; color: #334155;"><strong>En uso:</strong> Ya se utiliza en el día a día.</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="status-dot status-warn"></span>
+                            <span style="font-size: 0.85rem; font-weight: 500; color: #334155;"><strong>En prueba:</strong> Se está conociendo para ver si sirve.</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="status-dot status-risk"></span>
+                            <span style="font-size: 0.85rem; font-weight: 500; color: #334155;"><strong>Propuesta:</strong> Es una opción para el futuro.</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="status-dot" style="background: #94a3b8; box-shadow: none;"></span>
+                            <span style="font-size: 0.85rem; font-weight: 500; color: #334155;"><strong>Pendiente:</strong> Falta investigar más a fondo.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="table-responsive">
+                        <table class="tech-table" style="font-size: 0.8rem; min-width: 2200px;">
+                            <thead>
+                                <tr>
+                                    <th style="width: 180px;">Herramienta</th>
+                                    <th style="width: 120px;">Área</th>
+                                    <th style="width: 120px;">Estado</th>
+                                    <th style="width: 250px;">Función Principal</th>
+                                    <th style="width: 250px;">APIs / Integración</th>
+                                    <th style="width: 150px;">Hardware</th>
+                                    <th style="width: 120px;">Licencia</th>
+                                    <th style="width: 180px;">Costos (MXN)</th>
+                                    <th style="width: 250px;">Pros</th>
+                                    <th style="width: 250px;">Contras / Riesgos</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Sistema Propio (Laravel)</strong></td>
+                                    <td>Operaciones Core</td>
+                                    <td><span class="status-dot status-active"></span>En uso</td>
+                                    <td>Control operativo (rutas/servicios/bitácoras). Base para integración.</td>
+                                    <td><strong>APIs a medida.</strong> Alta integración potencial con GPS/ERP.</td>
+                                    <td>Integrable (GPS/IoT)</td>
+                                    <td>Propietaria</td>
+                                    <td>CAPEX/OPEX Interno</td>
+                                    <td style="color:var(--success)">Máxima flexibilidad, evita lock-in, adapta procesos reales.</td>
+                                    <td style="color:var(--primary)">Dependencia de equipo; riesgo de obsolescencia sin plan de upgrades.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>TESK</strong></td>
+                                    <td>Administración</td>
+                                    <td><span class="status-dot status-active"></span>En uso</td>
+                                    <td>Gestión interna administrativa.</td>
+                                    <td>Limitada (Reportes). Validar API pública.</td>
+                                    <td>N/A</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>$1,099 - $1,799/mes</td>
+                                    <td style="color:var(--success)">Costos claros; orientado a administración; reduce Excel manual.</td>
+                                    <td style="color:var(--primary)">Integración cerrada si no hay API pública activa.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>SoftFlot</strong></td>
+                                    <td>Mantenimiento</td>
+                                    <td><span class="status-dot status-active"></span>En uso</td>
+                                    <td>Control de taller, refacciones y compras.</td>
+                                    <td>Scripts / SQL Server (Integración directa base de datos).</td>
+                                    <td>N/A</td>
+                                    <td>Propietario</td>
+                                    <td>≈ $855/mes</td>
+                                    <td style="color:var(--success)">Especializado en mantenimiento; integración por BD es potente.</td>
+                                    <td style="color:var(--primary)">Deuda técnica; riesgo operativo por cambios de esquema en DB.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Skyguardian</strong></td>
+                                    <td>Logística</td>
+                                    <td><span class="status-dot status-active"></span>En uso</td>
+                                    <td>GPS, electro-válvulas y cámaras de flotilla.</td>
+                                    <td>Web Services (REST / SOAP / JSON).</td>
+                                    <td>GPS Trackers / Sensors</td>
+                                    <td>Servicio Propietario</td>
+                                    <td>Cotización</td>
+                                    <td style="color:var(--success)">Operativo; ruta de integración vía Web Services ya definida.</td>
+                                    <td style="color:var(--primary)">Dependencia del proveedor; integración real según contrato.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>SimpliRoute</strong></td>
+                                    <td>Logística / CX</td>
+                                    <td><span class="status-dot status-warn"></span>En prueba</td>
+                                    <td>Optimización de rutas y seguimiento cliente (ETA).</td>
+                                    <td><strong>API / Developer Portal</strong> y Webhooks nativos.</td>
+                                    <td>App Móvil</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>≈ $698/vehículo/mes</td>
+                                    <td style="color:var(--success)">Reduce km/tiempo; "Customer Visibility" moderna.</td>
+                                    <td style="color:var(--primary)">Escala costo por volumen; requiere alta calidad de datos.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>PASE (Tag)</strong></td>
+                                    <td>Gestión</td>
+                                    <td><span class="status-dot status-active"></span>En uso</td>
+                                    <td>Pago de casetas y control de peajes.</td>
+                                    <td>Portal corporativo (Estado de cuenta / CFDI).</td>
+                                    <td>Tag Telepeaje</td>
+                                    <td>Servicio Propietario</td>
+                                    <td>$150 activación + Anualidad</td>
+                                    <td style="color:var(--success)">Facilita deducibilidad y control centralizado de gastos.</td>
+                                    <td style="color:var(--primary)">Integración API no clara; depende de descargas de reportes.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Edenred</strong></td>
+                                    <td>Recursos Humanos</td>
+                                    <td><span class="status-dot status-active"></span>En uso</td>
+                                    <td>Bonos y vales de despensa para empleados.</td>
+                                    <td>Plataforma Web / App Usuarios.</td>
+                                    <td>Tarjetas</td>
+                                    <td>Servicio Propietario</td>
+                                    <td>Cotización</td>
+                                    <td style="color:var(--success)">Beneficio estandarizado; reduce carga administrativa de RH.</td>
+                                    <td style="color:var(--primary)">Costos por comisión no públicos; integraciones limitadas.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Cohete</strong></td>
+                                    <td>Viáticos</td>
+                                    <td><span class="status-dot status-risk"></span>Propuesta</td>
+                                    <td>Control de gastos y viáticos (orden de facturas).</td>
+                                    <td>Plataforma CoheteCard; menciona API para pagos.</td>
+                                    <td>Tarjeta / App</td>
+                                    <td>Servicio Propietario</td>
+                                    <td>Cotización</td>
+                                    <td style="color:var(--success)">Ordena procesos de comprobación; reduce fricción administrativa.</td>
+                                    <td style="color:var(--primary)">Pricing por contrato; integración contable depende del ERP.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>M365 Business</strong></td>
+                                    <td>General</td>
+                                    <td><span class="status-dot status-warn"></span>En impl.</td>
+                                    <td>Correo, colaboración, Office y base documental.</td>
+                                    <td><strong>Microsoft Graph REST API</strong> (Resto, Archivos, Users).</td>
+                                    <td>N/A</td>
+                                    <td>Suscripción</td>
+                                    <td>≈ $218 - $262/usu/mes</td>
+                                    <td style="color:var(--success)">Estándar industrial; mejora flujo documental y seguridad.</td>
+                                    <td style="color:var(--primary)">Requiere gobierno de datos y capacitación del personal.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>MUTA</strong></td>
+                                    <td>Reciclaje</td>
+                                    <td><span class="status-dot status-risk"></span>Propuesta</td>
+                                    <td><strong>Collector Suite:</strong> Gestión 3-en-1 (Generador, Admin y Conductor).</td>
+                                    <td>IA para optimización de rutas; integración vía consultoría.</td>
+                                    <td>Móvil / Logística</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>Basado en Volumen</td>
+                                    <td style="color:var(--success)">Líder en trazabilidad; certificados digitales y optimización logística avanzada.</td>
+                                    <td style="color:var(--primary)"><strong>Dependencia de Ecosistema:</strong> La inteligencia de rutas y trazabilidad solo funciona si usas su App de conductores. La conexión con otros sistemas requiere desarrollo a medida por parte del proveedor.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Reiter (C.O.S.T.)</strong></td>
+                                    <td>Logística UCO</td>
+                                    <td><span class="status-dot status-risk"></span>Propuesta</td>
+                                    <td>ERP web para recolectores de aceite; incluye trackeo de RINs (Biodiesel).</td>
+                                    <td>Plataforma 100% web; sin mención de API abierta.</td>
+                                    <td>App Móvil / Web</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>$1,745 - $14,836/cuenta</td>
+                                    <td style="color:var(--success)">Súper especializado en aceite vegetal; gestiona cumplimiento normativo de la industria.</td>
+                                    <td style="color:var(--primary)"><strong>Enfoque US-Centric:</strong> Muchas funciones de cumplimiento son para leyes de EE.UU. (RINs). Integración limitada con software propio de Sonne.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Samsara</strong></td>
+                                    <td>Logística</td>
+                                    <td><span class="status-dot status-risk"></span>Propuesta</td>
+                                    <td>Telemática, cámaras y operaciones conectadas por IA.</td>
+                                    <td><strong>APIs REST y Webhooks</strong> líderes en el sector.</td>
+                                    <td>Gateways / Dashcams</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>Suscripción Anual</td>
+                                    <td style="color:var(--success)">La mejor integración técnica; visibilidad total de seguridad y rutas en tiempo real.</td>
+                                    <td style="color:var(--primary)"><strong>Rigidez Contractual:</strong> Contratos multianuales difíciles de cancelar. Es una solución generalista; no gestiona la trazabilidad específica del sector ambiental.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Sensoneo</strong></td>
+                                    <td>Smart Waste</td>
+                                    <td><span class="status-dot status-risk"></span>Propuesta</td>
+                                    <td>Monitoreo IoT y optimización de rutas basada en llenado real.</td>
+                                    <td>Integraciones vía Azure API Management (Muy robusto).</td>
+                                    <td>Sensores IoT / Sigfox</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>Hardware + Licencia</td>
+                                    <td style="color:var(--success)">Líder en "Smart Waste" y APIs; ideal para logística dinámica según volumen.</td>
+                                    <td style="color:var(--primary)"><strong>Inversión en Hardware:</strong> Alto costo inicial por sensores. Dependencia crítica de cobertura de red IoT (Sigfox/LoRaWAN) en ruta.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>HazTrack</strong></td>
+                                    <td>IoT UCO</td>
+                                    <td><span class="status-dot status-warn"></span>Prueba Sensores</td>
+                                    <td>Monitoreo de nivel, temperatura y ubicación de tanques UCO.</td>
+                                    <td><strong>API nativa</strong> integrada; facilita avisos de vaciado automáticos.</td>
+                                    <td>Sensor IoT "HazTracker"</td>
+                                    <td>SaaS + Hardware</td>
+                                    <td>Renta Mensual</td>
+                                    <td style="color:var(--success)">Excelente para prevención de robos y optimización de rutas de vaciado de tanques.</td>
+                                    <td style="color:var(--primary)"><strong>Límite de Calidad:</strong> Monitorea volumen, pero no detecta si el aceite está adulterado o mezclado. Requiere mantenimiento físico del sensor.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Alethia</strong></td>
+                                    <td>Campo (App)</td>
+                                    <td><span class="status-dot status-risk"></span>Propuesta</td>
+                                    <td>Captura de datos en campo con GPS, fotos y formularios.</td>
+                                    <td>Orientado a formularios manuales; exportación a Excel.</td>
+                                    <td>Dispositivo Móvil</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>$129 - $329/usu/mes</td>
+                                    <td style="color:var(--success)">Versátil para digitalizar bitácoras de papel rápidamente; incluye geolocalización.</td>
+                                    <td style="color:var(--primary)"><strong>Falta de Inteligencia:</strong> Es solo un "formulario digital". No tiene lógica de negocio para residuos ni comunicación directa por API.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Lumat Labs</strong></td>
+                                    <td>Gestión Operativa</td>
+                                    <td><span class="status-dot status-warn"></span>En uso</td>
+                                    <td>Control de acceso y comunicación para personal.</td>
+                                    <td>Plataforma cerrada (Luma Corp).</td>
+                                    <td>App / Web</td>
+                                    <td>SaaS Propietario</td>
+                                    <td>Cotización</td>
+                                    <td style="color:var(--success)">Eficiente para control de seguridad y accesos del personal en sitio.</td>
+                                    <td style="color:var(--primary)"><strong>Desalineado:</strong> No es un software de nómina (payroll). Su uso para RH es limitado a control de asistencia/seguridad.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="conclusion-simple" style="margin-top: 2rem;">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>Hoy tenemos muchas herramientas diferentes para cada tarea (logística, administración, taller), pero cada una funciona por su cuenta. Algunas son muy modernas y otras ya se están quedando viejas. La meta no es comprar más programas, sino conectar los que ya sirven para que la información fluya sin tener que estar copiando y pegando todo el día.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Roadmap Chart -->
+            <article class="card span-2" id="roadmap" style="border-top: 4px solid var(--accent);">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-route"></i></span>
+                        Roadmap de Transformación (90 Días)
+                    </h2>
+                     <span class="card-badge" style="background: var(--accent); color: white;">Plan de Acción</span>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1rem; color: #64748b; font-style: italic; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> Este es un <strong>Roadmap de ejemplo</strong> diseñado específicamente para Grupo Sonne, enfocado en resolver los riesgos críticos detectados en el presente informe.
+                    </p>
+                    <div class="insight" style="margin-bottom: 2rem;">
+                         <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                         <p>La recomendación es un plan concreto para cerrar brechas. La gráfica muestra el progreso estimado: 0-30 días reduce riesgos críticos, 30-60 construye gobernanza, 60-90 habilita optimización.</p>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                        <!-- Fase 1 -->
+                        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary);">
+                            <h3 style="color:#0f172a; margin:0 0 10px 0;">Fase 1: Blindaje (0-30 días)</h3>
+                            <ul style="font-size: 0.9rem; padding-left: 1rem; color: var(--text-muted);">
+                                <li>Activar MFA (Seguridad).</li>
+                                <li>Respaldos Automáticos (AWS Snapshots).</li>
+                                <li>Documentación de Emergencia.</li>
+                            </ul>
+                        </div>
+                        <!-- Fase 2 -->
+                        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--warning);">
+                            <h3 style="color:#0f172a; margin:0 0 10px 0;">Fase 2: Estructura (30-60 días)</h3>
+                            <ul style="font-size: 0.9rem; padding-left: 1rem; color: var(--text-muted);">
+                                <li>Crear Ambiente QA (Staging).</li>
+                                <li>Migrar BD a RDS (Gestionado).</li>
+                                <li>Implementar <strong>SSOT + Power BI</strong>.</li>
+                            </ul>
+                        </div>
+                        <!-- Fase 3 -->
+                        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--success);">
+                            <h3 style="color:#0f172a; margin:0 0 10px 0;">Fase 3: Optimización (60-90 días)</h3>
+                            <ul style="font-size: 0.9rem; padding-left: 1rem; color: var(--text-muted);">
+                                <li>Actualización Laravel 10+.</li>
+                                <li>APIs para integración (GPS -> ERP).</li>
+                                <li>Piloto Optimización de Rutas (IA).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Recomendación</div>
+                        <p>Lo primero es hacer un plan claro de 3 meses para arreglar las cosas urgentes: seguridad, copias automáticas, lugar para probar, documentación y un lugar central confiable. Después de estabilizar, sí podemos pensar en cosas nuevas como reportes automáticos o un sistema más grande.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Strategic Dilemma: Custom vs. Commercial -->
+            <article class="card span-2 dark-header" id="estrategia-software" style="border-top: 4px solid var(--primary);">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon" style="background: var(--primary-dim); color: var(--primary);"><i class="fas fa-balance-scale"></i></span>
+                        La Gran Decisión: ¿Seguir con lo Propio o Cambiar a algo Listo?
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 2rem; font-size: 1.1rem; color: #475569;">Es el punto más importante para el futuro de Grupo Sonne. Aquí comparamos las dos rutas posibles para que elijas la que mejor se adapte al negocio.</p>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem;">
+                        <!-- Opción A: Desarrollo a Medida -->
+                        <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-hammer"></i> Opción A: Tu Desarrollo a Medida (Laravel)</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Es como mandar a hacer un traje con un sastre: te queda perfecto a tu medida, pero es caro y tarda.</p>
+                            
+                            <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 10px;">
+                                <li><strong>Lo Bueno:</strong> El programa hace exactamente lo que tú quieres. No tienes que adaptarte a él.</li>
+                                <li><strong>El Costo:</strong> Necesitas siempre un equipo de programadores contratados para arreglar errores y crear funciones nuevas.</li>
+                                <li><strong>El Riesgo:</strong> Si los programadores se van, el conocimiento se va con ellos. Es más lento ver resultados grandes.</li>
+                            </ul>
+                            
+                            <div style="margin-top: 1.5rem; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
+                                <strong style="display:block; margin-bottom:5px; color:#0f172a;">Pasos si eliges esta ruta:</strong>
+                                <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b;">
+                                    <li>Contratar una célula de desarrollo dedicada (mínimo 2-3 personas).</li>
+                                    <li>Documentar cada proceso para no depender de la memoria de nadie.</li>
+                                    <li>Invertir en servidores de prueba (QA) y seguridad robusta.</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Opción B: Software ya Creado -->
+                        <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-shopping-cart"></i> Opción B: Software ya Listo (como los de la tabla)</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Es como comprar ropa de marca en una tienda: la tienes hoy mismo y es de alta calidad, pero te tiene que quedar la talla.</p>
+                            
+                            <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 10px;">
+                                <li><strong>Lo Bueno:</strong> Implementas muy rápido. Ya está probado por miles de empresas. No necesitas programadores propios.</li>
+                                <li><strong>El Costo:</strong> Pagas una renta mensual. Si quieres algo especial que el software no hace, probablemente no lo tendrás.</li>
+                                <li><strong>El Riesgo:</strong> El negocio se tiene que adaptar a cómo funciona el software. Solo tienes lo que el proveedor te ofrece.</li>
+                            </ul>
+ 
+                            <div style="margin-top: 1.5rem; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
+                                <strong style="display:block; margin-bottom:5px; color:#0f172a;">Pasos si eliges esta ruta:</strong>
+                                <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b;">
+                                    <li>Elegir el software (ej. Samsara, Muta o SimpliRoute) según prioridad.</li>
+                                    <li>Entrenar a todo el equipo en las nuevas reglas del programa.</li>
+                                    <li>Conectar el software con tus datos actuales vía API para no perder historia.</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insight" style="border-top: 1px solid #e2e8f0; border-left: none; padding-top: 2rem; margin-top: 2rem;">
+                        <div class="insight-header" style="color: #0f172a;"><i class="fas fa-lightbulb"></i> Recomendación General</div>
+                        <p style="color: #334155; font-size: 1rem;">
+                            <strong>No es "uno o el otro". Es saber cuándo usar cada uno.</strong> <br><br>
+                            Mi recomendación es mantener el <strong>Sistema a Medida</strong> solo para el "corazón" de tu receta secreta (la lógica de tus recolecciones únicas), pero usar <strong>Software ya Creado</strong> para lo que ya existe y es mejor afuera (monitoreo GPS, rutas automáticas, administración de recibos). <br><br>
+                            Así, tienes lo mejor de los dos mundos: control total donde importa y velocidad donde ya hay soluciones listas.
+                        </p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Digital Ecosystem Section -->
+            <article class="card span-2" id="ecosistema" style="border-top: 4px solid var(--success);">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--success);"><i class="fas fa-project-diagram"></i></span>
+                        El Poder del Ecosistema Digital
+                    </h2>
+                    <span class="card-badge">Crecimiento Infinito</span>
+                </div>
+                <div class="card-body" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                    <div>
+                        <p style="font-size: 1.1rem; line-height: 1.7; color: #1e293b;">
+                            Un <strong>Ecosistema Digital</strong> no es solo tener muchos programas; es lograr que todos "hablen" entre sí para que la información fluya sin intervención humana. 
+                        </p>
+                        <div style="margin-top: 2rem; display: grid; gap: 1.5rem;">
+                            <div style="display: flex; gap: 15px;">
+                                <div style="color: var(--success); font-size: 1.2rem;"><i class="fas fa-bolt"></i></div>
+                                <div>
+                                    <strong style="display:block; color: #0f172a;">Velocidad y Automatización</strong>
+                                    <p style="margin:0; font-size: 0.9rem; color: #64748b;">Las tareas repetitivas se hacen solas. Menos manos en los datos significa menos errores.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="color: var(--success); font-size: 1.2rem;"><i class="fas fa-chart-line"></i></div>
+                                <div>
+                                    <strong style="display:block; color: #0f172a;">Datos para Decidir</strong>
+                                    <p style="margin:0; font-size: 0.9rem; color: #64748b;">Al estar todo conectado, tienes reportes en tiempo real de toda la empresa, no solo de un área.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 15px;">
+                                <div style="color: var(--success); font-size: 1.2rem;"><i class="fas fa-coins"></i></div>
+                                <div>
+                                    <strong style="display:block; color: #0f172a;">Reducción de Costos</strong>
+                                    <p style="margin:0; font-size: 0.9rem; color: #64748b;">Ahorras miles de horas hombre al año eliminando el "copiar y pegar" de archivos Excel.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background: #f8fafc; padding: 2rem; border-radius: 20px; border: 1px solid #e2e8f0; position: relative; overflow: hidden;">
+                        <!-- Custom Diagram using CSS and HTML -->
+                        <div style="position: relative; height: 300px; width: 100%; display: flex; align-items: center; justify-content: center;">
+                            <!-- Central Core -->
+                            <div style="width: 100px; height: 100px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-direction: column; z-index: 5; box-shadow: 0 0 20px rgba(37, 99, 235, 0.4); text-align: center; border: 4px solid white;">
+                                <i class="fas fa-database" style="font-size: 1.5rem; margin-bottom: 5px;"></i>
+                                <span style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase;">SSOT</span>
+                            </div>
+                            
+                            <!-- Orbiting Apps (Connected by SVG Lines or CSS) -->
+                            <div style="position: absolute; top: 10%; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 50px; height: 50px; background: white; border: 2px solid #e2e8f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent); box-shadow: var(--shadow-glow);">
+                                    <i class="fas fa-truck"></i>
+                                </div>
+                                <span style="font-size: 0.7rem; margin-top: 5px; font-weight: 600;">Logística</span>
+                            </div>
+
+                            <div style="position: absolute; bottom: 10%; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 50px; height: 50px; background: white; border: 2px solid #e2e8f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--success); box-shadow: var(--shadow-glow);">
+                                    <i class="fas fa-file-invoice-dollar"></i>
+                                </div>
+                                <span style="font-size: 0.7rem; margin-top: 5px; font-weight: 600;">Finanzas</span>
+                            </div>
+
+                            <div style="position: absolute; left: 10%; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 50px; height: 50px; background: white; border: 2px solid #e2e8f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #f59e0b; box-shadow: var(--shadow-glow);">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <span style="font-size: 0.7rem; margin-top: 5px; font-weight: 600;">Clientes</span>
+                            </div>
+
+                            <div style="position: absolute; right: 10%; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: center;">
+                                <div style="width: 50px; height: 50px; background: white; border: 2px solid #e2e8f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #8b5cf6; box-shadow: var(--shadow-glow);">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <span style="font-size: 0.7rem; margin-top: 5px; font-weight: 600;">Operación</span>
+                            </div>
+
+                            <!-- Connecting Lines (SVG Overlay) -->
+                            <svg style="position: absolute; top:0; left:0; width:100%; height:100%; z-index: 1;" pointer-events="none">
+                                <line x1="50%" y1="20%" x2="50%" y2="50%" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4" />
+                                <line x1="50%" y1="80%" x2="50%" y2="50%" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4" />
+                                <line x1="20%" y1="50%" x2="50%" y2="50%" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4" />
+                                <line x1="80%" y1="50%" x2="50%" y2="50%" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4" />
+                            </svg>
+                        </div>
+                        <p style="text-align: center; font-size: 0.8rem; color: #94a3b8; font-style: italic; margin-top: 1rem;">La información entra una sola vez y nutre a toda la empresa.</p>
+                    </div>
+                </div>
+                <div class="conclusion-simple" style="padding: 1.5rem 2.5rem; border-top: 1px solid #e2e8f0;">
+                    <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                    <p>Hoy usamos programas que están "solos". La meta es crear un ecosistema donde, por ejemplo, cuando un chofer termina su ruta en la App, automáticamente se genere la factura en contabilidad y el reporte de impacto para el cliente. <strong>Es dejar de trabajar para el software y que el software trabaje para nosotros.</strong></p>
+                </div>
+            </article>
+
+            <!-- Final Conclusion Section -->
+            <article class="card span-2" id="conclusion-final" style="border-top: 4px solid #0f172a; margin-top: 2rem;">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon" style="background: #f1f5f9; color: #0f172a;"><i class="fas fa-flag-checkered"></i></span>
+                        Resumen Estratégico Final
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start;">
+                        <div>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: #1e293b; font-weight: 600;">
+                                Grupo Sonne tiene un activo valioso en su tecnología actual, pero está operando "sin red de seguridad". 
+                            </p>
+                            <p style="font-size: 1rem; line-height: 1.7; color: #475569; margin-top: 1rem;">
+                                El programa de recolecciones es tu motor principal. Si no blindamos hoy la seguridad, los respaldos y la forma en que guardamos los datos, cualquier inversión futura (como un nuevo CRM o más camiones) estará construida sobre arena. El objetivo de los próximos 90 días no es cambiar todo, sino asegurar que lo que hoy funciona, no se rompa nunca.
+                            </p>
+                        </div>
+                        <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <div class="insight-header" style="color: #0f172a; margin-bottom: 1rem;"><i class="fas fa-rocket"></i> El Siguiente Paso</div>
+                            <p style="color: #475569; font-size: 0.95rem; line-height: 1.6;">
+                                Es vital dejar de usar Excel como base de datos y pasar a un sistema visual como <strong>Power BI</strong>. Esto te permitirá ver cuánto dinero y tiempo estás ganando o perdiendo en tiempo real, sin depender de que alguien arme un reporte manual. Estabilidad primero, crecimiento después.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+    <script>
+        // Chart Configuration for Light Mode
+        Chart.defaults.color = '#64748b';
+        Chart.defaults.borderColor = '#e2e8f0';
+        Chart.defaults.font.family = "'Outfit', sans-serif";
+        Chart.defaults.font.size = 13;
+
+        // 1. Madurez Radar
+        new Chart(document.getElementById('madurezChart'), {
+            type: 'radar',
+            data: {
+                labels: ['Procesos', 'Tecnología', 'Personas', 'Datos (SSOT)', 'Seguridad'],
+                datasets: [{
+                    label: 'Sonne Actual (Nivel 1)',
+                    data: [1, 1.5, 2, 1, 1],
+                    backgroundColor: 'rgba(239, 68, 68, 0.25)',
+                    borderColor: '#ef4444',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#ef4444'
+                }, {
+                    label: 'Meta 90 días (Nivel 3)',
+                    data: [3, 3, 3.5, 3, 3],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: '#3b82f6',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#3b82f6'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
+                        pointLabels: { color: '#1e293b', font: { size: 12, weight: '600' } },
+                        ticks: { display: false, max: 5 }
+                    }
+                },
+                plugins: { legend: { labels: { color: '#1e293b', padding: 20 } } }
+            }
+        });
+
+        // 2. Arquitectura Pie
+        new Chart(document.getElementById('archChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['EC2 Monolito', 'Servicios Externos', 'Infra Legacy'],
+                datasets: [{
+                    data: [55, 25, 20],
+                    backgroundColor: ['#ef4444', '#3b82f6', '#64748b'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '70%',
+                plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } }
+            }
+        });
+
+        // 3. Riesgos Doughnut
+        new Chart(document.getElementById('riesgosChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Dependencia Dev', 'Sin Respaldos', 'Obsolescencia', 'Seguridad', 'Silos'],
+                datasets: [{
+                    data: [35, 25, 15, 15, 10],
+                    backgroundColor: ['#dc2626', '#ef4444', '#f87171', '#fbbf24', '#94a3b8'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                cutout: '65%',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+</html>
