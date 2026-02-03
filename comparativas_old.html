@@ -563,7 +563,7 @@
                         <tr>
                             <td><span class="tool-name">Microsoft Dynamics 365 Business Central</span></td>
                             <td>ERP empresarial administrativo</td>
-                            <td><span class="badge badge-con" style="background: #fef3c7; color: #92400e;">⚠️ Media</span></td>
+                            <td><span class="badge badge-warning" style="background: #fef3c7; color: #92400e;">⚠️ Media</span></td>
                             <td>
                                 <ul class="feature-list">
                                     <li>Finanzas y contabilidad robusta</li>
@@ -607,7 +607,7 @@
                         <tr>
                             <td><span class="tool-name">Zoho (Zoho One / Zoho Finance)</span></td>
                             <td>ERP ligero basado en suite</td>
-                            <td><span class="badge badge-con" style="background: #fef3c7; color: #92400e;">⚠️ Media–Alta</span></td>
+                            <td><span class="badge badge-warning" style="background: #fef3c7; color: #92400e;">⚠️ Media–Alta</span></td>
                             <td>
                                 <ul class="feature-list">
                                     <li>Finanzas, inventarios y CRM integrados</li>
@@ -693,6 +693,375 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+        </article>
+
+    </main>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Active navigation link
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.card[id]');
+
+        function setActiveLink() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', setActiveLink);
+    </script>
+
+</body>
+</html>
+                <h2 class="card-title">
+                    <span class="card-icon"><i class="fas fa-droplet"></i></span>
+                    Comparativa: Alethia vs Herramientas FOG/Grease Trap
+                </h2>
+            </div>
+            <div class="card-body">
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);"><strong>Comparación de herramientas especializadas en operación y cumplimiento de trampas de grasa</strong></p>
+                
+                <div style="overflow-x: auto;">
+                    <table class="comparison-table" style="font-size: 0.85rem;">
+                        <thead>
+                            <tr>
+                                <th style="width: 10%;">Herramienta</th>
+                                <th style="width: 12%;">Enfoque principal</th>
+                                <th style="width: 10%;">App en campo + portal</th>
+                                <th style="width: 10%;">GPS / trazabilidad</th>
+                                <th style="width: 12%;">Evidencia (foto/firma/QR/voz)</th>
+                                <th style="width: 10%;">Ruteo / scheduling</th>
+                                <th style="width: 12%;">Compliance FOG / manifiestos</th>
+                                <th style="width: 10%;">Facturación / cobro</th>
+                                <th style="width: 14%;">Conclusión rápida</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="tool-name">Alethia</span></td>
+                                <td>Productividad y control operativo en campo</td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">alethia.com.mx</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Rastreo GPS + geocercas</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Fotos, firmas, notas de voz, códigos QR/barra</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Viajes/estatus/operación</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-con">No es su foco</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">No se vende como FOG/manifiestos</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-con">No es su foco</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Se centra en operación/evidencia</p>
+                                </td>
+                                <td><strong style="color: var(--primary);">Mejor para visibilidad + evidencia + control del personal</strong> en tiempo real</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tool-name">ServiceCore</span></td>
+                                <td>"All-in-one" para empresas de grease/septic</td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Gestión del negocio</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Optimiza rutas / operación</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Orientado a ejecución de trabajos</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Manage jobs + routing</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Orientado a grease trap pumping</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Billing; compatible con QuickBooks</p>
+                                </td>
+                                <td><strong style="color: var(--primary);">Mejor si el cliente quiere operación + ruteo + cobro</strong> en una sola plataforma</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tool-name">GreaseIQ</span></td>
+                                <td>Grease trap puro: operación + cumplimiento</td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Orientado a operación/rutas</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Manifiestos digitales ligados al servicio</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">AI route optimization</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Automated compliance + manifests</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-con">No destacado</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Depende plan</p>
+                                </td>
+                                <td><strong style="color: var(--primary);">Mejor si la prioridad es compliance + manifiestos + ruteo moderno</strong> para grease trap</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tool-name">Route Simplified</span></td>
+                                <td>Ruteo especializado por intervalos / fill rate</td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Enfocado a rutas y paradas</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Gestión documentación del cliente</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro" style="background: #dcfce7; color: #166534;">✓ Muy fuerte</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Service intervals para grease</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Captura "regulatory data"</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-con">No es su foco</span>
+                                </td>
+                                <td><strong style="color: var(--primary);">Mejor si el dolor #1 es ruteo eficiente</strong> por frecuencia/intervalos de servicio</td>
+                            </tr>
+                            <tr>
+                                <td><span class="tool-name">LinkoFOG</span></td>
+                                <td>Cumplimiento e inspección FOG (autoridad / control)</td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Inspecciones + seguimiento</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-con">No es el foco</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Captura datos de inspección</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro">✓ Sí</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Scheduling de inspecciones/seguimientos</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-pro" style="background: #dcfce7; color: #166534;">✓ Muy fuerte</span>
+                                    <p style="font-size: 0.75rem; margin: 0.25rem 0 0 0; color: var(--text-muted);">Calcula % grasa, NOV/warnings</p>
+                                </td>
+                                <td>
+                                    <span class="badge badge-con">No es su foco</span>
+                                </td>
+                                <td><strong style="color: var(--primary);">Mejor si el objetivo es cumplimiento regulatorio e inspecciones</strong> más que logística diaria</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Conclusión de la comparativa -->
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f0f9ff; border-left: 4px solid #0ea5e9; border-radius: 8px;">
+                    <h4 style="margin: 0 0 1rem 0; color: #0c4a6e; font-size: 1rem;"><i class="fas fa-chart-line"></i> Conclusión de la Comparativa</h4>
+                    <ul style="margin: 0; padding-left: 1.5rem; color: #334155; line-height: 1.8;">
+                        <li style="margin-bottom: 0.75rem;">
+                            <strong style="color: #0ea5e9;">Alethia:</strong> plataforma <strong>"de campo"</strong> muy sólida para control, trazabilidad, evidencia y seguridad (GPS, geocercas, foto/firma/voz/QR, dashboards). Si el cliente pide <strong>manifiestos FOG y compliance específico</strong>, Alethia suele requerir complemento o personalización.
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <strong style="color: #0ea5e9;">ServiceCore:</strong> La opción más <strong>"completa del negocio"</strong> para empresas que limpian trampas: trabajos, rutas y <strong>billing en un solo lugar</strong> (y mención explícita de compatibilidad con QuickBooks). Ideal cuando quieren <strong>un sistema único</strong> con enfoque grease/septic.
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <strong style="color: #0ea5e9;">GreaseIQ:</strong> Gestión directa para grease trap: <strong>manifiestos digitales + compliance específico</strong>. Automatizado + <strong>optimización de rutas</strong> (IA). Buena cuando el "dolor" principal es <strong>cumplimiento y papelería</strong>, con eficiencia operativa moderna.
+                        </li>
+                        <li style="margin-bottom: 0.75rem;">
+                            <strong style="color: #0ea5e9;">Route Simplified:</strong> El que más retos es <strong>planear rutas</strong> de forma inteligente con <strong>service intervals</strong> (y, si aplica, fill-rate para UCO). No es tan "formularios genéricos" como Alethia; es más un <strong>motor de ruteo especializado</strong>.
+                        </li>
+                        <li>
+                            <strong style="color: #0ea5e9;">LinkoFOG:</strong> decisión típica del cliente es <strong>regulador/autoridad</strong> o si la empresa necesita un sistema de <strong>inspección y enforcement</strong>: cálculo de % grasa, no conformidad y generación de NOV/warnings. Menos "operación de cuadrillas", más <strong>"cumplimiento y control"</strong>.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+        <!-- Conclusiones por Herramienta -->
+        <article class="card" id="conclusiones">
+            <div class="card-header">
+                <h2 class="card-title">
+                    <span class="card-icon"><i class="fas fa-lightbulb"></i></span>
+                    Conclusiones y Recomendaciones
+                </h2>
+            </div>
+            <div class="card-body">
+                <p style="margin-bottom: 2rem; color: var(--text-muted);">Análisis de fortalezas, consideraciones y casos de uso ideales para cada herramienta.</p>
+                
+                <!-- MUTA -->
+                <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0 0 1rem 0; color: #92400e; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="background: #f59e0b; color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">M</span>
+                        MUTA
+                    </h3>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Ideal para:</strong>
+                        <p style="margin: 0; color: #78350f; line-height: 1.6;">Empresas de reciclaje y residuos con necesidad de <strong>integrar rutas + inventario de materiales + trazabilidad</strong>.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Fortalezas:</strong>
+                        <ul style="margin: 0; padding-left: 1.2rem; color: #78350f; line-height: 1.7;">
+                            <li>Permite creación de rutas programadas y captura de evidencia operativa</li>
+                            <li>Buen equilibrio entre operación de campo y control de inventario</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong style="color: #d97706; display: block; margin-bottom: 0.5rem;">⚠ Considerar:</strong>
+                        <p style="margin: 0; color: #78350f; line-height: 1.6;">Documentación pública no detalla APIs o integraciones profundas.</p>
+                    </div>
+                </div>
+
+                <!-- Samsara -->
+                <div style="background: #dbeafe; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0 0 1rem 0; color: #1e40af; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="background: #3b82f6; color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">S</span>
+                        Samsara
+                    </h3>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Excelente para:</strong>
+                        <p style="margin: 0; color: #1e3a8a; line-height: 1.6;"><strong>Telemetría de flotas, GPS avanzado y métricas de desempeño</strong>.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Muy útil para:</strong>
+                        <p style="margin: 0; color: #1e3a8a; line-height: 1.6;">Organizaciones que necesitan <strong>seguridad, cumplimiento y mantenimiento continuo</strong>.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">A favor:</strong>
+                        <p style="margin: 0; color: #1e3a8a; line-height: 1.6;">Integración con dispositivos IoT y módulos de seguridad.</p>
+                    </div>
+                    <div>
+                        <strong style="color: #d97706; display: block; margin-bottom: 0.5rem;">⚠ Limita:</strong>
+                        <p style="margin: 0; color: #1e3a8a; line-height: 1.6;">No gestiona inventario de materiales.</p>
+                    </div>
+                </div>
+
+                <!-- OptimoRoute -->
+                <div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0 0 1rem 0; color: #065f46; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="background: #10b981; color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">O</span>
+                        OptimoRoute
+                    </h3>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Líder en:</strong>
+                        <p style="margin: 0; color: #064e3b; line-height: 1.6;"><strong>Optimización automática de rutas y planificación avanzada</strong> con restricciones y ventanas de tiempo.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Ideal si:</strong>
+                        <p style="margin: 0; color: #064e3b; line-height: 1.6;">La <strong>eficiencia de las rutas</strong> es la prioridad principal.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">A favor:</strong>
+                        <p style="margin: 0; color: #064e3b; line-height: 1.6;">Muy fuerte en rutas.</p>
+                    </div>
+                    <div>
+                        <strong style="color: #d97706; display: block; margin-bottom: 0.5rem;">⚠ Limita:</strong>
+                        <p style="margin: 0; color: #064e3b; line-height: 1.6;">No maneja inventario ni trazabilidad de materiales.</p>
+                    </div>
+                </div>
+
+                <!-- miResiduo -->
+                <div style="background: #e0e7ff; border-left: 4px solid #6366f1; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+                    <h3 style="margin: 0 0 1rem 0; color: #3730a3; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="background: #6366f1; color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">m</span>
+                        miResiduo
+                    </h3>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Orientado a:</strong>
+                        <p style="margin: 0; color: #312e81; line-height: 1.6;"><strong>Gestión de residuos con enfoque documental, inventario y cumplimiento ambiental</strong>.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Genera:</strong>
+                        <p style="margin: 0; color: #312e81; line-height: 1.6;">Rutas, reportes y seguimiento de recolecciones.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">A favor:</strong>
+                        <p style="margin: 0; color: #312e81; line-height: 1.6;">Fuerte control documental y BI ambiental.</p>
+                    </div>
+                    <div>
+                        <strong style="color: #d97706; display: block; margin-bottom: 0.5rem;">⚠ Limita:</strong>
+                        <p style="margin: 0; color: #312e81; line-height: 1.6;">Alcance principalmente en residuos, menos profundidad en telemetría de flotas.</p>
+                    </div>
+                </div>
+
+                <!-- AMCS -->
+                <div style="background: #fee2e2; border-left: 4px solid #dc2626; padding: 1.5rem; border-radius: 12px;">
+                    <h3 style="margin: 0 0 1rem 0; color: #7f1d1d; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="background: #dc2626; color: white; width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold;">A</span>
+                        AMCS
+                    </h3>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Más completo y empresarial:</strong>
+                        <p style="margin: 0; color: #7f1d1d; line-height: 1.6;">Combina <strong>rutas, inventario, ERP, gestión de clientes, BI y automatización total</strong>.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Usa IA para:</strong>
+                        <p style="margin: 0; color: #7f1d1d; line-height: 1.6;"><strong>Optimización de rutas, transporte y reducción de emisiones</strong>.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">✓ Ofrece:</strong>
+                        <p style="margin: 0; color: #7f1d1d; line-height: 1.6;">Módulos avanzados de seguimiento, reportes e integraciones extensas.</p>
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <strong style="color: #059669; display: block; margin-bottom: 0.5rem;">A favor:</strong>
+                        <p style="margin: 0; color: #7f1d1d; line-height: 1.6;">Excelente para operaciones complejas y grandes volúmenes.</p>
+                    </div>
+                    <div>
+                        <strong style="color: #d97706; display: block; margin-bottom: 0.5rem;">⚠ Considerar:</strong>
+                        <p style="margin: 0; color: #7f1d1d; line-height: 1.6;">Puede requerir mayor inversión, implementación y recursos para adoptarlo.</p>
+                    </div>
+                </div>
             </div>
         </article>
 
