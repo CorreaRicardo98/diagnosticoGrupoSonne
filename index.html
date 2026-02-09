@@ -614,6 +614,7 @@
             <a href="#arquitectura" class="nav-link"><i class="fas fa-sitemap"></i> <span>Arquitectura</span></a>
             <a href="#ambientes" class="nav-link"><i class="fas fa-cogs"></i> <span>Ambientes</span></a>
             <a href="#datos" class="nav-link"><i class="fas fa-database"></i> <span>Datos & SSOT</span></a>
+            <a href="#ciclo-vida" class="nav-link"><i class="fas fa-recycle"></i> <span>Ciclo de Vida<span class="nav-badge-new" id="ciclo-vida-new-badge">NEW</span></span></a>
             <a href="#segurity" class="nav-link"><i class="fas fa-shield-halved"></i> <span>Seguridad</span></a>
             <a href="#respaldos" class="nav-link"><i class="fas fa-server"></i> <span>Continuidad</span></a>
             
@@ -622,13 +623,15 @@
             <a href="#riesgos" class="nav-link"><i class="fas fa-triangle-exclamation"></i> <span>Riesgos</span></a>
             <a href="#erpcrm" class="nav-link"><i class="fas fa-boxes-stacked"></i> <span>ERP vs CRM</span></a>
             <a href="#herramientas" class="nav-link"><i class="fas fa-toolbox"></i> <span>Herramientas</span></a>
-            <a href="comparativas.html" class="nav-link"><i class="fas fa-table-columns"></i> <span>Comparativas<span class="nav-badge-new" id="comparativas-new-badge">NEW</span></span></a>
+            <a href="comparativas.html" class="nav-link"><i class="fas fa-table-columns"></i> <span>Herramientas Propuestas<span class="nav-badge-new" id="comparativas-new-badge">NEW</span></span></a>
             <a href="#estrategia-software" class="nav-link"><i class="fas fa-balance-scale"></i> <span>Estrategia Software</span></a>
             <a href="#ecosistema" class="nav-link"><i class="fas fa-project-diagram"></i> <span>Ecosistema Digital</span></a>
+            <a href="#modelo-asis" class="nav-link"><i class="fas fa-diagram-project"></i> <span>Modelo AS-IS<span class="nav-badge-new" id="asis-new-badge">NEW</span></span></a>
+            <a href="#modelo-tobe" class="nav-link"><i class="fas fa-diagram-successor"></i> <span>Modelo TO-BE<span class="nav-badge-new" id="tobe-new-badge">NEW</span></span></a>
         
             <div class="nav-category">Acción</div>
-            <a href="#roadmap" class="nav-link"><i class="fas fa-route"></i> <span>Roadmap 90 días</span></a>
-            <a href="#conclusion-final" class="nav-link"><i class="fas fa-flag-checkered"></i> <span>Resumen Estratégico</span></a>
+            <a href="#roadmap" class="nav-link"><i class="fas fa-route"></i> <span>Roadmap de Transformación Digital<span class="nav-badge-new" id="roadmap-new-badge">NEW</span></span></a>
+            <a href="#conclusion-final" class="nav-link"><i class="fas fa-flag-checkered"></i> <span>Resumen Estratégico Técnico</span></a>
         </div>
     </nav>
 
@@ -758,16 +761,24 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Sistema Recolección (Laravel)</strong><br><span style="font-size:0.8rem; opacity:0.7">(Activo Dormido)</span></td>
-                            <td>Diseñado para Logística, Clientes, Rutas</td>
-                            <td>Laravel 10 + MySQL <br><span style="font-size:0.8rem; opacity:0.7">AWS EC2 - Sin Uso Activo</span></td>
-                            <td><span class="status-dot status-warn"></span>Abandonado / Sin Documentar</td>
+                            <td><strong>Sistema Recolección (Laravel)</strong><br><span style="font-size:0.8rem; opacity:0.7; color: var(--success);">(Core de Operaciones)</span></td>
+                            <td>
+                                <strong>En Uso Diario:</strong>
+                                <ul style="font-size:0.85rem; margin:0.5rem 0; padding-left:1.2rem;">
+                                    <li>Gestión de clientes por grupos/zonas</li>
+                                    <li>Generación de bitácoras de recolección</li>
+                                    <li>Captura de manifiestos y básculas</li>
+                                    <li>Reportes para facturación</li>
+                                </ul>
+                            </td>
+                            <td>Laravel 10 + MySQL <br><span style="font-size:0.8rem; opacity:0.7">AWS EC2 - En Producción</span></td>
+                            <td><span class="status-dot status-success"></span>Activo / Limitaciones en UX</td>
                         </tr>
                         <tr>
                             <td><strong>Operaciones en Campo</strong></td>
-                            <td>Básculas, Bitácoras de Residuos</td>
-                            <td>Manual / Papel / Excel</td>
-                            <td><span class="status-dot status-risk"></span>Sin Trazabilidad</td>
+                            <td>Bitácoras impresas, Manifiestos físicos, Captura manual posterior</td>
+                            <td>Papel → Sistema Laravel + Excel</td>
+                            <td><span class="status-dot status-warn"></span>Flujo híbrido manual-digital</td>
                         </tr>
                         <tr>
                             <td><strong>Gestión Administrativa</strong></td>
@@ -881,7 +892,7 @@
                     </div>
                     <div class="conclusion-simple">
                         <div class="conclusion-header"><i class="fas fa-info-circle"></i> Situación Actual</div>
-                        <p><strong>El contexto real:</strong> Existe un sistema Laravel moderno en la nube, pero actualmente <strong>no está en uso activo</strong>. No hay documentación disponible de cómo funciona, no se están extrayendo datos de él, y las operaciones del día a día se siguen realizando en Excel y papel. Esto representa tanto un <strong>activo tecnológico existente</strong> como un <strong>reto de adopción y documentación</strong> si se decide reactivarlo.</p>
+                        <p><strong>El contexto real:</strong> Existe un sistema a medida moderno en la nube, pero actualmente <strong>no está en uso activo</strong>. No hay documentación disponible de cómo funciona, no se están extrayendo datos de él, y las operaciones del día a día se siguen realizando en Excel y papel. Esto representa tanto un <strong>activo tecnológico existente</strong> como un <strong>reto de adopción y documentación</strong> si se decide reactivarlo.</p>
                     </div>
                 </div>
             </article>
@@ -1112,7 +1123,7 @@
                         
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
                             <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 6px;">
-                                <strong style="color: #92400e; display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">🔨 Camino A: Reactivar Laravel</strong>
+                                <strong style="color: #92400e; display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">🔨 Camino A: Reactivar Sistema Actual</strong>
                                 <ul style="font-size: 0.85rem; color: #78350f; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
                                     <li><strong>Tiempo:</strong> 6-9 meses hasta tener datos fluyendo</li>
                                     <li><strong>Requiere:</strong> Auditoría, documentación, equipo técnico dedicado</li>
@@ -1149,6 +1160,193 @@
                     <div class="conclusion-simple" style="margin-top: 1rem;">
                         <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple: Analítica</div>
                         <p>Todas las decisiones importantes (cuánto pagar, cuántas rutas hacer, cuánto se recolectó) se toman mirando hojas de Excel que cada persona arma a su modo. No hay un lugar central con la información correcta y actualizada al momento. Eso hace que las decisiones sean lentas y con riesgo de equivocarse.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Ciclo de Vida del Software -->
+            <article class="card span-2" id="ciclo-vida">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon"><i class="fas fa-recycle"></i></span>
+                        Ciclo de Vida del Software
+                    </h2>
+                    <span class="card-badge">SDLC</span>
+                    <span class="card-badge" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; margin-left: 0.5rem;" id="ciclo-vida-card-badge">NEW</span>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 2rem; color: #475569; font-size: 1rem; line-height: 1.7;">
+                        El <strong>Ciclo de Vida del Desarrollo de Software (SDLC)</strong> es el proceso estructurado que sigue un sistema desde su concepción hasta su retiro. Define las etapas, roles y controles necesarios para desarrollar, mantener y evolucionar software de forma predecible y con calidad.
+                    </p>
+                    
+                    <!-- Visual del Ciclo -->
+                    <div style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.02) 100%); padding: 2rem; border-radius: 16px; margin-bottom: 2rem; border: 1px solid #e2e8f0;">
+                        <h3 style="color: #0f172a; margin: 0 0 1.5rem 0; font-size: 1.1rem; text-align: center;">Las 7 Etapas del Ciclo de Vida</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                            <!-- Etapa 1 -->
+                            <div style="background: white; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span style="background: #dbeafe; color: #1e40af; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</span>
+                                    <strong style="color: #0f172a; font-size: 0.95rem;">Planificación</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.5;">Definir objetivos, alcance, recursos y presupuesto del proyecto.</p>
+                            </div>
+                            
+                            <!-- Etapa 2 -->
+                            <div style="background: white; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #8b5cf6; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span style="background: #ede9fe; color: #6b21a8; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</span>
+                                    <strong style="color: #0f172a; font-size: 0.95rem;">Análisis</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.5;">Recopilar y documentar requisitos funcionales y técnicos.</p>
+                            </div>
+                            
+                            <!-- Etapa 3 -->
+                            <div style="background: white; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #06b6d4; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span style="background: #cffafe; color: #0e7490; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</span>
+                                    <strong style="color: #0f172a; font-size: 0.95rem;">Diseño</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.5;">Crear arquitectura, diagramas de BD, interfaces y flujos de datos.</p>
+                            </div>
+                            
+                            <!-- Etapa 4 -->
+                            <div style="background: white; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #10b981; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span style="background: #d1fae5; color: #047857; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</span>
+                                    <strong style="color: #0f172a; font-size: 0.95rem;">Implementación</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.5;">Escribir código, configurar infraestructura y construir funcionalidades.</p>
+                            </div>
+                            
+                            <!-- Etapa 5 -->
+                            <div style="background: white; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #f59e0b; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span style="background: #fef3c7; color: #92400e; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">5</span>
+                                    <strong style="color: #0f172a; font-size: 0.95rem;">Pruebas</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.5;">Validar funcionalidades, detectar errores y verificar requisitos.</p>
+                            </div>
+                            
+                            <!-- Etapa 6 -->
+                            <div style="background: white; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #ec4899; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span style="background: #fce7f3; color: #9f1239; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">6</span>
+                                    <strong style="color: #0f172a; font-size: 0.95rem;">Despliegue</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.5;">Poner el sistema en producción y capacitar usuarios finales.</p>
+                            </div>
+                            
+                            <!-- Etapa 7 -->
+                            <div style="background: white; padding: 1.25rem; border-radius: 12px; border-left: 4px solid #64748b; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+                                    <span style="background: #f1f5f9; color: #334155; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">7</span>
+                                    <strong style="color: #0f172a; font-size: 0.95rem;">Mantenimiento</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b; line-height: 1.5;">Correcciones, actualizaciones, mejoras y soporte continuo.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Situación Actual de Sonne -->
+                    <div style="background: #dbeafe; border-left: 4px solid #3b82f6; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h4 style="margin: 0 0 1rem 0; color: #1e40af; font-size: 1rem;"><i class="fas fa-info-circle"></i> Situación Actual en Grupo Sonne</h4>
+                        <p style="margin: 0 0 1rem 0; color: #1e40af; line-height: 1.7; font-size: 0.95rem;">
+                            El sistema actual <strong>SÍ está en producción activa</strong> y es el core de las operaciones diarias. Sin embargo, opera en un modelo <strong>híbrido manual-digital</strong> que limita su potencial:
+                        </p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                            <div>
+                                <strong style="color: #1e40af; display: block; margin-bottom: 6px; font-size: 0.9rem;">✅ Lo que SÍ hace (Diario):</strong>
+                                <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #1e3a8a; line-height: 1.6;">
+                                    <li><strong>Gestiona clientes</strong> por grupos/zonas/subzonas</li>
+                                    <li><strong>Genera bitácoras</strong> de recolección por frecuencia (1, 3, 6, 9, 12 semanas)</li>
+                                    <li><strong>Registra manifiestos</strong> con kg, fechas, escaneo de documentos</li>
+                                    <li><strong>Captura básculas</strong> de entrada/salida de pipas</li>
+                                    <li><strong>Genera reportes</strong> en Excel para facturación</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <strong style="color: #92400e; display: block; margin-bottom: 6px; font-size: 0.9rem;">⚠️ Limitaciones Críticas:</strong>
+                                <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.85rem; color: #78350f; line-height: 1.6;">
+                                    <li><strong>Flujo manual:</strong> Imprimen bitácoras → papel en campo → captura posterior</li>
+                                    <li><strong>Sin visibilidad:</strong> No saben qué ruta siguen hasta que regresan</li>
+                                    <li><strong>No cumplimiento:</strong> Operadores eligen secuencia diferente a la planeada</li>
+                                    <li><strong>Doble captura:</strong> Sistema + Excel paralelo (fricción operativa)</li>
+                                    <li><strong>Sin documentación:</strong> Funciona pero sin manuales formales</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="background: white; padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+                            <p style="margin: 0; font-size: 0.85rem; color: #475569; line-height: 1.6;">
+                                <strong style="color: #0f172a;">El desafío real:</strong> No es que el sistema esté abandonado, sino que <strong>funciona como un CMS de captura manual</strong> en lugar de un sistema inteligente que digitalice el campo, optimice rutas y dé visibilidad en tiempo real. Todo gira alrededor del sistema, pero todo se hace manual.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Modelos de SDLC -->
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="color: #0f172a; margin: 0 0 1rem 0; font-size: 1rem;"><i class="fas fa-diagram-project"></i> Modelos Comunes de Ciclo de Vida</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                            <!-- Cascada -->
+                            <div style="background: #f8fafc; padding: 1.25rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                                <strong style="display: block; color: #0f172a; margin-bottom: 8px; font-size: 0.95rem;">🌊 Cascada (Waterfall)</strong>
+                                <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #64748b; line-height: 1.6;">
+                                    Modelo secuencial donde cada etapa debe completarse antes de pasar a la siguiente. Ideal para proyectos con requisitos muy claros y estables.
+                                </p>
+                                <div style="font-size: 0.8rem; color: #475569;">
+                                    <strong>Pros:</strong> Estructura clara, fácil de gestionar<br>
+                                    <strong>Contras:</strong> Poco flexible, cambios son costosos
+                                </div>
+                            </div>
+                            
+                            <!-- Ágil -->
+                            <div style="background: #f0fdf4; padding: 1.25rem; border-radius: 12px; border: 1px solid #bbf7d0;">
+                                <strong style="display: block; color: #0f172a; margin-bottom: 8px; font-size: 0.95rem;">⚡ Ágil (Agile/Scrum)</strong>
+                                <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #64748b; line-height: 1.6;">
+                                    Desarrollo iterativo en sprints cortos (2-4 semanas) con entregas incrementales. Adaptable a cambios constantes de requisitos.
+                                </p>
+                                <div style="font-size: 0.8rem; color: #475569;">
+                                    <strong>Pros:</strong> Flexible, feedback rápido, entregas continuas<br>
+                                    <strong>Contras:</strong> Requiere disciplina y comunicación constante
+                                </div>
+                            </div>
+                            
+                            <!-- DevOps -->
+                            <div style="background: #eff6ff; padding: 1.25rem; border-radius: 12px; border: 1px solid #bfdbfe;">
+                                <strong style="display: block; color: #0f172a; margin-bottom: 8px; font-size: 0.95rem;">🔄 DevOps / CI/CD</strong>
+                                <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #64748b; line-height: 1.6;">
+                                    Integración continua y despliegue continuo con automatización. Desarrollo y operaciones trabajan como un solo equipo.
+                                </p>
+                                <div style="font-size: 0.8rem; color: #475569;">
+                                    <strong>Pros:</strong> Despliegues rápidos, alta calidad, automatización<br>
+                                    <strong>Contras:</strong> Requiere infraestructura y cultura específica
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Aplicación a Software Comercial -->
+                    <div style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(16, 185, 129, 0.02) 100%); border-left: 4px solid #10b981; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <h4 style="margin: 0 0 1rem 0; color: #065f46; font-size: 1rem;"><i class="fas fa-shopping-cart"></i> Ventaja del Software Comercial</h4>
+                        <p style="margin: 0; font-size: 0.9rem; color: #047857; line-height: 1.7;">
+                            Una de las grandes ventajas de adoptar <strong>software comercial</strong> (como MUTA, Samsara, SimpliRoute) es que <strong>ya completaron todo el ciclo de vida</strong>. Han pasado por las 7 etapas repetidamente, con miles de horas de pruebas, cientos de usuarios reales, y años de mantenimiento y mejoras continuas. 
+                        </p>
+                        <p style="margin: 0.8rem 0 0 0; font-size: 0.85rem; color: #047857; line-height: 1.6;">
+                            <strong>Resultado:</strong> Reduces el riesgo al adoptar un producto maduro, probado y soportado, sin necesidad de pasar por las etapas más complejas (pruebas, despliegue inicial, estabilización).
+                        </p>
+                        <p style="margin: 0.8rem 0 0 0; font-size: 0.85rem; color: #065f46; line-height: 1.6; font-style: italic;">
+                            <strong>Nota importante:</strong> Aunque el software comercial ya pasó por todo el proceso del ciclo de vida del software, es importante destacar que aun así las fases de mantenimiento constante no se terminan. El proveedor continúa actualizando, corrigiendo y mejorando el producto de manera permanente.
+                        </p>
+                    </div>
+                    
+                    <div class="insight">
+                        <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
+                        <p>El ciclo de vida es el <strong>mapa del proceso</strong> de desarrollo. El sistema actual de Sonne <strong>SÍ completó el ciclo y está en producción</strong>, siendo el core de operaciones diarias. Sin embargo, <strong>le faltan módulos clave</strong>: app móvil para campo, optimización de rutas con GPS en tiempo real, y reportes automatizados. Software comercial como MUTA puede <strong>reemplazarlo completamente</strong>, aportando funcionalidades que tardarían meses en desarrollar internamente (app conductores, IA de rutas, dashboards en tiempo real).</p>
+                    </div>
+                    
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>El ciclo de vida del software es como construir una casa: tiene pasos ordenados desde los planos hasta habitarla. Hoy, el sistema actual de Sonne <strong>SÍ está habitado y en uso diario</strong>, pero es como vivir en una casa donde tienes que salir al patio a lavar ropa porque no hay lavadora dentro, o donde llevas cuadernos para anotar cosas porque no hay internet. La casa funciona, pero te obliga a hacer muchas cosas manuales. Software comercial como MUTA puede reemplazar completamente esta infraestructura con una versión moderna: migras los datos, y obtienes un sistema end-to-end sin trabajo de desarrollo.</p>
                     </div>
                 </div>
             </article>
@@ -1368,11 +1566,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><strong>Sistema Propio (Laravel)</strong></td>
+                                    <td><strong>Sistema Propio a Medida</strong></td>
                                     <td>Operaciones Core</td>
                                     <td><span class="status-dot status-warn"></span>Dormido</td>
                                     <td><strong>Diseñado</strong> para control operativo, pero <strong>sin uso activo</strong>. No hay extracción de datos ni documentación.</td>
-                                    <td><strong>APIs potenciales</strong> pero sin implementar. Código sin documentar dificulta integración.</td>
+                                    <td>Clientes, Rutas, Bitácoras</td>
                                     <td>Integrable (GPS/IoT)</td>
                                     <td>Propietaria</td>
                                     <td>CAPEX Hundido</td>
@@ -1569,181 +1767,422 @@
                 </div>
             </article>
 
-            <!-- Roadmap Chart -->
-            <article class="card span-2" id="roadmap" style="border-top: 4px solid var(--accent);">
+            <!-- Roadmap de Transformación Digital -->
+            <article class="card span-2" id="roadmap" style="border-top: 4px solid #2563eb;">
                 <div class="card-header">
                     <h2 class="card-title">
-                        <span class="card-icon"><i class="fas fa-route"></i></span>
-                        Roadmap de Transformación (90 Días)
+                        <span class="card-icon" style="background: rgba(37, 99, 235, 0.1); color: #2563eb;"><i class="fas fa-road"></i></span>
+                        Roadmap de Transformación Digital
                     </h2>
-                     <span class="card-badge" style="background: var(--accent); color: white;">Plan de Acción</span>
+                    <span class="card-badge">5 Fases Estructuradas</span>
                 </div>
                 <div class="card-body">
-                    <p style="margin-bottom: 1rem; color: #64748b; font-style: italic; font-size: 0.9rem;">
-                        <i class="fas fa-info-circle"></i> Este es un <strong>Roadmap de ejemplo</strong> diseñado específicamente para Grupo Sonne, enfocado en resolver los riesgos críticos detectados en el presente informe.
+                    <p style="margin-bottom: 2rem; font-size: 1rem; color: #475569; line-height: 1.7;">
+                        La transformación digital de Grupo Sonne se plantea en <strong>5 fases estratégicas</strong> que van desde ordenar los fundamentos operativos hasta innovar sobre una base digital sólida y madura. Cada fase construye sobre la anterior, asegurando una evolución estructurada y sostenible.
                     </p>
-                    <div class="insight" style="margin-bottom: 2rem;">
-                         <div class="insight-header"><i class="fas fa-book-open"></i> Concepto Clave</div>
-                         <p>La recomendación es un plan concreto para cerrar brechas. La gráfica muestra el progreso estimado: 0-30 días reduce riesgos críticos, 30-60 construye gobernanza, 60-90 habilita optimización.</p>
-                    </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
-                        <!-- Fase 1 -->
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--primary);">
-                            <h3 style="color:#0f172a; margin:0 0 10px 0;">Fase 1: Blindaje (0-30 días)</h3>
-                            <ul style="font-size: 0.9rem; padding-left: 1rem; color: var(--text-muted);">
-                                <li>Activar MFA (Seguridad).</li>
-                                <li>Respaldos Automáticos (AWS Snapshots).</li>
-                                <li>Documentación de Emergencia.</li>
-                            </ul>
-                        </div>
-                        <!-- Fase 2 -->
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--warning);">
-                            <h3 style="color:#0f172a; margin:0 0 10px 0;">Fase 2: Estructura (30-60 días)</h3>
-                            <ul style="font-size: 0.9rem; padding-left: 1rem; color: var(--text-muted);">
-                                <li>Crear Ambiente QA (Staging).</li>
-                                <li>Migrar BD a RDS (Gestionado).</li>
-                                <li>Implementar <strong>SSOT + Power BI</strong>.</li>
-                            </ul>
-                        </div>
-                        <!-- Fase 3 -->
-                        <div style="background: rgba(37, 99, 235, 0.05); padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--success);">
-                            <h3 style="color:#0f172a; margin:0 0 10px 0;">Fase 3: Optimización (60-90 días)</h3>
-                            <ul style="font-size: 0.9rem; padding-left: 1rem; color: var(--text-muted);">
-                                <li>Actualización Laravel 10+.</li>
-                                <li>APIs para integración (GPS -> ERP).</li>
-                                <li>Piloto Optimización de Rutas (IA).</li>
-                            </ul>
+
+                    <!-- Fase 1 -->
+                    <div style="margin-bottom: 2.5rem; border-left: 4px solid #1e40af; padding-left: 1.5rem; background: linear-gradient(90deg, rgba(30, 64, 175, 0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 12px 12px 0;">
+                        <h3 style="color: #1e40af; margin: 0 0 0.5rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                            <span style="background: #1e40af; color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">1</span>
+                            Fase 1 – Alineación y Fundamentos Operativos
+                        </h3>
+                        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: #1e3a8a; font-style: italic;">Ordenar procesos críticos y preparar el camino a la digitalización</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #dbeafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-clipboard-list" style="color: #3b82f6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Documentar y estandarizar procesos críticos</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Mapear y formalizar flujos operativos clave</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #dbeafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-user-tag" style="color: #3b82f6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Definir dueños de proceso</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Asignar responsabilidades claras por área</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #dbeafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-chalkboard-teacher" style="color: #3b82f6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Capacitar tecnológicamente por rol</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Entrenar equipos según necesidades específicas</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #dbeafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-puzzle-piece" style="color: #3b82f6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Estructurar programas de integración</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Planificar cómo conectar sistemas futuros</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #dbeafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-chart-bar" style="color: #3b82f6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Definir KPIs y gobierno de procesos</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Establecer métricas clave y reglas de operación</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #dbeafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-users-cog" style="color: #3b82f6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Gestionar el cambio y adopción digital</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Preparar a la organización para nuevas tecnologías</p>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Fase 2 -->
+                    <div style="margin-bottom: 2.5rem; border-left: 4px solid #10b981; padding-left: 1.5rem; background: linear-gradient(90deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 12px 12px 0;">
+                        <h3 style="color: #047857; margin: 0 0 0.5rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                            <span style="background: #10b981; color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">2</span>
+                            Fase 2 – Digitalización del Core Operativo
+                        </h3>
+                        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: #065f46; font-style: italic;">Digitalizar la recolección y la planeación para ganar control y visibilidad real de la operación</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #d1fae5;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-clipboard-check" style="color: #10b981;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Documentar y estandarizar procesos críticos</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Formalizar flujos antes de digitalizarlos</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #d1fae5;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-mobile-alt" style="color: #10b981;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Automatizar captura de datos en campo</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">App móvil para eliminar papel y captura manual</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #d1fae5;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-route" style="color: #10b981;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Optimizar la planeación y ruteo</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Herramientas inteligentes para rutas eficientes</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #d1fae5;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-chart-line" style="color: #10b981;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Tableros ejecutivos (BI inicial)</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Dashboards básicos para visibilidad operativa</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #d1fae5;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-database" style="color: #10b981;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Integrar recolección y planeación</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Conectar módulos operativos clave</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fase 3 -->
+                    <div style="margin-bottom: 2.5rem; border-left: 4px solid #8b5cf6; padding-left: 1.5rem; background: linear-gradient(90deg, rgba(139, 92, 246, 0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 12px 12px 0;">
+                        <h3 style="color: #6d28d9; margin: 0 0 0.5rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                            <span style="background: #8b5cf6; color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">3</span>
+                            Fase 3 – Integración y SSOT (ERP)
+                        </h3>
+                        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: #5b21b6; font-style: italic;">Integrar la operación y administración bajo una sola fuente de verdad</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #ede9fe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-cogs" style="color: #8b5cf6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Implementar ERP compatible con SONNE</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Sistema central que integre toda la empresa</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #ede9fe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-link" style="color: #8b5cf6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Integrar recolección, planta y administración</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Conectar todas las áreas de la operación</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #ede9fe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-users" style="color: #8b5cf6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Implementar CRM</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Gestión centralizada de clientes y grupos</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #ede9fe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-industry" style="color: #8b5cf6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Digitalizar procesos de planta</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Captura digital de básculas, recepción, procesamiento</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #ede9fe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-dollar-sign" style="color: #8b5cf6;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Estructurar finanzas por operación</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Contabilidad y facturación automatizadas desde operación</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fase 4 -->
+                    <div style="margin-bottom: 2.5rem; border-left: 4px solid #f59e0b; padding-left: 1.5rem; background: linear-gradient(90deg, rgba(245, 158, 11, 0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 12px 12px 0;">
+                        <h3 style="color: #d97706; margin: 0 0 0.5rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                            <span style="background: #f59e0b; color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">4</span>
+                            Fase 4 – Optimización y Madurez Digital
+                        </h3>
+                        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: #92400e; font-style: italic;">Optimizar procesos y fortalecer el control y toma de decisiones</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #fef3c7;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-shield-alt" style="color: #f59e0b;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Fortalecer seguridad y continuidad operativa</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Backup, seguridad, ambiente QA consolidados</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #fef3c7;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-chart-pie" style="color: #f59e0b;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">KPIs avanzados (BI a detalle)</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Dashboards profundos por área y proceso</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #fef3c7;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-sync-alt" style="color: #f59e0b;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Mejora continua de procesos</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Optimización iterativa basada en datos</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #fef3c7;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-user-check" style="color: #f59e0b;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Ajustes de adopción tecnológica</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Refinar uso y apropiación de herramientas</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #fef3c7;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-project-diagram" style="color: #f59e0b;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Estabilizar integraciones</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Asegurar conexiones robustas entre sistemas</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #fef3c7;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-laptop-code" style="color: #f59e0b;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Digitalizar procesos restantes</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Eliminar puntos manuales residuales</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fase 5 -->
+                    <div style="margin-bottom: 1.5rem; border-left: 4px solid #06b6d4; padding-left: 1.5rem; background: linear-gradient(90deg, rgba(6, 182, 212, 0.05) 0%, transparent 100%); padding: 1.5rem; border-radius: 0 12px 12px 0;">
+                        <h3 style="color: #0e7490; margin: 0 0 0.5rem 0; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                            <span style="background: #06b6d4; color: white; width: 36px; height: 36px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem;">5</span>
+                            Fase 5 – Evolución e Innovación
+                        </h3>
+                        <p style="margin: 0 0 1rem 0; font-size: 0.95rem; color: #155e75; font-style: italic;">Innovar sobre una base digital sólida y madura</p>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #cffafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-brain" style="color: #06b6d4;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Analítica avanzada y predictiva</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">IA y machine learning para predicciones</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #cffafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-robot" style="color: #06b6d4;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Automatización avanzada</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">RPA, bots, flujos complejos automatizados</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #cffafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-lightbulb" style="color: #06b6d4;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Innovación continua</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Cultura de mejora e innovación permanente</p>
+                            </div>
+                            <div style="background: white; padding: 1rem; border-radius: 8px; border: 1px solid #cffafe;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                                    <i class="fas fa-code" style="color: #06b6d4;"></i>
+                                    <strong style="color: #0f172a; font-size: 0.9rem;">Evaluar desarrollos a medida (justificación clara)</strong>
+                                </div>
+                                <p style="margin: 0; font-size: 0.85rem; color: #64748b;">Solo cuando el mercado no ofrece la solución</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insight" style="margin-top: 2rem;">
+                        <div class="insight-header"><i class="fas fa-lightbulb"></i> Concepto Clave</div>
+                        <p>Este roadmap representa la evolución natural de una organización hacia la madurez digital. <strong>No es obligatorio seguir todas las fases linealmente</strong>, pero sí es crítico entender que cada fase construye sobre la anterior. Intentar "saltar" directamente a innovación (Fase 5) sin haber ordenado procesos (Fase 1) y digitalizado el core (Fase 2) resulta en proyectos fallidos y frustrantes.</p>
+                    </div>
+
                     <div class="conclusion-simple">
-                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Recomendación</div>
-                        <p>Lo primero es hacer un plan claro de 3 meses para arreglar las cosas urgentes: seguridad, copias automáticas, lugar para probar, documentación y un lugar central confiable. Después de estabilizar, sí podemos pensar en cosas nuevas como reportes automáticos o un sistema más grande.</p>
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>La transformación digital no es un destino, es un camino. Grupo Sonne debe decidir en qué fase quiere enfocarse primero según sus prioridades de negocio. Lo más importante es <strong>no intentar hacer todo a la vez</strong>, sino avanzar fase por fase, asegurando que cada etapa esté sólida antes de pasar a la siguiente.</p>
                     </div>
                 </div>
             </article>
 
-            <!-- Strategic Dilemma: Custom vs. Commercial -->
+            <!-- Strategic Dilemma: Internal Development vs. Commercial Migration -->
             <article class="card span-2 dark-header" id="estrategia-software" style="border-top: 4px solid var(--primary);">
                 <div class="card-header">
                     <h2 class="card-title">
                         <span class="card-icon" style="background: var(--primary-dim); color: var(--primary);"><i class="fas fa-balance-scale"></i></span>
-                        La Gran Decisión: ¿Seguir con lo Propio o Cambiar a algo Listo?
+                        La Gran Decisión: ¿Evolucionar el Sistema Actual o Migrar a Software Comercial?
                     </h2>
                 </div>
                 <div class="card-body">
-                    <p style="margin-bottom: 2rem; font-size: 1.1rem; color: #475569;">Es el punto más importante para el futuro de Grupo Sonne. Aquí comparamos las dos rutas posibles para que elijas la que mejor se adapte al negocio.</p>
+                    <p style="margin-bottom: 1rem; font-size: 1.1rem; color: #475569;">El sistema actual <strong>está en producción activa</strong>, pero modernizarlo requiere tiempo y recursos significativos. La decisión estratégica es: seguir invirtiendo en desarrollo interno o <strong>migrar a software comercial maduro</strong> que ya completó todo el ciclo de vida.</p>
+                    
+                    <div style="background: #dbeafe; border-left: 4px solid #3b82f6; padding: 1.25rem; border-radius: 12px; margin-bottom: 2rem;">
+                        <p style="margin: 0; font-size: 0.95rem; color: #1e40af; line-height: 1.7;">
+                            <strong>Contexto Real:</strong> Hoy el sistema interno gestiona clientes por grupos/zonas, genera bitácoras por frecuencia (1, 3, 6, 9, 12 semanas), registra manifiestos con kg/escaneo, captura básculas, y genera reportes para facturación. Sin embargo, el flujo es híbrido manual-digital: bitácoras impresas → papel en campo → captura posterior. <strong>Modernizar significa eliminar papel y tener visibilidad en tiempo real</strong>, pero ¿desarrollar internamente o adoptar software del mercado?
+                        </p>
+                    </div>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem;">
-                        <!-- Opción A: Desarrollo a Medida -->
+                        <!-- Opción A: Evolucionar Sistema Actual Internamente -->
                         <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
-                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-hammer"></i> Opción A: Reactivar el Desarrollo a Medida (Laravel)</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Aprovechar la inversión ya realizada en el sistema Laravel existente, completándolo y poniéndolo en operación.</p>
+                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-code"></i> Opción A: Evolucionar el Sistema Actual Internamente</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Continuar desarrollando el sistema interno actual, agregando funcionalidades móviles, optimización de rutas y digitalización completa del flujo de campo.</p>
                             
-                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
-                                <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;"><i class="fas fa-clipboard-list"></i> Estado Actual del Sistema Laravel:</strong>
-                                <ul style="font-size: 0.85rem; color: #78350f; margin: 0; padding-left: 1.2rem;">
-                                    <li>Sistema construido con Laravel 10 (tecnología moderna)</li>
-                                    <li>Hospedado en AWS EC2</li>
-                                    <li>Sin uso operativo actual</li>
-                                    <li>Sin documentación técnica ni de usuario</li>
-                                    <li>Sin extracción de datos o reportes activos</li>
-                                    <li>Inversión de desarrollo ya realizada (CAPEX hundido)</li>
+                            <div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
+                                <strong style="color: #065f46; display: block; margin-bottom: 0.5rem;"><i class="fas fa-check-circle"></i> Realidad Actual del Sistema Interno:</strong>
+                                <ul style="font-size: 0.85rem; color: #047857; margin: 0; padding-left: 1.2rem;">
+                                    <li><strong>✅ En producción activa:</strong> Core de operaciones diarias desde hace tiempo</li>
+                                    <li><strong>✅ Gestiona clientes:</strong> Por grupos (ej. Walmart 289), zonas (Valle, Laredo) y subzonas con frecuencias</li>
+                                    <li><strong>✅ Genera bitácoras:</strong> Recolección por zona/frecuencia (1, 3, 6, 9, 12 semanas)</li>
+                                    <li><strong>✅ Registra operaciones:</strong> Manifiestos con kg, fechas, escaneo; básculas entrada/salida</li>
+                                    <li><strong>✅ Reportes facturación:</strong> Exporta Excel para pago mensual a grupos</li>
+                                    <li><strong>✅ Inversión ya materializada:</strong> Sistema funcional con años de datos históricos</li>
                                 </ul>
                             </div>
                             
-                            <div style="background: #fee2e2; border-left: 4px solid #dc2626; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
-                                <strong style="color: #991b1b; display: block; margin-bottom: 0.5rem;"><i class="fas fa-ban"></i> ¿Por qué NO es viable continuar "como está"?</strong>
-                                <p style="font-size: 0.85rem; color: #7f1d1d; margin: 0 0 0.5rem 0; line-height: 1.6;">
-                                    Aunque el sistema existe, <strong>no puede usarse en su estado actual</strong> por las siguientes barreras críticas:
-                                </p>
-                                <ul style="font-size: 0.85rem; color: #7f1d1d; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
-                                    <li><strong>Barrera de Conocimiento:</strong> Sin documentación, nadie sabe qué funcionalidades están implementadas, cómo usarlas, o qué falta por completar. Es como tener un manual en blanco.</li>
-                                    <li><strong>Barrera de Adopción:</strong> Los usuarios no pueden empezar a usar algo que no tiene guías, capacitación ni soporte. El sistema quedaría abandonado nuevamente.</li>
-                                    <li><strong>Barrera de Mantenimiento:</strong> Sin equipo técnico que conozca el código, cualquier error o cambio requerido se convierte en un proyecto de "arqueología de código".</li>
-                                    <li><strong>Barrera de Confianza:</strong> Un sistema sin datos históricos, sin validación en producción y sin usuarios activos no genera confianza para operaciones críticas del negocio.</li>
-                                    <li><strong>Barrera de Integración:</strong> Sin APIs documentadas ni conectores probados, no puede integrarse con GPS, contabilidad u otros sistemas necesarios.</li>
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
+                                <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> Brechas que Requieren Desarrollo:</strong>
+                                <ul style="font-size: 0.85rem; color: #78350f; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
+                                    <li><strong>App móvil para conductores:</strong> Hoy imprimen bitácoras en papel → necesitan app con lista de clientes, GPS, captura de fotos y firmas digitales en campo</li>
+                                    <li><strong>Optimización de rutas:</strong> Operadores eligen secuencia en campo → necesitan algoritmo que calcule ruta óptima basado en zona/tráfico/combustible</li>
+                                    <li><strong>Visibilidad en tiempo real:</strong> Solo saben dónde están por GPS externo → necesitan dashboard que muestre qué clientes visitaron, cuáles faltan, desvíos de ruta</li>
+                                    <li><strong>Integración GPS:</strong> Skyguardian está desconectado del sistema → API para traer ubicación/telemetría al Laravel</li>
+                                    <li><strong>Reportes automatizados:</strong> Hoy usan Excel paralelo → necesitan dashboards Power BI o reportes PDF automáticos</li>
+                                    <li><strong>Documentación formal:</strong> Funciona pero sin manuales → crear docs técnicas y de usuario</li>
                                 </ul>
-                                <p style="font-size: 0.85rem; color: #7f1d1d; margin: 0.5rem 0 0 0; line-height: 1.6;">
-                                    <strong>Conclusión:</strong> El sistema no puede "continuar" porque nunca comenzó a operar. Reactivarlo requiere el mismo esfuerzo (o más) que implementar una solución comercial, pero con mayor riesgo e incertidumbre.
-                                </p>
                             </div>
                             
                             <div style="margin-bottom: 1rem;">
                                 <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">✅ Ventajas de esta opción:</strong>
                                 <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
-                                    <li>Ya existe una base de código desarrollada (no se parte de cero)</li>
-                                    <li>Puede adaptarse 100% a procesos específicos del negocio</li>
-                                    <li>Control total sobre funcionalidades y roadmap de desarrollo</li>
-                                    <li>No hay dependencia de proveedores externos (vendor lock-in)</li>
-                                    <li>Tecnología moderna con buena comunidad de soporte (Laravel)</li>
+                                    <li><strong>Sistema ya probado:</strong> En uso diario con años de datos reales y flujos validados</li>
+                                    <li><strong>Adaptado al negocio:</strong> Entiende grupos, zonas, subzonas, frecuencias específicas de Sonne</li>
+                                    <li><strong>Control total:</strong> Decides qué, cuándo y cómo agregar funcionalidades</li>
+                                    <li><strong>Sin vendor lock-in:</strong> No dependes de proveedores externos ni aumentos de precio</li>
+                                    <li><strong>Conocimiento interno:</strong> Equipo ya familiarizado con el flujo operativo actual</li>
+                                    <li><strong>CAPEX ya invertido:</strong> Aprovechas la inversión histórica realizada</li>
                                 </ul>
                             </div>
                             
                             <div style="margin-bottom: 1rem;">
                                 <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">⚠️ Desafíos y costos de esta opción:</strong>
                                 <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
-                                    <li><strong>Auditoría inicial obligatoria:</strong> Necesaria para conocer el estado real del código (2-3 semanas, costo de consultoría)</li>
-                                    <li><strong>Documentación completa:</strong> Crear manuales técnicos y de usuario desde cero</li>
-                                    <li><strong>Equipo dedicado:</strong> Contratar/mantener desarrolladores Laravel (2-3 personas mínimo)</li>
-                                    <li><strong>Infraestructura:</strong> Implementar ambientes de prueba, backups, seguridad, monitoreo</li>
-                                    <li><strong>Tiempo de implementación:</strong> 6-9 meses estimados hasta operación completa</li>
-                                    <li><strong>Riesgo de conocimiento:</strong> Dependencia de que el equipo técnico documente y transfiera conocimiento</li>
+                                    <li><strong>Desarrollo app móvil:</strong> React Native/Flutter para iOS/Android + backend API (4-6 meses)</li>
+                                    <li><strong>Algoritmo de optimización:</strong> Rutas inteligentes considerando zona, tráfico, combustible (3-4 meses)</li>
+                                    <li><strong>Dashboard tiempo real:</strong> WebSockets para tracking en vivo (2-3 meses)</li>
+                                    <li><strong>Equipo técnico dedicado:</strong> 2-3 desarrolladores full-time + PM (OPEX recurrente)</li>
+                                    <li><strong>Infraestructura mejorada:</strong> Ambiente QA, backups automáticos, monitoreo (1-2 meses)</li>
+                                    <li><strong>Tiempo total estimado:</strong> 8-12 meses para tener todo funcionando end-to-end</li>
+                                    <li><strong>Riesgo de ejecución:</strong> Depende de calidad del equipo técnico contratado</li>
                                 </ul>
                             </div>
                             
                             <div style="margin-top: 1.5rem; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
                                 <strong style="display:block; margin-bottom:8px; color:#0f172a;">📋 Lo que implicaría elegir esta ruta:</strong>
                                 <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b; margin: 0;">
-                                    <li><strong>Fase 1 - Auditoría (2-3 semanas):</strong> Contratar expertos Laravel para revisar código, evaluar completitud y estimar esfuerzo restante.</li>
-                                    <li><strong>Fase 2 - Documentación (1-2 meses):</strong> Crear documentación técnica completa del sistema existente.</li>
-                                    <li><strong>Fase 3 - Completar desarrollo (3-5 meses):</strong> Implementar funcionalidades faltantes según hallazgos de auditoría.</li>
-                                    <li><strong>Fase 4 - Infraestructura (1-2 meses):</strong> Implementar QA, backups automáticos, monitoreo, seguridad.</li>
-                                    <li><strong>Fase 5 - Capacitación y adopción (1 mes):</strong> Entrenar usuarios y migrar operaciones desde Excel.</li>
+                                    <li><strong>Fase 1 - Planificación (1 mes):</strong> Definir roadmap de funcionalidades, priorizar módulos, diseñar UX de app móvil.</li>
+                                    <li><strong>Fase 2 - App Móvil MVP (4-5 meses):</strong> Desarrollar app básica para conductores (lista clientes, captura de fotos, firma digital).</li>
+                                    <li><strong>Fase 3 - Integración GPS (2 meses):</strong> Conectar Skyguardian al sistema vía API, dashboard de ubicación.</li>
+                                    <li><strong>Fase 4 - Optimización Rutas (3-4 meses):</strong> Algoritmo inteligente que sugiera secuencia óptima.</li>
+                                    <li><strong>Fase 5 - Reportes Automatizados (2 meses):</strong> Eliminar Excel paralelo, dashboards integrados.</li>
                                 </ol>
-                                <p style="font-size: 0.85rem; color: #475569; margin-top: 0.8rem; margin-bottom: 0;"><strong>Inversión estimada:</strong> Depende de resultados de auditoría. <strong>Tiempo total:</strong> 6-9 meses aproximadamente.</p>
+                                <p style="font-size: 0.85rem; color: #475569; margin-top: 0.8rem; margin-bottom: 0;"><strong>Inversión estimada:</strong> $80K-$120K USD en desarrollo. <strong>Tiempo total:</strong> 10-14 meses hasta digitalización completa.</p>
+                                <p style="font-size: 0.8rem; color: #dc2626; margin-top: 0.8rem; margin-bottom: 0; background: #fef2f2; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #dc2626;">
+                                    <strong>⚠️ Nota importante:</strong> Estos tiempos y costos son <strong>ejemplos estimados</strong> basados en un equipo robusto de desarrollo a medida (2-3 desarrolladores full-time + PM). Los tiempos reales y presupuesto variarán según perfiles contratados, complejidad final, y alcance ajustado. No son cifras fijas.
+                                </p>
                             </div>
                         </div>
 
-                        <!-- Opción B: Software ya Creado -->
+                        <!-- Opción B: Migrar a Software Comercial -->
                         <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
-                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-shopping-cart"></i> Opción B: Implementar Software Comercial Especializado</h3>
-                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;">Adoptar soluciones ya probadas en el mercado (como Samsara, MUTA, SimpliRoute) que están diseñadas específicamente para la industria.</p>
+                            <h3 style="color:#0f172a; margin: 0 0 1rem 0;"><i class="fas fa-rocket"></i> Opción B: Migrar a Software Comercial Especializado</h3>
+                            <p style="font-size: 0.95rem; line-height: 1.6; color: #475569; margin-bottom: 1.5rem;"><strong>Modernizarse adoptando software del mercado</strong> (ej. MUTA + herramienta de rutas) que ya completó todo el ciclo de vida del software. Reemplazar el sistema actual con soluciones probadas por miles de empresas similares.</p>
+                            
+                            <div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
+                                <strong style="color: #065f46; display: block; margin-bottom: 0.5rem;"><i class="fas fa-check-circle"></i> Propuesta de Stack Comercial (Ejemplo):</strong>
+                                <ul style="font-size: 0.85rem; color: #047857; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
+                                    <li><strong>MUTA:</strong> Gestión completa de recolección (clientes, grupos, zonas, manifiestos digitales, básculas, facturación, app conductores, trazabilidad)</li>
+                                    <li><strong>SimpliRoute/Samsara/OptimoRoute:</strong> Optimización inteligente de rutas con IA, tracking GPS en tiempo real, dashboards operativos</li>
+                                    <li><strong>Migración de datos:</strong> Clientes, grupos, zonas, histórico de manifiestos desde el sistema actual → software comercial</li>
+                                    <li><strong>Resultado:</strong> Sistema moderno end-to-end sin necesidad de equipo técnico interno para desarrollo</li>
+                                </ul>
+                            </div>
+                            
+                            <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; margin-bottom: 1rem; border-radius: 6px;">
+                                <strong style="color: #1e40af; display: block; margin-bottom: 0.5rem;"><i class="fas fa-lightbulb"></i> ¿Por qué Software Comercial puede Reemplazar al Sistema Actual?</strong>
+                                <ul style="font-size: 0.85rem; color: #1e3a8a; margin: 0; padding-left: 1.2rem; line-height: 1.7;">
+                                    <li><strong>Cubre las mismas funcionalidades:</strong> Gestión de clientes/grupos, bitácoras por zona/frecuencia, manifiestos digitales, básculas, reportes</li>
+                                    <li><strong>Aporta lo que el sistema actual NO tiene:</strong> App móvil para conductores, optimización de rutas con IA, visibilidad tiempo real, dashboards avanzados</li>
+                                    <li><strong>Ya está maduro:</strong> Pasó por las 7 etapas del ciclo de vida, probado por miles de horas, bugs ya resueltos</li>
+                                    <li><strong>Elimina dependencia técnica:</strong> El proveedor se encarga de mantenimiento, actualizaciones, soporte 24/7</li>
+                                </ul>
+                            </div>
                             
                             <div style="margin-bottom: 1rem;">
                                 <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">✅ Ventajas de esta opción:</strong>
                                 <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
-                                    <li><strong>Implementación rápida:</strong> 1-3 meses hasta operación completa (vs 6-9 meses desarrollo propio)</li>
-                                    <li><strong>Probado y maduro:</strong> Software usado por cientos/miles de empresas similares</li>
-                                    <li><strong>Sin equipo técnico propio:</strong> El proveedor mantiene, actualiza y da soporte</li>
-                                    <li><strong>Actualizaciones automáticas:</strong> Nuevas funcionalidades sin costo adicional de desarrollo</li>
-                                    <li><strong>Integraciones nativas:</strong> APIs ya construidas con GPS, contabilidad, etc.</li>
-                                    <li><strong>Capacitación incluida:</strong> Manuales, videos, soporte técnico del proveedor</li>
+                                    <li><strong>Velocidad de modernización:</strong> 3-4 meses hasta sistema completo vs 10-14 meses desarrollo interno</li>
+                                    <li><strong>Riesgo drasticamente reducido:</strong> Software probado por miles de empresas similares, bugs ya resueltos</li>
+                                    <li><strong>Modernización inmediata:</strong> App móvil, optimización IA, dashboards tiempo real desde día 1</li>
+                                    <li><strong>Sin equipo técnico interno:</strong> El proveedor mantiene infraestructura, apps, actualizaciones, seguridad</li>
+                                    <li><strong>Nuevas funcionalidades continuas:</strong> El proveedor agrega features automáticamente sin costo extra</li>
+                                    <li><strong>Integraciones listas:</strong> APIs ya construidas con GPS, ERPs, contabilidad, Power BI</li>
+                                    <li><strong>Capacitación y soporte incluidos:</strong> Manuales, videos, soporte 24/7 del proveedor</li>
+                                    <li><strong>Elimina costo/tiempo de desarrollo:</strong> No necesitas contratar desarrolladores ni mantener código</li>
                                 </ul>
                             </div>
                             
                             <div style="margin-bottom: 1rem;">
                                 <strong style="display:block; margin-bottom:8px; color:#0f172a; font-size: 0.95rem;">⚠️ Desafíos y costos de esta opción:</strong>
                                 <ul style="font-size: 0.9rem; padding-left: 1.2rem; color: #475569; display: grid; gap: 8px; margin: 0;">
-                                    <li><strong>Costo recurrente (OPEX):</strong> Renta mensual por usuario/vehículo (vs CAPEX único en desarrollo propio)</li>
-                                    <li><strong>Adaptación de procesos:</strong> El negocio debe ajustarse a cómo funciona el software</li>
-                                    <li><strong>Personalización limitada:</strong> Solo puedes usar las funcionalidades que el proveedor ofrece</li>
-                                    <li><strong>Dependencia del proveedor:</strong> Si cambian precios o descontinúan servicio, afecta operaciones</li>
-                                    <li><strong>Datos en plataforma externa:</strong> Información del negocio reside en servidores del proveedor</li>
-                                    <li><strong>Contratos de largo plazo:</strong> Algunos proveedores requieren compromisos anuales</li>
+                                    <li><strong>Costo recurrente (OPEX):</strong> Renta mensual $150-$400 USD por vehículo/usuario vs CAPEX único de desarrollo</li>
+                                    <li><strong>Migración de datos históricos:</strong> Exportar clientes, grupos, zonas, manifiestos desde el sistema actual al nuevo sistema (3-4 semanas)</li>
+                                    <li><strong>Cambio de procesos:</strong> Administrativos y conductores aprenden nuevo sistema (2-4 semanas adaptación)</li>
+                                    <li><strong>Período de transición:</strong> Correr ambos sistemas en paralelo 2-4 semanas para validar datos</li>
+                                    <li><strong>Dependencia del proveedor:</strong> Funcionalidad y roadmap dependen de decisiones del vendor</li>
+                                    <li><strong>Contratos de largo plazo:</strong> Mayoría requieren compromiso anual 12-24 meses</li>
+                                    <li><strong>"Costo de salida" del sistema actual:</strong> Inversión histórica no se aprovecha (aunque datos se migran)</li>
                                 </ul>
                             </div>
  
                             <div style="margin-top: 1.5rem; border-top: 1px solid #f1f5f9; padding-top: 1rem;">
-                                <strong style="display:block; margin-bottom:8px; color:#0f172a;">📋 Lo que implicaría elegir esta ruta:</strong>
+                                <strong style="display:block; margin-bottom:8px; color:#0f172a;">📋 Lo que implicaría elegir esta ruta (Migración Completa):</strong>
                                 <ol style="font-size: 0.85rem; padding-left: 1.2rem; color: #64748b; margin: 0;">
-                                    <li><strong>Fase 1 - Selección (2-4 semanas):</strong> Evaluar proveedores (Samsara, MUTA, SimpliRoute), solicitar demos y cotizaciones.</li>
-                                    <li><strong>Fase 2 - Contratación (1-2 semanas):</strong> Negociar contrato, definir número de licencias y alcance.</li>
-                                    <li><strong>Fase 3 - Configuración (2-4 semanas):</strong> Parametrizar el sistema según procesos actuales, cargar datos maestros.</li>
-                                    <li><strong>Fase 4 - Capacitación (2-3 semanas):</strong> Entrenar usuarios en el uso del nuevo sistema.</li>
-                                    <li><strong>Fase 5 - Go-Live (1-2 semanas):</strong> Migración de operaciones y acompañamiento inicial.</li>
+                                    <li><strong>Fase 1 - Selección (3-4 semanas):</strong> Evaluar proveedores (MUTA, Samsara, OptimoRoute), demos enfocados en recolección de residuos, cotizaciones.</li>
+                                    <li><strong>Fase 2 - Migración de Datos (3-4 semanas):</strong> Exportar desde el sistema actual: catálogo completo de clientes/grupos/zonas, histórico de manifiestos, datos de básculas. Importar a nuevo sistema.</li>
+                                    <li><strong>Fase 3 - Configuración (2-3 semanas):</strong> Parametrizar zonas, subzonas, frecuencias, usuarios, permisos, flujos de aprobación en plataforma comercial.</li>
+                                    <li><strong>Fase 4 - Piloto Controlado (4-5 semanas):</strong> Probar con 2-3 vehículos/rutas, validar flujo end-to-end (bitácora digital → campo → facturación), ajustes.</li>
+                                    <li><strong>Fase 5 - Rollout Completo (4-6 semanas):</strong> Capacitación masiva a conductores y administrativos, despliegue gradual a toda la flota, apagar el sistema actual.</li>
                                 </ol>
-                                <p style="font-size: 0.85rem; color: #475569; margin-top: 0.8rem; margin-bottom: 0;"><strong>Inversión estimada:</strong> Renta mensual según proveedor. <strong>Tiempo total:</strong> 2-3 meses aproximadamente.</p>
+                                <p style="font-size: 0.85rem; color: #475569; margin-top: 0.8rem; margin-bottom: 0;"><strong>Inversión estimada:</strong> $58K-$95K USD año 1 (licencias + migración + capacitación). <strong>Tiempo total:</strong> 4-5 meses hasta operación 100% en nuevo sistema.</p>
+                                <p style="font-size: 0.8rem; color: #1e40af; margin-top: 0.8rem; margin-bottom: 0; background: #eff6ff; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #3b82f6;">
+                                    <strong>ℹ️ Nota:</strong> Estos tiempos y costos son <strong>ejemplos referenciales</strong>. Los costos reales dependerán del proveedor elegido, número de usuarios/vehículos, y nivel de customización requerido. Los tiempos pueden variar según complejidad de migración de datos.
+                                </p>
                             </div>
                             
                             <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; margin-top: 1.5rem; border-radius: 6px;">
@@ -1798,7 +2237,7 @@
                                 </div>
                                 
                                 <p style="font-size: 0.8rem; color: #1e3a8a; margin: 0.8rem 0 0 0; line-height: 1.6;">
-                                    <strong>Resultado:</strong> En 2-3 meses tendrías un sistema completo funcionando, con usuarios capacitados, datos fluyendo automáticamente, y reportes listos para clientes. Sin necesidad de contratar desarrolladores ni preocuparte por mantenimiento técnico.
+                                    <strong>Resultado con MUTA:</strong> En 4-5 meses tendrías un sistema moderno end-to-end que <strong>reemplaza completamente al sistema actual</strong>. Migras clientes, grupos, zonas e histórico desde tu sistema interno → MUTA gestiona todo (bitácoras, manifiestos digitales, básculas, facturación) + app móvil + optimización de rutas. <strong>El sistema actual se apaga, ya no lo necesitas.</strong> Sin equipo técnico interno, sin mantenimiento de código, todo soportado por el proveedor.
                                 </p>
                             </div>
                         </div>
@@ -1807,46 +2246,44 @@
                     <div class="insight" style="border-top: 1px solid #e2e8f0; border-left: none; padding-top: 2rem; margin-top: 2rem;">
                         <div class="insight-header" style="color: #0f172a;"><i class="fas fa-lightbulb"></i> Marco para Tomar la Decisión</div>
                         <p style="color: #334155; font-size: 1rem; margin-bottom: 1.5rem;">
-                            No existe una respuesta "correcta" universal. La mejor opción depende de tu situación específica. Aquí hay un marco para ayudarte a decidir:
+                            La decisión estratégica es: <strong>¿invertir tiempo/dinero en evolucionar el sistema actual o modernizarse mediante software del mercado?</strong> Aquí está el marco de decisión:
                         </p>
                         
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
-                            <div style="background: #f0fdf4; border-left: 4px solid #10b981; padding: 1rem; border-radius: 6px;">
-                                <strong style="color: #065f46; display: block; margin-bottom: 0.5rem;">✅ Considera la Opción A (Laravel) si:</strong>
-                                <ul style="font-size: 0.85rem; color: #047857; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
-                                    <li>Tus procesos son muy únicos y ningún software comercial los cubre</li>
-                                    <li>Tienes presupuesto para 6-9 meses de desarrollo y equipo técnico</li>
-                                    <li>La auditoría revela que el sistema está 70%+ completo</li>
-                                    <li>Prefieres control total sobre el roadmap de funcionalidades</li>
-                                    <li>Quieres evitar costos recurrentes de renta mensual</li>
+                            <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 6px;">
+                                <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;">⚠️ Considera la Opción A (Evolucionar Sistema Actual) si:</strong>
+                                <ul style="font-size: 0.85rem; color: #78350f; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                    <li>Tus procesos son tan únicos que ningún software comercial puede cubrirlos</li>
+                                    <li>Tienes presupuesto estimado de $80K-$120K USD y 10-14 meses <em>(ejemplo con equipo robusto)</em></li>
+                                    <li>Puedes contratar/mantener equipo técnico dedicado (2-3 desarrolladores + PM)</li>
+                                    <li>Prefieres CAPEX (inversión única) vs OPEX (renta mensual)</li>
+                                    <li>El control total sobre código es más importante que velocidad de modernización</li>
+                                    <li>Aceptas el riesgo de ejecución (depende de calidad del equipo contratado)</li>
                                 </ul>
                             </div>
                             
-                            <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 6px;">
-                                <strong style="color: #1e40af; display: block; margin-bottom: 0.5rem;">✅ Considera la Opción B (Comercial) si:</strong>
-                                <ul style="font-size: 0.85rem; color: #1e40af; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
-                                    <li>Necesitas resultados rápidos (1-3 meses vs 6-9 meses)</li>
-                                    <li>Tus procesos pueden adaptarse a mejores prácticas de la industria</li>
-                                    <li>Prefieres no mantener un equipo técnico interno</li>
-                                    <li>Valoras tener soporte profesional 24/7 del proveedor</li>
-                                    <li>Quieres aprovechar integraciones ya construidas (GPS, contabilidad, etc.)</li>
+                            <div style="background: #d1fae5; border-left: 4px solid #10b981; padding: 1rem; border-radius: 6px;">
+                                <strong style="color: #065f46; display: block; margin-bottom: 0.5rem;">✅ Considera la Opción B (Migrar a Comercial) si:</strong>
+                                <ul style="font-size: 0.85rem; color: #047857; margin: 0; padding-left: 1.2rem; line-height: 1.6;">
+                                    <li><strong>Quieres modernizarte rápido:</strong> 4-5 meses hasta sistema completo vs 10-14 meses <em>(tiempos ejemplo)</em></li>
+                                    <li><strong>Evitar costo/tiempo de desarrollo:</strong> Software ya pasó por todo el ciclo de vida</li>
+                                    <li><strong>Sin equipo técnico interno:</strong> El proveedor mantiene todo (apps, infraestructura, actualizaciones)</li>
+                                    <li><strong>Riesgo reducido:</strong> Software probado por miles de empresas similares</li>
+                                    <li><strong>Funcionalidades avanzadas desde día 1:</strong> App móvil, optimización IA, dashboards tiempo real</li>
+                                    <li><strong>Aceptas OPEX recurrente:</strong> Renta mensual a cambio de no desarrollar/mantener código</li>
                                 </ul>
                             </div>
                         </div>
                         
-                        <div style="background: #fef3c7; border-left: 4px solid #f59e0b; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;">
-                            <strong style="color: #92400e; display: block; margin-bottom: 0.5rem;"><i class="fas fa-exclamation-triangle"></i> Paso Crítico Antes de Decidir:</strong>
-                            <p style="font-size: 0.9rem; color: #78350f; margin: 0; line-height: 1.6;">
-                                <strong>Si estás considerando la Opción A (Laravel):</strong> Es obligatorio hacer una auditoría técnica primero (2-3 semanas). Sin saber el estado real del código, cualquier decisión sería a ciegas. La auditoría te dirá:<br>
-                                • ¿Qué porcentaje está completo?<br>
-                                • ¿Cuánto costaría terminarlo?<br>
-                                • ¿Está bien construido o necesita refactorización?<br>
-                                • ¿Cuánto tiempo tomaría ponerlo en producción?
+                        <div style="background: #eff6ff; border-left: 4px solid #3b82f6; padding: 1rem; border-radius: 6px; margin-bottom: 1rem;">
+                            <strong style="color: #1e40af; display: block; margin-bottom: 0.5rem;"><i class="fas fa-rocket"></i> La Ventaja del Software Comercial (por qué ya completó el ciclo de vida):</strong>
+                            <p style="font-size: 0.9rem; color: #1e3a8a; margin: 0; line-height: 1.6;">
+                                Herramientas como MUTA, Samsara, SimpliRoute pasaron por <strong>años de desarrollo, miles de horas de pruebas, cientos de usuarios reales, bugs resueltos, mejoras continuas</strong>. No estás comprando "software nuevo", estás adoptando un producto <strong>maduro y probado</strong>. El costo y tiempo que te ahorras es todo lo que ellos ya invirtieron en las 7 etapas del ciclo de vida. Tú solo "te subes al tren" que ya está andando.
                             </p>
                         </div>
                         
-                        <p style="color: #334155; font-size: 0.95rem; margin: 0;">
-                            <strong>Opción Híbrida:</strong> También puedes usar ambas estrategias en paralelo: implementar software comercial para necesidades urgentes (GPS, rutas) mientras auditas y decides el futuro del Laravel. Esto te da valor inmediato sin cerrar puertas.
+                        <p style="color: #334155; font-size: 0.95rem; margin: 0; background: #f8fafc; padding: 1rem; border-radius: 8px;">
+                            <strong style="color: #0f172a;">Recomendación pragmática:</strong> Si tus procesos de gestión de clientes/grupos/zonas/frecuencias/manifiestos NO son radicalmente diferentes a otras empresas de recolección, la Opción B (migración a software comercial) ofrece <strong>mejor retorno sobre inversión</strong>: modernización más rápida, menor riesgo, sin costo de desarrollo, funcionalidades avanzadas inmediatas. La inversión en Laravel se "pierde" pero los datos se migran y ganas años de desarrollo que el mercado ya hizo por ti.
                         </p>
                     </div>
                 </div>
@@ -1945,6 +2382,299 @@
                 </div>
             </article>
 
+            <!-- Modelo AS-IS Section -->
+            <article class="card span-2" id="modelo-asis" style="border-top: 4px solid #dc2626;">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon" style="background: rgba(220, 38, 38, 0.1); color: #dc2626;"><i class="fas fa-diagram-project"></i></span>
+                        Modelo AS-IS: Procesos Actuales de Sonne Energéticos
+                    </h2>
+                    <span class="card-badge" style="background: #dc2626; color: white;">Situación Actual</span>
+                </div>
+                <div class="card-body">
+                    <!-- Diagnóstico arriba -->
+                    <div style="background: #fef2f2; border-left: 4px solid #dc2626; padding: 1.5rem; border-radius: 8px; margin-bottom: 2rem;">
+                        <h3 style="color: #dc2626; margin: 0 0 1rem 0; font-size: 1.1rem;">
+                            <i class="fas fa-exclamation-triangle"></i> Diagnóstico
+                        </h3>
+                        <p style="margin: 0 0 0.75rem 0; font-size: 0.95rem; color: #991b1b; line-height: 1.7;">
+                            Actualmente, la operación depende fuertemente del <strong>conocimiento del director</strong>, con procesos poco documentados, ejecución empírica y transferencia informal del conocimiento.
+                        </p>
+                        <p style="margin: 0; font-size: 0.95rem; color: #991b1b; line-height: 1.7;">
+                            No existe una separación clara entre funciones directivas y operativas, ni sistemas centrales como <strong>ERP o CRM</strong>, lo que limita la escalabilidad y el control.
+                        </p>
+                    </div>
+                    
+                    <!-- Diagrama AS-IS usando todo el ancho -->
+                    <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
+                        <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; text-align: center; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-weight: 700; font-size: 1.1rem;">
+                            <i class="fas fa-recycle"></i> Procesos Actuales de Sonne Energéticos
+                        </div>
+                        
+                        <!-- Fila 1: Procesos Estratégicos → Front End → Back End → Procesos de Apoyo -->
+                        <div style="display: grid; grid-template-columns: 2fr 0.5fr 2fr 0.5fr 2fr 0.5fr 2fr; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                            <!-- Columna 1: Procesos Estratégicos -->
+                            <div style="background: linear-gradient(180deg, #d1fae5 0%, #a7f3d0 100%); border: 2px solid #059669; border-radius: 8px; padding: 1.25rem;">
+                                <div style="background: #059669; color: white; text-align: center; padding: 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; font-weight: 700; font-size: 0.9rem;">
+                                    Procesos Estratégicos
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <div style="background: white; border: 1px solid #059669; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #065f46;">Dirección</div>
+                                    <div style="background: white; border: 1px solid #059669; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #065f46;">Planeación</div>
+                                    <div style="background: white; border: 1px solid #059669; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #065f46;">Control</div>
+                                    <div style="background: white; border: 1px solid #059669; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #065f46;">Mejora</div>
+                                    <div style="background: white; border: 1px solid #059669; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #065f46;">Desarrollo de Servicios</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flecha 1 -->
+                            <div style="display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-arrow-right" style="font-size: 2rem; color: #94a3b8;"></i>
+                            </div>
+                            
+                            <!-- Columna 2: Front End (Comercial) -->
+                            <div style="background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 8px; padding: 1.25rem;">
+                                <div style="background: #f59e0b; color: white; text-align: center; padding: 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; font-weight: 700; font-size: 0.9rem;">
+                                    Front End (Comercial)
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <div style="background: white; border: 1px solid #f59e0b; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #92400e;">Planificación</div>
+                                    <div style="background: white; border: 1px solid #f59e0b; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #92400e;">Captación de Generadores</div>
+                                    <div style="background: white; border: 1px solid #f59e0b; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #92400e;">Compra a Recolectores</div>
+                                    <div style="background: white; border: 1px solid #f59e0b; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #92400e;">Contratación</div>
+                                    <div style="background: white; border: 1px solid #f59e0b; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #92400e;">Fidelización</div>
+                                    <div style="background: white; border: 1px solid #f59e0b; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #92400e;">Expansión</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flecha 2 -->
+                            <div style="display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-arrow-right" style="font-size: 2rem; color: #94a3b8;"></i>
+                            </div>
+                            
+                            <!-- Columna 3: Back End (Operativo) -->
+                            <div style="background: linear-gradient(180deg, #e0e7ff 0%, #c7d2fe 100%); border: 2px solid #6366f1; border-radius: 8px; padding: 1.25rem;">
+                                <div style="background: #6366f1; color: white; text-align: center; padding: 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; font-weight: 700; font-size: 0.9rem;">
+                                    Back End (Operativo)
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <div style="background: white; border: 1px solid #6366f1; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #4338ca;">Planificación</div>
+                                    <div style="background: white; border: 1px solid #6366f1; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #4338ca;">Recepción</div>
+                                    <div style="background: white; border: 1px solid #6366f1; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #4338ca;">Tratamiento</div>
+                                    <div style="background: white; border: 1px solid #6366f1; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #4338ca;">Control de Calidad</div>
+                                    <div style="background: white; border: 1px solid #6366f1; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #4338ca;">Distribución</div>
+                                    <div style="background: white; border: 1px solid #6366f1; padding: 0.5rem; border-radius: 4px; text-align: center; font-size: 0.8rem; color: #4338ca;">Circularidad y Certificación</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flecha 3 -->
+                            <div style="display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-arrow-right" style="font-size: 2rem; color: #94a3b8;"></i>
+                            </div>
+                            
+                            <!-- Columna 4: Procesos de Apoyo -->
+                            <div style="background: linear-gradient(180deg, #cffafe 0%, #a5f3fc 100%); border: 2px solid #06b6d4; border-radius: 8px; padding: 1.25rem;">
+                                <div style="background: #06b6d4; color: white; text-align: center; padding: 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; font-weight: 700; font-size: 0.9rem;">
+                                    Procesos de Apoyo
+                                </div>
+                                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                    <div style="background: white; border: 1px solid #06b6d4; padding: 0.4rem; border-radius: 4px; text-align: center; font-size: 0.75rem; color: #155e75;">Gestión de Personas</div>
+                                    <div style="background: white; border: 1px solid #06b6d4; padding: 0.4rem; border-radius: 4px; text-align: center; font-size: 0.75rem; color: #155e75;">Gestión de Proyectos</div>
+                                    <div style="background: white; border: 1px solid #06b6d4; padding: 0.4rem; border-radius: 4px; text-align: center; font-size: 0.75rem; color: #155e75;">Gestión Legal, Financiera y Administrativa</div>
+                                    <div style="background: white; border: 1px solid #06b6d4; padding: 0.4rem; border-radius: 4px; text-align: center; font-size: 0.75rem; color: #155e75;">Seguridad Industrial y Ambiental</div>
+                                    <div style="background: white; border: 1px solid #06b6d4; padding: 0.4rem; border-radius: 4px; text-align: center; font-size: 0.75rem; color: #155e75;">Mantenimiento y Conservación</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insight" style="margin-top: 2rem;">
+                        <div class="insight-header"><i class="fas fa-lightbulb"></i> Problema Principal</div>
+                        <p>El modelo AS-IS refleja una <strong>operación funcional pero frágil</strong>: todo fluye, pero depende en exceso del conocimiento tácito del director. Sin documentación formal, sin sistemas integrados (ERP/CRM), y sin separación clara entre lo estratégico y lo operativo, la empresa enfrenta <strong>límites de escalabilidad, riesgo de continuidad y dificultad para delegar</strong>.</p>
+                    </div>
+
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>Hoy tenemos procesos que funcionan, pero están sostenidos por personas específicas y conocimiento que no está documentado. Si alguien clave falta, la operación se frena. <strong>No hay sistemas centrales que conecten todo</strong>, y eso hace difícil crecer de forma ordenada.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Modelo TO-BE Section -->
+            <article class="card span-2" id="modelo-tobe" style="border-top: 4px solid #059669;">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <span class="card-icon" style="background: rgba(5, 150, 105, 0.1); color: #059669;"><i class="fas fa-diagram-successor"></i></span>
+                        Modelo TO-BE: Procesos Futuros de Sonne Energéticos
+                    </h2>
+                    <span class="card-badge" style="background: #059669; color: white;">Visión Futura</span>
+                </div>
+                <div class="card-body">
+                    <!-- Diagrama TO-BE -->
+                    <div style="display: grid; grid-template-columns: 2fr 3fr; gap: 2rem; margin-bottom: 2rem;">
+                        <!-- Expectativa -->
+                        <div>
+                            <div style="background: #f0fdf4; border-left: 4px solid #059669; padding: 1.5rem; border-radius: 12px;">
+                                <h3 style="color: #065f46; margin: 0 0 1rem 0; font-size: 1.1rem;">
+                                    <i class="fas fa-bullseye"></i> Expectativa
+                                </h3>
+                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <div style="display: flex; align-items: start; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Estandarizar procesos por área</span>
+                                    </div>
+                                    <div style="display: flex; align-items: start; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Separar lo operativo de lo directivo</span>
+                                    </div>
+                                    <div style="display: flex; align-items: start; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Reducir dependencia del director en la operación diaria</span>
+                                    </div>
+                                    <div style="display: flex; align-items: start; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #dc2626; margin-top: 2px; font-size: 0.9rem;"></i>
+                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;"><strong style="color: #dc2626;">Priorizar automatización de la recolección de residuos</strong></span>
+                                    </div>
+                                    <div style="display: flex; align-items: start; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Automatizar tareas repetitivas y procesos maduros</span>
+                                    </div>
+                                    <div style="display: flex; align-items: start; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Educar tecnológicamente al equipo para asegurar adopción</span>
+                                    </div>
+                                    <div style="display: flex; align-items: start; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Sentar las bases para futuras gerencias y crecimiento ordenado</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Organigrama TO-BE -->
+                        <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 2rem;">
+                            <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; text-align: center; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.1rem;">
+                                <i class="fas fa-recycle"></i> Procesos TO-BE de Sonne Energéticos
+                            </div>
+                            
+                            <!-- Nivel 1: Dirección -->
+                            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                                <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border: 2px solid #059669; border-radius: 8px; padding: 1rem; text-align: center; width: 200px;">
+                                    <div style="background: #059669; color: white; padding: 0.5rem; border-radius: 4px; font-weight: 700; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-chess-king"></i> Dirección
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flecha hacia abajo -->
+                            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                                <i class="fas fa-arrow-down" style="font-size: 1.5rem; color: #94a3b8;"></i>
+                            </div>
+                            
+                            <!-- Nivel 2: Desarrollo Estratégico -->
+                            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                                <div style="background: white; border: 2px solid #10b981; border-radius: 8px; padding: 1rem; width: 90%;">
+                                    <div style="text-align: center; font-weight: 700; color: #059669; margin-bottom: 0.75rem;">
+                                        <i class="fas fa-lightbulb"></i> Desarrollo Estratégico
+                                    </div>
+                                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.5rem;">
+                                        <span style="background: #d1fae5; color: #065f46; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Mejora Continua e Innovación</span>
+                                        <span style="background: #d1fae5; color: #065f46; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Desarrollo Organizacional</span>
+                                        <span style="background: #d1fae5; color: #065f46; padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem;">Control Interno y Riesgos</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Flecha hacia abajo -->
+                            <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+                                <i class="fas fa-arrow-down" style="font-size: 1.5rem; color: #94a3b8;"></i>
+                            </div>
+                            
+                            <!-- Nivel 3: 5 Áreas Operativas -->
+                            <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.75rem;">
+                                <!-- Comercial -->
+                                <div style="background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6; border-radius: 8px; padding: 0.75rem;">
+                                    <div style="background: #3b82f6; color: white; padding: 0.4rem; border-radius: 4px; text-align: center; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-handshake"></i><br><span style="font-size: 0.75rem;">Comercial</span>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                        <div style="background: white; border: 1px solid #3b82f6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #1e40af;">Ventas y Marketing</div>
+                                        <div style="background: white; border: 1px solid #3b82f6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #1e40af;">Experiencia Cliente</div>
+                                        <div style="background: white; border: 1px solid #3b82f6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #1e40af;">Contratación</div>
+                                        <div style="background: white; border: 1px solid #3b82f6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #1e40af;">Fidelización</div>
+                                        <div style="background: white; border: 1px solid #3b82f6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #1e40af;">Información</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Operaciones Logísticas -->
+                                <div style="background: linear-gradient(180deg, #fef3c7 0%, #fde68a 100%); border: 2px solid #f59e0b; border-radius: 8px; padding: 0.75rem;">
+                                    <div style="background: #f59e0b; color: white; padding: 0.4rem; border-radius: 4px; text-align: center; font-weight: 700; font-size: 0.7rem; margin-bottom: 0.5rem; line-height: 1.2;">
+                                        <i class="fas fa-truck"></i><br><span style="font-size: 0.65rem;">Operaciones Logísticas</span>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                        <div style="background: white; border: 1px solid #f59e0b; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #92400e;">Planeación</div>
+                                        <div style="background: white; border: 1px solid #f59e0b; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #92400e;">Monitoreo</div>
+                                        <div style="background: white; border: 1px solid #f59e0b; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #92400e;">Logística Inversa</div>
+                                        <div style="background: white; border: 1px solid #f59e0b; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #92400e;">Almacenamiento</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Operaciones Productivas -->
+                                <div style="background: linear-gradient(180deg, #ede9fe 0%, #ddd6fe 100%); border: 2px solid #8b5cf6; border-radius: 8px; padding: 0.75rem;">
+                                    <div style="background: #8b5cf6; color: white; padding: 0.4rem; border-radius: 4px; text-align: center; font-weight: 700; font-size: 0.7rem; margin-bottom: 0.5rem; line-height: 1.2;">
+                                        <i class="fas fa-industry"></i><br><span style="font-size: 0.65rem;">Operaciones Productivas</span>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                        <div style="background: white; border: 1px solid #8b5cf6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #5b21b6;">Control Producción</div>
+                                        <div style="background: white; border: 1px solid #8b5cf6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #5b21b6;">Calidad</div>
+                                        <div style="background: white; border: 1px solid #8b5cf6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #5b21b6;">Transformación</div>
+                                        <div style="background: white; border: 1px solid #8b5cf6; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #5b21b6;">Información</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Mantenimiento -->
+                                <div style="background: linear-gradient(180deg, #d1fae5 0%, #a7f3d0 100%); border: 2px solid #10b981; border-radius: 8px; padding: 0.75rem;">
+                                    <div style="background: #10b981; color: white; padding: 0.4rem; border-radius: 4px; text-align: center; font-weight: 700; font-size: 0.75rem; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-wrench"></i><br><span style="font-size: 0.7rem;">Mantenimiento</span>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                        <div style="background: white; border: 1px solid #10b981; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #065f46;">Unidades</div>
+                                        <div style="background: white; border: 1px solid #10b981; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #065f46;">Máquinas</div>
+                                        <div style="background: white; border: 1px solid #10b981; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #065f46;">Eficiencia</div>
+                                        <div style="background: white; border: 1px solid #10b981; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.65rem; color: #065f46;">Seguridad</div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Gestión -->
+                                <div style="background: linear-gradient(180deg, #cffafe 0%, #a5f3fc 100%); border: 2px solid #06b6d4; border-radius: 8px; padding: 0.75rem;">
+                                    <div style="background: #06b6d4; color: white; padding: 0.4rem; border-radius: 4px; text-align: center; font-weight: 700; font-size: 0.8rem; margin-bottom: 0.5rem;">
+                                        <i class="fas fa-briefcase"></i><br><span style="font-size: 0.75rem;">Gestión</span>
+                                    </div>
+                                    <div style="display: flex; flex-direction: column; gap: 0.3rem;">
+                                        <div style="background: white; border: 1px solid #06b6d4; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.6rem; color: #155e75;">Compras</div>
+                                        <div style="background: white; border: 1px solid #06b6d4; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.6rem; color: #155e75;">Talento Humano</div>
+                                        <div style="background: white; border: 1px solid #06b6d4; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.6rem; color: #155e75;">Financiera</div>
+                                        <div style="background: white; border: 1px solid #06b6d4; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.6rem; color: #155e75;">Innovación</div>
+                                        <div style="background: white; border: 1px solid #06b6d4; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.6rem; color: #155e75;">Circularidad</div>
+                                        <div style="background: white; border: 1px solid #06b6d4; padding: 0.3rem; border-radius: 3px; text-align: center; font-size: 0.6rem; color: #155e75;">Control Admin</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="insight" style="margin-top: 2rem;">
+                        <div class="insight-header"><i class="fas fa-lightbulb"></i> Transformación Clave</div>
+                        <p>El modelo TO-BE establece una <strong>estructura organizacional clara</strong> donde cada área tiene procesos definidos, responsables identificados y sistemas que los soportan. La dirección se enfoca en estrategia y desarrollo, mientras que las cinco áreas operativas ejecutan con autonomía bajo gobierno claro. <strong>La prioridad inmediata es automatizar la recolección de residuos</strong>, eliminando papel y ganando visibilidad en tiempo real.</p>
+                    </div>
+
+                    <div class="conclusion-simple">
+                        <div class="conclusion-header"><i class="fas fa-check-circle"></i> Conclusión simple</div>
+                        <p>El modelo TO-BE separa claramente <strong>quién decide (dirección) de quién ejecuta (áreas operativas)</strong>. Cada área tiene procesos documentados, sistemas que los soportan y personas capacitadas. El director deja de ser el cuello de botella y se convierte en estratega. <strong>La empresa puede crecer de forma ordenada y sostenible</strong>.</p>
+                    </div>
+                </div>
+            </article>
+
             <!-- Final Conclusion Section -->
             <article class="card span-2" id="conclusion-final" style="border-top: 4px solid #0f172a; margin-top: 2rem;">
                 <div class="card-header">
@@ -1957,14 +2687,16 @@
                     <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start;">
                         <div>
                             <p style="font-size: 1.2rem; line-height: 1.8; color: #1e293b; font-weight: 600;">
-                                Grupo Sonne se encuentra en un punto de decisión estratégica sobre su infraestructura tecnológica.
+                                Grupo Sonne se encuentra en un momento decisivo: <strong>modernizarse mediante software del mercado o seguir invirtiendo en desarrollo interno</strong>.
                             </p>
                             <p style="font-size: 1rem; line-height: 1.7; color: #475569; margin-top: 1rem;">
-                                <strong>La situación actual:</strong> Existe un sistema Laravel moderno que representa una inversión ya realizada, pero actualmente no está en uso operativo y carece de documentación. Mientras tanto, las operaciones diarias se ejecutan principalmente en Excel y procesos manuales.<br><br>
+                                <strong>La situación actual:</strong> El sistema interno <strong>está en producción activa</strong> y es el core de operaciones diarias (gestión de clientes/grupos/zonas, bitácoras por frecuencia, manifiestos, básculas, reportes de facturación). Sin embargo, funciona en un modelo híbrido manual-digital: bitácoras impresas → papel en campo → captura posterior. Falta app móvil, optimización de rutas, visibilidad en tiempo real.<br><br>
                                 
-                                <strong>Las opciones disponibles:</strong> Tienes dos caminos principales: (1) Reactivar y completar el sistema Laravel existente, o (2) Implementar software comercial especializado. Cada opción tiene ventajas y desafíos específicos que se detallan en este documento.<br><br>
+                                <strong>Las opciones estratégicas:</strong> (1) <strong>Evolucionar el sistema actual internamente:</strong> Desarrollar app móvil, optimización de rutas, dashboards <em>(estimado: 10-14 meses, $80K-$120K USD con equipo robusto de desarrollo, requiere equipo técnico dedicado)</em>. (2) <strong>Migrar a software comercial:</strong> Reemplazar el sistema actual con herramientas del mercado (ej. MUTA + SimpliRoute) que ya completaron todo el ciclo de vida <em>(estimado: 4-5 meses, $58K-$95K año 1, sin equipo técnico interno necesario)</em>.<br><br>
                                 
-                                <strong>El factor crítico:</strong> Independientemente de la opción que elijas, es fundamental tomar una decisión informada basada en datos reales (auditoría técnica si consideras Laravel) y con una visión clara de los recursos (tiempo, presupuesto, equipo) que estás dispuesto a comprometer.
+                                <strong>El factor crítico:</strong> La decisión no es técnica, sino de <strong>estrategia de negocio</strong>: ¿vale la pena invertir tiempo/dinero en desarrollar lo que el mercado ya ofrece maduro y probado? Software comercial ofrece modernización más rápida, menor riesgo, y elimina costo/tiempo de desarrollo. La inversión en el sistema actual se "pierde" como código activo, pero los datos se migran y ganas años de desarrollo que otros ya hicieron.<br><br>
+                                
+                                <em style="font-size: 0.9rem; color: #64748b;">Nota: Todos los tiempos y costos mencionados son ejemplos estimados para referencia comparativa, no cifras fijas.</em>
                             </p>
                         </div>
                         <div style="padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
@@ -1972,8 +2704,8 @@
                             <p style="color: #475569; font-size: 0.95rem; line-height: 1.6;">
                                 <strong style="color: #0f172a;">1. Corto Plazo (Próximas 4-6 semanas):</strong><br>
                                 • Definir prioridades críticas del negocio<br>
-                                • Si consideras Laravel: contratar auditoría técnica<br>
-                                • Si consideras comercial: solicitar demos de 2-3 proveedores<br><br>
+                                • Si consideras evolucionar sistema actual: contratar auditoría técnica<br>
+                                • Si consideras migración comercial: solicitar demos de 2-3 proveedores<br><br>
                                 
                                 <strong style="color: #0f172a;">2. Mediano Plazo (2-3 meses):</strong><br>
                                 • Evaluar resultados de auditoría/demos<br>
@@ -2073,20 +2805,38 @@
             }
         });
 
-        // Auto-hide NEW badge after 1 week
+        // Auto-hide NEW badges after 3 days
+        // Sistema escalable para múltiples badges con fechas individuales
         (function() {
-            const badge = document.getElementById('comparativas-new-badge');
-            if (!badge) return;
-            
-            // Fecha de lanzamiento: 30 de enero de 2026
-            const launchDate = new Date('2026-02-09').getTime();
-            const oneWeek = 7 * 24 * 60 * 60 * 1000; // 1 semana en milisegundos
+            const THREE_DAYS = 3 * 24 * 60 * 60 * 1000; // 3 días en milisegundos
             const currentDate = new Date().getTime();
             
-            // Si ha pasado más de 1 semana desde el lanzamiento, ocultar el badge
-            if (currentDate - launchDate > oneWeek) {
-                badge.style.display = 'none';
-            }
+            // Configuración de badges: { id: 'badge-id', launchDate: 'YYYY-MM-DD' }
+            const badges = [
+                {
+                    ids: ['comparativas-new-badge'], // Badge en sidebar
+                    launchDate: new Date('2026-02-09').getTime()
+                },
+                {
+                    ids: ['ciclo-vida-new-badge', 'ciclo-vida-card-badge'], // Badge en sidebar y card
+                    launchDate: new Date('2026-02-09').getTime() // Fecha de hoy
+                }
+            ];
+            
+            // Procesar cada grupo de badges
+            badges.forEach(badgeGroup => {
+                const timeSinceLaunch = currentDate - badgeGroup.launchDate;
+                
+                // Si han pasado más de 3 días, ocultar todos los badges del grupo
+                if (timeSinceLaunch > THREE_DAYS) {
+                    badgeGroup.ids.forEach(id => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.style.display = 'none';
+                        }
+                    });
+                }
+            });
         })();
     </script>
 </body>
