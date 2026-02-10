@@ -592,6 +592,214 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
+
+        /* ===================================
+           RESPONSIVE DESIGN - MOBILE & TABLET
+           =================================== */
+        
+        /* Tablets and smaller laptops (1024px and below) */
+        @media screen and (max-width: 1024px) {
+            .sidebar {
+                width: 240px;
+            }
+            
+            .main-content {
+                margin-left: 240px;
+                padding: 2rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .span-2 {
+                grid-column: span 1;
+            }
+            
+            .header-text h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        /* Mobile devices (768px and below) */
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 1rem;
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+            
+            .logo-container {
+                margin-bottom: 1rem;
+                padding: 1rem;
+            }
+            
+            .logo {
+                width: 120px;
+            }
+            
+            .nav-links {
+                display: none; /* Hide navigation on mobile - can be made collapsible if needed */
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem 1rem;
+                width: 100%;
+            }
+            
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            .header-text h1 {
+                font-size: 2rem;
+            }
+            
+            .header-text .subtitle {
+                font-size: 1rem;
+            }
+            
+            .header-meta {
+                text-align: left;
+                font-size: 0.85rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 3rem;
+            }
+            
+            .card {
+                padding: 1.5rem;
+            }
+            
+            .card-title {
+                font-size: 1.3rem;
+            }
+            
+            /* Tables - horizontal scroll */
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                margin: 0 -1.5rem;
+                padding: 0 1.5rem;
+            }
+            
+            .tech-table {
+                min-width: 800px;
+                font-size: 0.85rem;
+            }
+            
+            /* Grid layouts inside cards - stack to single column */
+            .card-body > div[style*="display: grid"] {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 1rem !important;
+            }
+            
+            /* Diagrams and wide content - allow horizontal scroll */
+            .card-body > div[style*="overflow"],
+            .card-body canvas {
+                max-width: 100%;
+                overflow-x: auto;
+            }
+            
+            /* Stats and metrics */
+            .stat-value {
+                font-size: 2rem;
+            }
+            
+            /* Badges */
+            .badge, .card-badge {
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+            
+            /* Buttons */
+            .btn-print {
+                width: 100%;
+                justify-content: center;
+                font-size: 0.85rem;
+                padding: 10px 16px;
+            }
+        }
+        
+        /* Small mobile devices (480px and below) */
+        @media screen and (max-width: 480px) {
+            .main-content {
+                padding: 1rem 0.75rem;
+            }
+            
+            .header-text h1 {
+                font-size: 1.75rem;
+            }
+            
+            .header-text .subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .card {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+            
+            .card-title {
+                font-size: 1.2rem;
+            }
+            
+            .tech-table {
+                font-size: 0.75rem;
+            }
+            
+            .stat-value {
+                font-size: 1.75rem;
+            }
+        }
+        
+        /* Specific fixes for diagrams and complex layouts */
+        @media screen and (max-width: 768px) {
+            /* TO-BE and AS-IS model diagrams */
+            #modelo-tobe .card-body > div,
+            #modelo-asis .card-body > div {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            /* Architecture chart container */
+            #arquitectura canvas {
+                max-width: 100% !important;
+                height: auto !important;
+            }
+            
+            /* Two-column layouts to single column */
+            div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+            
+            /* Caminos A y B comparison */
+            .insight div[style*="display: grid"] {
+                display: flex !important;
+                flex-direction: column !important;
+            }
+            
+            /* Progress bars and charts */
+            canvas {
+                max-width: 100% !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2621,14 +2829,15 @@
                         </p>
                     </div>
                     
-                    <!-- Diagrama AS-IS usando todo el ancho -->
-                    <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 2rem; margin-bottom: 2rem;">
-                        <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; text-align: center; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-weight: 700; font-size: 1.1rem;">
-                            <i class="fas fa-recycle"></i> Procesos Actuales de Sonne Energéticos
-                        </div>
-                        
-                        <!-- Fila 1: Procesos Estratégicos → Front End → Back End → Procesos de Apoyo -->
-                        <div style="display: grid; grid-template-columns: 2fr 0.5fr 2fr 0.5fr 2fr 0.5fr 2fr; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
+                    <!-- Diagrama AS-IS usando todo el ancho CON SCROLL HORIZONTAL -->
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -2.5rem 2rem -2.5rem; padding: 0 2.5rem;">
+                        <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 2rem; min-width: 1200px;">
+                            <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; text-align: center; padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-weight: 700; font-size: 1.1rem;">
+                                <i class="fas fa-recycle"></i> Procesos Actuales de Sonne Energéticos
+                            </div>
+                            
+                            <!-- Fila 1: Procesos Estratégicos → Front End → Back End → Procesos de Apoyo -->
+                            <div style="display: grid; grid-template-columns: 2fr 0.5fr 2fr 0.5fr 2fr 0.5fr 2fr; gap: 1rem; align-items: center; margin-bottom: 1.5rem;">
                             <!-- Columna 1: Procesos Estratégicos -->
                             <div style="background: linear-gradient(180deg, #d1fae5 0%, #a7f3d0 100%); border: 2px solid #059669; border-radius: 8px; padding: 1.25rem;">
                                 <div style="background: #059669; color: white; text-align: center; padding: 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; font-weight: 700; font-size: 0.9rem;">
@@ -2726,49 +2935,50 @@
                     <span class="card-badge" style="background: #059669; color: white;">Visión Futura</span>
                 </div>
                 <div class="card-body">
-                    <!-- Diagrama TO-BE -->
-                    <div style="display: grid; grid-template-columns: 2fr 3fr; gap: 2rem; margin-bottom: 2rem;">
-                        <!-- Expectativa -->
-                        <div>
-                            <div style="background: #f0fdf4; border-left: 4px solid #059669; padding: 1.5rem; border-radius: 12px;">
-                                <h3 style="color: #065f46; margin: 0 0 1rem 0; font-size: 1.1rem;">
-                                    <i class="fas fa-bullseye"></i> Expectativa
-                                </h3>
-                                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                                    <div style="display: flex; align-items: start; gap: 8px;">
-                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
-                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Estandarizar procesos por área</span>
-                                    </div>
-                                    <div style="display: flex; align-items: start; gap: 8px;">
-                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
-                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Separar lo operativo de lo directivo</span>
-                                    </div>
-                                    <div style="display: flex; align-items: start; gap: 8px;">
-                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
-                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Reducir dependencia del director en la operación diaria</span>
-                                    </div>
-                                    <div style="display: flex; align-items: start; gap: 8px;">
-                                        <i class="fas fa-check-circle" style="color: #dc2626; margin-top: 2px; font-size: 0.9rem;"></i>
-                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;"><strong style="color: #dc2626;">Priorizar automatización de la recolección de residuos</strong></span>
-                                    </div>
-                                    <div style="display: flex; align-items: start; gap: 8px;">
-                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
-                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Automatizar tareas repetitivas y procesos maduros</span>
-                                    </div>
-                                    <div style="display: flex; align-items: start; gap: 8px;">
-                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
-                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Educar tecnológicamente al equipo para asegurar adopción</span>
-                                    </div>
-                                    <div style="display: flex; align-items: start; gap: 8px;">
-                                        <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
-                                        <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Sentar las bases para futuras gerencias y crecimiento ordenado</span>
+                    <!-- Diagrama TO-BE CON SCROLL HORIZONTAL -->
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -2.5rem 2rem -2.5rem; padding: 0 2.5rem;">
+                        <div style="display: grid; grid-template-columns: 2fr 3fr; gap: 2rem; min-width: 1100px;">
+                            <!-- Expectativa -->
+                            <div>
+                                <div style="background: #f0fdf4; border-left: 4px solid #059669; padding: 1.5rem; border-radius: 12px;">
+                                    <h3 style="color: #065f46; margin: 0 0 1rem 0; font-size: 1.1rem;">
+                                        <i class="fas fa-bullseye"></i> Expectativa
+                                    </h3>
+                                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                        <div style="display: flex; align-items: start; gap: 8px;">
+                                            <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                            <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Estandarizar procesos por área</span>
+                                        </div>
+                                        <div style="display: flex; align-items: start; gap: 8px;">
+                                            <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                            <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Separar lo operativo de lo directivo</span>
+                                        </div>
+                                        <div style="display: flex; align-items: start; gap: 8px;">
+                                            <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                            <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Reducir dependencia del director en la operación diaria</span>
+                                        </div>
+                                        <div style="display: flex; align-items: start; gap: 8px;">
+                                            <i class="fas fa-check-circle" style="color: #dc2626; margin-top: 2px; font-size: 0.9rem;"></i>
+                                            <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;"><strong style="color: #dc2626;">Priorizar automatización de la recolección de residuos</strong></span>
+                                        </div>
+                                        <div style="display: flex; align-items: start; gap: 8px;">
+                                            <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                            <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Automatizar tareas repetitivas y procesos maduros</span>
+                                        </div>
+                                        <div style="display: flex; align-items: start; gap: 8px;">
+                                            <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                            <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Educar tecnológicamente al equipo para asegurar adopción</span>
+                                        </div>
+                                        <div style="display: flex; align-items: start; gap: 8px;">
+                                            <i class="fas fa-check-circle" style="color: #059669; margin-top: 2px; font-size: 0.9rem;"></i>
+                                            <span style="font-size: 0.9rem; color: #065f46; line-height: 1.4;">Sentar las bases para futuras gerencias y crecimiento ordenado</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Organigrama TO-BE -->
-                        <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 2rem;">
+                            
+                            <!-- Organigrama TO-BE -->
+                            <div style="background: white; border: 2px solid #e2e8f0; border-radius: 12px; padding: 2rem;">
                             <div style="background: linear-gradient(135deg, #059669 0%, #047857 100%); color: white; text-align: center; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.1rem;">
                                 <i class="fas fa-recycle"></i> Procesos TO-BE de Sonne Energéticos
                             </div>
